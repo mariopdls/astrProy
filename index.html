@@ -204,7 +204,7 @@
                 </div>
                 <div class="astra-glass-card p-4 rounded-2xl">
                     <div class="flex items-center justify-between text-gray-400 mb-1">
-                        <span class="text-[11px] font-bold uppercase tracking-wider">Tarjetas Prácticas</span>
+                        <span class="text-[11px] font-bold uppercase tracking-wider">Retos Generados</span>
                         <i class="fa-solid fa-layer-group text-astra-cyan"></i>
                     </div>
                     <div id="stat-flashcards-count" class="text-xl sm:text-2xl font-black text-white">0</div>
@@ -374,9 +374,6 @@
                         <option value="EIE">EIE / Empleabilidad</option>
                         <option value="PROYECTO">Proyecto DAW</option>
                     </select>
-                    <button onclick="openAddCardModal()" class="bg-gray-900 hover:bg-gray-800 text-gray-200 border border-astra-border text-xs font-semibold px-3 py-2 rounded-xl transition">
-                        + Nueva Card Manual
-                    </button>
                 </div>
             </div>
 
@@ -387,79 +384,67 @@
                         <i class="fa-solid fa-sliders text-astra-cyan"></i>
                         <span>Contexto de Estudio para hoy (AI Prompt)</span>
                     </span>
-                    <span class="text-[10px] text-gray-400">Gemini generará preguntas según lo que especifiques aquí</span>
+                    <span class="text-[10px] text-gray-400">Gemini genera una tanda de 6 retos con lo que pongas aquí</span>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-2">
-                    <input id="flashcard-context-input" type="text" placeholder="Ej: Hoy estoy estudiando PDO, sesiones y cookies en PHP..." class="flex-grow bg-gray-950 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-sans">
+                    <input id="flashcard-context-input" type="text" onkeydown="if(event.key==='Enter'){generateDynamicAIReto();}" placeholder="Ej: Hoy estoy estudiando PDO, sesiones y cookies en PHP..." class="flex-grow bg-gray-950 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-sans">
                     <button onclick="generateDynamicAIReto()" class="bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-lg flex items-center justify-center space-x-2 whitespace-nowrap">
                         <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
-                        <span>Generar Reto AI Ahora</span>
+                        <span>Generar 6 Retos</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Interactive Practice Box Container -->
+            <!-- Practice container: se rellena solo al enviar contexto -->
             <div class="max-w-2xl mx-auto">
-                <div class="astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-5">
+                <div id="practice-empty" class="astra-glass-card p-10 rounded-3xl text-center space-y-3 border border-astra-border">
+                    <i class="fa-solid fa-wand-magic-sparkles text-4xl text-gray-600"></i>
+                    <h3 class="text-sm font-bold text-white">Aún no hay retos</h3>
+                    <p class="text-xs text-gray-400">Escribe arriba el tema que quieres repasar y pulsa "Generar 6 Retos".</p>
+                </div>
+
+                <div id="practice-loading" class="hidden astra-glass-card p-10 rounded-3xl text-center space-y-3 border border-astra-border">
+                    <div class="w-6 h-6 mx-auto rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
+                    <p class="text-xs text-astra-cyan">Gemini está preparando tus 6 retos...</p>
+                </div>
+
+                <div id="practice-card-box" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-5">
                     <div class="flex items-center justify-between border-b border-astra-border pb-3">
                         <span id="card-subject-tag" class="text-[10px] uppercase font-bold text-astra-cyan tracking-widest px-2.5 py-1 rounded-full bg-astra-cyan/10 border border-astra-cyan/20">ASIGNATURA</span>
                         <span id="flashcard-counter-indicator" class="text-xs text-gray-400 font-mono">0 / 0</span>
                     </div>
 
-                    <!-- Question Prompt -->
-                    <div id="card-front-content" class="text-sm sm:text-base font-bold text-white leading-relaxed">
-                        Cargando reto práctico...
-                    </div>
+                    <div id="card-front-content" class="text-sm sm:text-base font-bold text-white leading-relaxed"></div>
 
-                    <!-- User Answer Code Area -->
                     <div class="space-y-2">
                         <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider">Escribe tu respuesta o solución en código:</label>
-                        <textarea id="card-user-input" rows="4" placeholder="Escribe aquí tu código PHP, JS, comandos Docker, CSS o explicación..." class="w-full bg-gray-950 border border-astra-border rounded-2xl p-3 text-xs text-astra-cyan focus:outline-none font-mono resize-none"></textarea>
+                        <textarea id="card-user-input" rows="5" placeholder="Escribe aquí tu código PHP, JS, comandos Docker, CSS o explicación..." class="w-full bg-gray-950 border border-astra-border rounded-2xl p-3 text-xs text-astra-cyan focus:outline-none font-mono resize-none"></textarea>
                     </div>
 
-                    <!-- Submit & Check Actions -->
-                    <div class="flex flex-wrap gap-2 pt-1">
-                        <button onclick="checkAnswerWithAI()" class="flex-1 bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg">
+                    <div id="card-actions" class="flex flex-wrap gap-2 pt-1">
+                        <button id="card-eval-btn" onclick="checkAnswerWithAI()" class="flex-1 bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg">
                             <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
                             <span>Evaluar mi código con Gemini AI</span>
                         </button>
-                        <button onclick="revealOfficialAnswer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-4 py-2.5 rounded-xl transition">
-                            👁️ Ver solución oficial
+                        <button id="card-reveal-btn" onclick="revealOfficialAnswer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-4 py-2.5 rounded-xl transition">
+                            👁️ Ver solución (cuenta 0)
                         </button>
                     </div>
 
-                    <!-- Official Answer & AI Evaluation Output -->
                     <div id="card-feedback-box" class="hidden p-4 rounded-2xl bg-gray-950 border border-astra-border space-y-3 text-xs">
-                        <div>
+                        <div id="ai-eval-result" class="text-gray-300 space-y-1"></div>
+                        <div class="border-t border-gray-900 pt-3">
                             <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider block mb-1">Solución / Código Esperado:</span>
-                            <div id="card-back-content" class="text-gray-200 font-mono leading-relaxed overflow-x-auto">
-                                Solución esperada
-                            </div>
-                        </div>
-
-                        <div id="ai-eval-result" class="hidden border-t border-gray-900 pt-3 text-gray-300 space-y-1">
-                            <!-- Populated dynamically -->
+                            <div id="card-back-content" class="text-gray-200 font-mono leading-relaxed overflow-x-auto"></div>
                         </div>
                     </div>
 
-                    <!-- Active Recall Rating Buttons -->
-                    <div class="pt-2 border-t border-astra-border flex items-center justify-center space-x-3">
-                        <button onclick="rateCurrentCard('hard')" class="flex-1 bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 font-semibold py-2 rounded-xl text-xs transition">
-                            Difícil 🔴
-                        </button>
-                        <button onclick="rateCurrentCard('medium')" class="flex-1 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 font-semibold py-2 rounded-xl text-xs transition">
-                            Duda 🟡
-                        </button>
-                        <button onclick="rateCurrentCard('easy')" class="flex-1 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-semibold py-2 rounded-xl text-xs transition">
-                            Dominado 🟢
-                        </button>
-                    </div>
+                    <button id="card-next-btn" onclick="nextPracticeStep()" class="hidden w-full bg-astra-600 hover:bg-astra-500 text-white text-xs font-bold py-2.5 rounded-xl transition">
+                        Siguiente <i class="fa-solid fa-chevron-right ml-1"></i>
+                    </button>
                 </div>
 
-                <div class="flex items-center justify-between mt-4 text-xs text-gray-400 px-2">
-                    <button onclick="prevFlashcard()" class="hover:text-white"><i class="fa-solid fa-chevron-left mr-1"></i> Anterior</button>
-                    <button onclick="nextFlashcard()" class="hover:text-white">Siguiente <i class="fa-solid fa-chevron-right ml-1"></i></button>
-                </div>
+                <div id="practice-results" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-5 text-center"></div>
             </div>
         </section>
 
@@ -696,29 +681,12 @@
             { id: 'PROYECTO', name: 'Proyecto de Desarrollo Web', shortName: 'Proyecto DAW', icon: 'fa-diagram-project', color: 'from-amber-600 to-red-600', topics: [] }
         ];
 
-        const INITIAL_PRACTICAL_FLASHCARDS = [
-            {
-                id: 'fc_1',
-                subject: 'DWES',
-                front: 'Escribe una conexión PDO segura en PHP activando las excepciones de error.',
-                back: '$pdo = new PDO("mysql:host=localhost;dbname=daw_db;charset=utf8mb4", "root", "", [\n  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,\n  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC\n]);',
-                mastery: 'medium'
-            },
-            {
-                id: 'fc_2',
-                subject: 'DWEC',
-                front: 'Escribe una función asíncrona en JS usando Fetch API para consultar una REST API e imprimir los JSON.',
-                back: 'async function getData(url) {\n  const res = await fetch(url);\n  const data = await res.json();\n  console.log(data);\n}',
-                mastery: 'easy'
-            }
-        ];
-
         let activeChannel = 'GLOBAL';
 
         let appData = {
             apiKey: '',
             subjects: EMPTY_CUSTOM_DAW_SUBJECTS,
-            flashcards: INITIAL_PRACTICAL_FLASHCARDS,
+            flashcards: [],
             plans: [],
             pomoTotalSeconds: 0,
             chatHistories: {
@@ -726,6 +694,10 @@
                 DWES: [], DWEC: [], DIW: [], DAW: [], INGLES: [], EIE: [], PROYECTO: []
             }
         };
+
+        function cleanLegacyCards() {
+            appData.flashcards = (appData.flashcards || []).filter(c => c.id !== 'fc_1' && c.id !== 'fc_2');
+        }
 
         function saveData() {
             try {
@@ -745,6 +717,7 @@
                         ...parsed,
                         chatHistories: { ...appData.chatHistories, ...(parsed.chatHistories || {}) }
                     };
+                    cleanLegacyCards();
                 }
             } catch (e) {
                 console.error("Error cargando datos:", e);
@@ -778,6 +751,7 @@
                                 ...(parsed.chatHistories || {}) 
                             }
                         };
+                        cleanLegacyCards();
                         saveData();
                         updateApiStatusUI();
                         renderDashboard();
@@ -1145,44 +1119,64 @@
             await sendTutorMessage();
         }
 
-        let currentFlashcardIndex = 0;
+        const PRACTICE_TOTAL = 6;
+        const PASS_GRADE = 5;
+        let practiceSession = null; // { subject, context, cards, index, finished, loading, seenFronts }
 
-        function getFilteredFlashcards() {
-            const filter = document.getElementById('flashcard-subject-filter')?.value || 'ALL';
-            if (filter === 'ALL') return appData.flashcards;
-            return appData.flashcards.filter(c => c.subject === filter);
+        function showPracticeView(view) {
+            ['empty', 'loading', 'card-box', 'results'].forEach(v => {
+                const el = document.getElementById(`practice-${v}`);
+                if (el) el.classList.toggle('hidden', v !== view);
+            });
         }
 
-        function renderFlashcards() {
-            const cards = getFilteredFlashcards();
-            const counter = document.getElementById('flashcard-counter-indicator');
-            const frontEl = document.getElementById('card-front-content');
-            const backEl = document.getElementById('card-back-content');
-            const tagEl = document.getElementById('card-subject-tag');
+        function renderFlashcards() { renderPractice(); }
+
+        function renderPractice() {
+            const s = practiceSession;
+            if (!s) return showPracticeView('empty');
+            if (s.loading) return showPracticeView('loading');
+            if (s.finished) return renderPracticeResults();
+            renderPracticeCard();
+        }
+
+        function renderPracticeCard() {
+            const s = practiceSession;
+            const card = s.cards[s.index];
+            showPracticeView('card-box');
+
+            document.getElementById('card-subject-tag').innerText = s.subject;
+            document.getElementById('flashcard-counter-indicator').innerText = `${s.index + 1} / ${s.cards.length}`;
+            document.getElementById('card-front-content').innerText = card.front;
+            document.getElementById('card-back-content').innerHTML = formatMarkdownCode(card.back);
+
+            const input = document.getElementById('card-user-input');
+            input.value = card.userAnswer || '';
+            input.disabled = card.answered;
+
             const feedbackBox = document.getElementById('card-feedback-box');
             const evalResult = document.getElementById('ai-eval-result');
-            const userInput = document.getElementById('card-user-input');
+            const actions = document.getElementById('card-actions');
+            const nextBtn = document.getElementById('card-next-btn');
 
-            if (feedbackBox) feedbackBox.classList.add('hidden');
-            if (evalResult) evalResult.classList.add('hidden');
-            if (userInput) userInput.value = '';
+            document.getElementById('card-eval-btn').disabled = false;
+            document.getElementById('card-eval-btn').classList.remove('opacity-50');
 
-            if (!cards || cards.length === 0) {
-                if (frontEl) frontEl.innerText = "No hay retos prácticos para este módulo aún.";
-                if (backEl) backEl.innerHTML = "Genera un reto AI con tu contexto o crea una card manual.";
-                if (counter) counter.innerText = "0 / 0";
-                if (tagEl) tagEl.innerText = "VACÍO";
-                return;
+            if (card.answered) {
+                feedbackBox.classList.remove('hidden');
+                const color = card.score >= PASS_GRADE ? 'text-emerald-400' : 'text-rose-400';
+                evalResult.innerHTML = `<div class="font-bold ${color}">Puntuación: ${card.score}/10</div><div>${formatMarkdownCode(card.feedback || '')}</div>`;
+                actions.classList.add('hidden');
+                nextBtn.classList.remove('hidden');
+                nextBtn.innerHTML = s.index === s.cards.length - 1
+                    ? 'Ver mi nota final <i class="fa-solid fa-flag-checkered ml-1"></i>'
+                    : 'Siguiente <i class="fa-solid fa-chevron-right ml-1"></i>';
+            } else {
+                feedbackBox.classList.add('hidden');
+                evalResult.innerHTML = '';
+                actions.classList.remove('hidden');
+                nextBtn.classList.add('hidden');
             }
-
-            if (currentFlashcardIndex >= cards.length) currentFlashcardIndex = 0;
-            if (currentFlashcardIndex < 0) currentFlashcardIndex = cards.length - 1;
-
-            const card = cards[currentFlashcardIndex];
-            if (frontEl) frontEl.innerText = card.front;
-            if (backEl) backEl.innerHTML = formatMarkdownCode(card.back);
-            if (tagEl) tagEl.innerText = card.subject || 'GENERAL';
-            if (counter) counter.innerText = `${currentFlashcardIndex + 1} / ${cards.length}`;
         }
 
         async function generateDynamicAIReto() {
@@ -1190,90 +1184,188 @@
             const subject = filter === 'ALL' ? 'DWES' : filter;
             const contextText = document.getElementById('flashcard-context-input')?.value.trim();
 
-            const prompt = `Genera un reto práctico de programación para 2º DAW sobre el módulo ${subject}.\nContexto específico de estudio proporcionado por el estudiante: "${contextText || 'Genera sobre conceptos esenciales y ejercicios prácticos de este módulo'}"\n\nResponde ÚNICAMENTE en formato JSON plano sin bloques markdown adicionales: {"front":"Texto del reto o pregunta práctica","back":"Solución esperada en código o respuesta explicada"}`;
+            if (!contextText) {
+                alert("Escribe primero el contexto o tema que quieres repasar.");
+                return;
+            }
+            await startPracticeSession(subject, contextText, []);
+        }
+
+        async function startPracticeSession(subject, contextText, seenFronts) {
+            practiceSession = { subject, context: contextText, cards: [], index: 0, finished: false, loading: true, seenFronts: seenFronts || [] };
+            renderPractice();
+
+            const avoid = practiceSession.seenFronts.length
+                ? `\nNo repitas ni te parezcas a estos retos ya usados:\n- ${practiceSession.seenFronts.join('\n- ')}`
+                : '';
+
+            const prompt = `Genera exactamente ${PRACTICE_TOTAL} retos prácticos distintos para 2º DAW, módulo ${subject}.
+Contexto de estudio del estudiante: "${contextText}"
+Cada reto debe tocar un aspecto diferente del contexto, con dificultad creciente (de más básico a más completo). Deben poder resolverse escribiendo un fragmento corto de código o una explicación breve.${avoid}
+
+Responde ÚNICAMENTE con un array JSON plano, sin bloques markdown: [{"front":"enunciado del reto","back":"solución esperada en código o respuesta explicada"}, ...]`;
 
             try {
-                const response = await callGeminiAPI(prompt, "Eres un generador de ejercicios prácticos para estudiantes de desarrollo web.");
-                const jsonMatch = response.match(/\{[\s\S]*\}/);
-                if (jsonMatch) {
-                    const parsed = JSON.parse(jsonMatch[0]);
-                    const newCard = {
-                        id: 'fc_' + Date.now(),
-                        subject: subject,
-                        front: parsed.front,
-                        back: parsed.back,
-                        mastery: 'medium'
-                    };
-                    appData.flashcards.unshift(newCard);
-                    saveData();
-                    currentFlashcardIndex = 0;
-                    renderFlashcards();
-                    renderDashboard();
-                }
+                const response = await callGeminiAPI(prompt, "Eres un generador de ejercicios prácticos para estudiantes de desarrollo web. Respondes solo JSON válido.");
+                const match = response.match(/\[[\s\S]*\]/);
+                if (!match) throw new Error("Gemini no devolvió retos en formato válido. Prueba otra vez.");
+                const parsed = JSON.parse(match[0]).filter(c => c && c.front && c.back).slice(0, PRACTICE_TOTAL);
+                if (parsed.length === 0) throw new Error("No se generó ningún reto válido. Prueba otra vez.");
+
+                practiceSession.cards = parsed.map((c, i) => ({
+                    id: 'fc_' + Date.now() + '_' + i,
+                    subject,
+                    front: String(c.front),
+                    back: String(c.back),
+                    answered: false,
+                    score: 0,
+                    userAnswer: '',
+                    feedback: ''
+                }));
+                practiceSession.seenFronts = [...practiceSession.seenFronts, ...practiceSession.cards.map(c => c.front)];
+                practiceSession.loading = false;
+
+                // Banco histórico solo para el contador del dashboard
+                appData.flashcards.push(...practiceSession.cards.map(c => ({ id: c.id, subject: c.subject, front: c.front, back: c.back, mastery: 'medium' })));
+                saveData();
+                renderDashboard();
+                renderPractice();
             } catch (e) {
-                alert(e.message || "Error generando el reto con Gemini. Revisa la clave API.");
+                practiceSession = null;
+                renderPractice();
+                alert(e.message || "Error generando los retos con Gemini. Revisa la clave API.");
             }
         }
 
         function revealOfficialAnswer() {
-            const feedbackBox = document.getElementById('card-feedback-box');
-            if (feedbackBox) feedbackBox.classList.remove('hidden');
+            const s = practiceSession;
+            if (!s || s.loading || s.finished) return;
+            const card = s.cards[s.index];
+            if (card.answered) return;
+            card.answered = true;
+            card.score = 0;
+            card.userAnswer = document.getElementById('card-user-input').value.trim();
+            card.feedback = 'Viste la solución sin evaluar tu respuesta, así que este reto cuenta 0.';
+            renderPracticeCard();
         }
 
         async function checkAnswerWithAI() {
-            const cards = getFilteredFlashcards();
-            if (cards.length === 0) return;
-            const card = cards[currentFlashcardIndex];
-            const userCode = document.getElementById('card-user-input')?.value.trim();
+            const s = practiceSession;
+            if (!s || s.loading || s.finished) return;
+            const card = s.cards[s.index];
+            if (card.answered) return;
 
+            const userCode = document.getElementById('card-user-input').value.trim();
             if (!userCode) {
                 alert("Escribe primero tu respuesta o código en la casilla.");
                 return;
             }
 
-            revealOfficialAnswer();
+            const evalBtn = document.getElementById('card-eval-btn');
+            evalBtn.disabled = true;
+            evalBtn.classList.add('opacity-50');
 
+            const feedbackBox = document.getElementById('card-feedback-box');
             const evalResult = document.getElementById('ai-eval-result');
-            if (evalResult) {
-                evalResult.classList.remove('hidden');
-                evalResult.innerHTML = `
-                    <div class="flex items-center space-x-2 text-astra-cyan">
-                        <div class="w-3 h-3 rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
-                        <span>Evaluando tu código con Gemini...</span>
-                    </div>
-                `;
-            }
+            feedbackBox.classList.remove('hidden');
+            document.getElementById('card-back-content').innerHTML = '<span class="text-gray-500">La solución se mostrará al evaluar.</span>';
+            evalResult.innerHTML = `
+                <div class="flex items-center space-x-2 text-astra-cyan">
+                    <div class="w-3 h-3 rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
+                    <span>Evaluando tu código con Gemini...</span>
+                </div>`;
 
-            const prompt = `Evalúa la solución del estudiante:\nReto: ${card.front}\nSolución esperada: ${card.back}\nRespuesta estudiante: "${userCode}"\n\nIndica si es correcta o incorrecta y da 2 líneas de feedback.`;
+            const prompt = `Evalúa la solución de un estudiante de 2º DAW.
+Reto: ${card.front}
+Solución esperada: ${card.back}
+Respuesta del estudiante: "${userCode}"
+
+Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero válidas). Responde ÚNICAMENTE con JSON plano: {"score": <entero 0-10>, "feedback": "2 líneas máximo en español explicando aciertos y fallos"}`;
 
             try {
-                const response = await callGeminiAPI(prompt, "Eres un evaluador de código.");
-                if (evalResult) evalResult.innerHTML = `<strong>Feedback AI:</strong><br>${formatMarkdownCode(response)}`;
+                const response = await callGeminiAPI(prompt, "Eres un evaluador de código estricto pero justo. Respondes solo JSON válido.");
+                const match = response.match(/\{[\s\S]*\}/);
+                if (!match) throw new Error("No se pudo interpretar la evaluación. Inténtalo de nuevo.");
+                const result = JSON.parse(match[0]);
+                const score = Math.max(0, Math.min(10, Math.round(Number(result.score))));
+                if (Number.isNaN(score)) throw new Error("La evaluación no incluyó una nota válida. Inténtalo de nuevo.");
+
+                card.answered = true;
+                card.score = score;
+                card.userAnswer = userCode;
+                card.feedback = String(result.feedback || '');
+                renderPracticeCard();
             } catch (err) {
-                if (evalResult) evalResult.innerHTML = `<span class="text-rose-400">${escapeHTML(err.message || "Error conectando con la API.")}</span>`;
+                evalBtn.disabled = false;
+                evalBtn.classList.remove('opacity-50');
+                document.getElementById('card-back-content').innerHTML = '';
+                evalResult.innerHTML = `<span class="text-rose-400">${escapeHTML(err.message || "Error conectando con la API.")}</span>`;
             }
         }
 
-        function nextFlashcard() {
-            const cards = getFilteredFlashcards();
-            if (cards.length === 0) return;
-            currentFlashcardIndex = (currentFlashcardIndex + 1) % cards.length;
-            renderFlashcards();
+        function nextPracticeStep() {
+            const s = practiceSession;
+            if (!s) return;
+            if (s.index < s.cards.length - 1) {
+                s.index++;
+            } else {
+                s.finished = true;
+            }
+            renderPractice();
         }
 
-        function prevFlashcard() {
-            const cards = getFilteredFlashcards();
-            if (cards.length === 0) return;
-            currentFlashcardIndex = (currentFlashcardIndex - 1 + cards.length) % cards.length;
-            renderFlashcards();
+        function getGradeMessage(grade) {
+            if (grade < PASS_GRADE) return { title: 'Suspenso', icon: '😕', color: 'text-rose-400', msg: 'Esta vez no ha salido. Repasa las soluciones, ataca los puntos flojos y reinicia: la siguiente tanda será distinta.' };
+            if (grade < 7) return { title: 'Aprobado', icon: '🙂', color: 'text-amber-400', msg: 'Has aprobado, pero justito. Un repaso más y subes la nota fácil. Dale otra tanda.' };
+            if (grade < 9) return { title: 'Notable', icon: '💪', color: 'text-emerald-400', msg: '¡Buen trabajo! Dominas bastante el tema. Sigue así y pule los detalles que fallaste.' };
+            return { title: 'Sobresaliente', icon: '🏆', color: 'text-emerald-300', msg: '¡Felicidades! Tema dominado. Puedes subir la dificultad o pasar a otro contexto.' };
         }
 
-        function rateCurrentCard(rating) {
-            const cards = getFilteredFlashcards();
-            if (cards.length === 0) return;
-            cards[currentFlashcardIndex].mastery = rating;
-            saveData();
-            nextFlashcard();
+        function renderPracticeResults() {
+            const s = practiceSession;
+            const total = s.cards.reduce((acc, c) => acc + c.score, 0);
+            const grade = Math.round((total / s.cards.length) * 10) / 10;
+            const passed = grade >= PASS_GRADE;
+            const g = getGradeMessage(grade);
+
+            showPracticeView('results');
+            document.getElementById('practice-results').innerHTML = `
+                <div class="text-5xl">${g.icon}</div>
+                <div>
+                    <div class="text-6xl font-black font-mono ${g.color}">${grade.toFixed(1)}<span class="text-2xl text-gray-500">/10</span></div>
+                    <div class="mt-2 inline-block px-3 py-1 rounded-full text-xs font-bold border ${passed ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-rose-500/10 text-rose-400 border-rose-500/30'}">
+                        ${passed ? 'APROBADO' : 'SUSPENSO'} · ${g.title}
+                    </div>
+                </div>
+                <p class="text-sm text-gray-300 leading-relaxed">${g.msg}</p>
+                <div class="text-left space-y-2 text-xs">
+                    ${s.cards.map((c, i) => `
+                        <div class="flex items-start justify-between gap-3 p-3 rounded-2xl bg-gray-950/60 border border-gray-900">
+                            <span class="text-gray-300"><span class="font-mono text-astra-cyan">${i + 1}.</span> ${escapeHTML(c.front.length > 110 ? c.front.slice(0, 110) + '…' : c.front)}</span>
+                            <span class="font-mono font-bold whitespace-nowrap ${c.score >= PASS_GRADE ? 'text-emerald-400' : 'text-rose-400'}">${c.score}/10</span>
+                        </div>`).join('')}
+                </div>
+                <div class="flex flex-col sm:flex-row gap-2 pt-2">
+                    <button onclick="restartPractice()" class="flex-1 bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white text-xs font-bold py-3 rounded-xl transition shadow-lg">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Reiniciar con el mismo tema
+                    </button>
+                    <button onclick="newPracticeTopic()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-4 py-3 rounded-xl transition">
+                        Cambiar de tema
+                    </button>
+                </div>`;
+        }
+
+        async function restartPractice() {
+            const s = practiceSession;
+            if (!s) return;
+            await startPracticeSession(s.subject, s.context, s.seenFronts);
+        }
+
+        function newPracticeTopic() {
+            practiceSession = null;
+            renderPractice();
+            const input = document.getElementById('flashcard-context-input');
+            if (input) { input.value = ''; input.focus(); }
         }
 
         function openAddCardModal() { document.getElementById('modal-add-card')?.classList.remove('hidden'); }
