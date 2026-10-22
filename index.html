@@ -6,6 +6,7 @@
     <title>Astra WebDev Studio - 2º DAW Hub Inteligente</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -81,6 +82,24 @@
 </head>
 <body class="min-h-screen flex flex-col antialiased text-gray-100 selection:bg-astra-600 selection:text-white">
 
+    <!-- LOGIN (Supabase) -->
+    <div id="auth-overlay" class="hidden fixed inset-0 z-[100] bg-gray-950 flex items-center justify-center p-4">
+        <form onsubmit="event.preventDefault(); authSubmit('login');" class="w-full max-w-sm bg-astra-card border border-astra-border rounded-3xl p-6 space-y-4 shadow-2xl">
+            <div class="text-center space-y-1">
+                <i class="fa-solid fa-cloud text-3xl text-astra-cyan"></i>
+                <h2 class="text-lg font-bold text-white">Inicia sesión</h2>
+                <p class="text-xs text-gray-400">Tus asignaturas, chats y retos se guardan en tu cuenta.</p>
+            </div>
+            <input id="auth-email" type="email" required autocomplete="email" placeholder="Email" class="w-full bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-astra-500">
+            <input id="auth-password" type="password" required minlength="6" autocomplete="current-password" placeholder="Contraseña (mín. 6)" class="w-full bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-astra-500">
+            <div id="auth-msg" class="text-xs text-rose-400 min-h-[1rem]"></div>
+            <div class="flex gap-2">
+                <button type="submit" id="auth-login-btn" class="flex-1 bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white text-xs font-bold py-3 rounded-xl transition">Entrar</button>
+                <button type="button" id="auth-signup-btn" onclick="authSubmit('signup')" class="flex-1 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold py-3 rounded-xl transition">Crear cuenta</button>
+            </div>
+        </form>
+    </div>
+
     <header class="sticky top-0 z-40 astra-glass border-b border-astra-border px-4 lg:px-8 py-3">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('dashboard')">
@@ -127,6 +146,10 @@
                     <span id="api-status-ping" class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                     <i class="fa-solid fa-key text-astra-cyan"></i>
                     <span id="api-status-text" class="hidden sm:inline font-medium text-gray-300">Gemini Key</span>
+                </button>
+                <span id="sync-status" class="hidden items-center space-x-1 text-[11px] text-gray-400"><i id="sync-icon" class="fa-solid fa-cloud"></i><span id="sync-text" class="hidden sm:inline"></span></span>
+                <button id="logout-btn" onclick="logout()" title="Cerrar sesión" class="hidden p-2 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
+                    <i class="fa-solid fa-right-from-bracket text-xs"></i>
                 </button>
                 <div class="flex items-center space-x-1">
                     <button onclick="exportData()" title="Exportar Backup JSON" class="p-2 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
@@ -700,11 +723,172 @@
         }
 
         function saveData() {
+            appData._updatedAt = Date.now();
             try {
                 localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(appData));
             } catch (e) {
                 console.error("Error guardando datos localmente:", e);
             }
+            scheduleCloudSave();
+        }
+
+        // ================= SUPABASE: LOGIN + SINCRONIZACIÓN =================
+        const SUPABASE_URL = 'PEGA_AQUI_TU_PROJECT_URL';          // https://xxxx.supabase.co
+        const SUPABASE_ANON_KEY = 'PEGA_AQUI_TU_ANON_KEY';        // clave "anon" / "publishable" (pública)
+
+        let sb = null, cloudUser = null, cloudTimer = null, cloudBusy = false, cloudDirty = false;
+
+        // La API key de Gemini NO se sube a la nube: se queda solo en este navegador.
+        function cloudPayload() {
+            const { apiKey, ...rest } = appData;
+            return rest;
+        }
+
+        function setSyncStatus(state, detail) {
+            const box = document.getElementById('sync-status');
+            if (!box) return;
+            const icon = document.getElementById('sync-icon');
+            const text = document.getElementById('sync-text');
+            const map = {
+                saving: ['fa-solid fa-rotate fa-spin text-amber-400', 'Guardando…'],
+                ok:     ['fa-solid fa-cloud text-emerald-400', 'Sincronizado'],
+                error:  ['fa-solid fa-triangle-exclamation text-rose-400', 'Error de sync']
+            };
+            const [cls, label] = map[state] || map.ok;
+            icon.className = cls;
+            text.innerText = label;
+            box.title = detail || label;
+            box.classList.remove('hidden');
+            box.classList.add('flex');
+        }
+
+        function scheduleCloudSave() {
+            if (!sb || !cloudUser) return;
+            cloudDirty = true;
+            setSyncStatus('saving');
+            clearTimeout(cloudTimer);
+            cloudTimer = setTimeout(flushCloudSave, 1500);
+        }
+
+        async function flushCloudSave() {
+            if (!sb || !cloudUser || !cloudDirty) return;
+            if (cloudBusy) { cloudTimer = setTimeout(flushCloudSave, 500); return; }
+            cloudBusy = true;
+            cloudDirty = false;
+            const { error } = await sb.from('user_data').upsert({
+                user_id: cloudUser.id,
+                data: cloudPayload(),
+                updated_at: new Date().toISOString()
+            });
+            cloudBusy = false;
+            if (error) {
+                cloudDirty = true;
+                console.error("Error subiendo datos:", error);
+                setSyncStatus('error', error.message);
+            } else {
+                setSyncStatus(cloudDirty ? 'saving' : 'ok');
+            }
+        }
+
+        function refreshAllViews() {
+            updateApiStatusUI();
+            renderDashboard();
+            renderFullSubjects();
+            renderFlashcards();
+            renderTutorChat();
+            renderPlanner();
+        }
+
+        async function pullCloudData() {
+            setSyncStatus('saving');
+            const { data: row, error } = await sb.from('user_data').select('data, updated_at').eq('user_id', cloudUser.id).maybeSingle();
+            if (error) { setSyncStatus('error', error.message); return; }
+
+            const localTs = appData._updatedAt || 0;
+            const cloudData = row && row.data && Object.keys(row.data).length ? row.data : null;
+            const cloudTs = cloudData ? (cloudData._updatedAt || Date.parse(row.updated_at) || 0) : 0;
+
+            if (cloudData && cloudTs >= localTs) {
+                // La nube es más reciente (o es un dispositivo nuevo): gana la nube
+                const keepKey = appData.apiKey;
+                appData = {
+                    ...appData,
+                    ...cloudData,
+                    apiKey: keepKey,
+                    chatHistories: { ...appData.chatHistories, ...(cloudData.chatHistories || {}) }
+                };
+                cleanLegacyCards();
+                try { localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(appData)); } catch (e) {}
+                refreshAllViews();
+                setSyncStatus('ok');
+            } else {
+                // Primera vez, o lo local es más nuevo: subimos lo local
+                cloudDirty = true;
+                await flushCloudSave();
+            }
+        }
+
+        function showAuth(show) {
+            document.getElementById('auth-overlay').classList.toggle('hidden', !show);
+        }
+
+        async function authSubmit(mode) {
+            const email = document.getElementById('auth-email').value.trim();
+            const password = document.getElementById('auth-password').value;
+            const msg = document.getElementById('auth-msg');
+            msg.className = 'text-xs text-rose-400 min-h-[1rem]';
+            msg.textContent = '';
+            if (!email || password.length < 6) { msg.textContent = 'Pon un email y una contraseña de al menos 6 caracteres.'; return; }
+
+            const btns = [document.getElementById('auth-login-btn'), document.getElementById('auth-signup-btn')];
+            btns.forEach(b => b.disabled = true);
+            const { data, error } = mode === 'signup'
+                ? await sb.auth.signUp({ email, password })
+                : await sb.auth.signInWithPassword({ email, password });
+            btns.forEach(b => b.disabled = false);
+
+            if (error) {
+                msg.textContent = error.message;
+            } else if (mode === 'signup' && !data.session) {
+                msg.className = 'text-xs text-emerald-400 min-h-[1rem]';
+                msg.textContent = 'Cuenta creada. Confirma el email que te han enviado y luego pulsa Entrar.';
+            }
+        }
+
+        async function logout() {
+            clearTimeout(cloudTimer);
+            await flushCloudSave();
+            if (cloudDirty && !confirm("Hay cambios que no se han podido subir. ¿Cerrar sesión igualmente? Se perderán en este dispositivo.")) return;
+            await sb.auth.signOut();
+            try { localStorage.removeItem(LOCAL_STORAGE_KEY); } catch (e) {}
+            location.reload();
+        }
+
+        function initCloud() {
+            const configured = SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY && !SUPABASE_ANON_KEY.startsWith('PEGA');
+            if (!configured || !window.supabase) {
+                console.warn("Supabase no configurado o no cargado: modo solo local.");
+                return;
+            }
+            sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            sb.auth.onAuthStateChange((event, session) => {
+                const user = session ? session.user : null;
+                if (user && (!cloudUser || cloudUser.id !== user.id)) {
+                    cloudUser = user;
+                    showAuth(false);
+                    document.getElementById('logout-btn').classList.remove('hidden');
+                    setTimeout(pullCloudData, 0); // fuera del callback para evitar bloqueos de supabase-js
+                } else if (!user) {
+                    cloudUser = null;
+                    document.getElementById('logout-btn').classList.add('hidden');
+                    showAuth(true);
+                }
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'hidden') flushCloudSave();
+            });
         }
 
         function loadData() {
@@ -1682,6 +1866,7 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
             renderFlashcards();
             renderTutorChat();
             renderPlanner();
+            initCloud();
         };
     </script>
 </body>
