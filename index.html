@@ -884,9 +884,10 @@
                     <label class="block font-bold text-gray-300 uppercase mb-1">Proveedor Activo</label>
                     <select id="settings-provider-select" onchange="toggleProviderSettingsFields(this.value)" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
                         <option value="gemini">Google Gemini (Gratuito/Amplio)</option>
+                        <option value="groq">Groq Cloud (Gratuito & Ultra Rápido)</option>
                         <option value="ollama">Ollama Local (100% Gratuito/Sin Límites)</option>
                         <option value="deepseek">DeepSeek API (Económico/Gratuito)</option>
-                        <option value="openrouter">OpenRouter (Claude, Llama, Mistral, etc.)</option>
+                        <option value="openrouter">OpenRouter (Claude, Llama, Mistral...)</option>
                     </select>
                 </div>
 
@@ -895,6 +896,19 @@
                     <label class="block font-bold text-gray-300 uppercase mb-1">Gemini API Key</label>
                     <input id="input-api-key" type="password" placeholder="AIzaSy..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
                     <p class="text-[10px] text-gray-500">Gratis con límites amplios en Google AI Studio.</p>
+                </div>
+
+                <!-- CAMPO: Groq -->
+                <div id="field-groq" class="hidden space-y-3">
+                    <div>
+                        <label class="block font-bold text-gray-300 uppercase mb-1">Groq API Key</label>
+                        <input id="input-groq-key" type="password" placeholder="gsk_..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-300 uppercase mb-1">Modelo Groq</label>
+                        <input id="input-groq-model" type="text" placeholder="llama-3.3-70b-versatile, llama-3.1-8b-instant, mixtral-8x7b-32768..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                    </div>
+                    <p class="text-[10px] text-gray-500">Regístrate gratis en <code class="text-astra-cyan">console.groq.com</code> para obtener tu clave.</p>
                 </div>
 
                 <!-- CAMPO: Ollama -->
@@ -1041,7 +1055,9 @@
 
         let appData = {
             apiKey: '',
-            aiProvider: 'gemini', // 'gemini', 'ollama', 'deepseek', 'openrouter'
+            aiProvider: 'gemini', // 'gemini', 'groq', 'ollama', 'deepseek', 'openrouter'
+            groqKey: '',
+            groqModel: 'llama-3.3-70b-versatile',
             ollamaUrl: 'http://localhost:11434',
             ollamaModel: 'llama3',
             deepseekKey: '',
@@ -1081,7 +1097,7 @@
         let sb = null, cloudUser = null, cloudTimer = null, cloudBusy = false, cloudDirty = false;
 
         function cloudPayload() {
-            const { apiKey, deepseekKey, openrouterKey, ...rest } = appData;
+            const { apiKey, groqKey, deepseekKey, openrouterKey, ...rest } = appData;
             return rest;
         }
 
@@ -1151,12 +1167,14 @@
 
             if (cloudData && cloudTs >= localTs) {
                 const keepGeminiKey = appData.apiKey;
+                const keepGroqKey = appData.groqKey;
                 const keepDeepseekKey = appData.deepseekKey;
                 const keepOpenrouterKey = appData.openrouterKey;
                 appData = {
                     ...appData,
                     ...cloudData,
                     apiKey: keepGeminiKey,
+                    groqKey: keepGroqKey,
                     deepseekKey: keepDeepseekKey,
                     openrouterKey: keepOpenrouterKey,
                     chatHistories: { ...appData.chatHistories, ...(cloudData.chatHistories || {}) }
@@ -1411,7 +1429,7 @@
                 method: 'POST',
                 headers,
                 body: JSON.stringify({
-                    model: model || 'llama3',
+                    model: model || 'llama-3.3-70b-versatile',
                     messages: messages,
                     temperature: 0.7
                 })
@@ -1433,6 +1451,10 @@
 
             if (provider === 'gemini') {
                 return await callGeminiAPI(prompt, systemInstruction, imageBase64Data, imageMimeType, history);
+            } else if (provider === 'groq') {
+                if (!appData.groqKey) { openSettingsModal(); throw new Error("Falta configurar la API Key de Groq."); }
+                const model = appData.groqModel || 'llama-3.3-70b-versatile';
+                return await callOpenAICompatibleAPI('https://api.groq.com/openai/v1/chat/completions', appData.groqKey, model, prompt, systemInstruction, history);
             } else if (provider === 'ollama') {
                 const baseUrl = (appData.ollamaUrl || 'http://localhost:11434').replace(/\/$/, '');
                 const model = appData.ollamaModel || 'llama3';
@@ -2389,6 +2411,7 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
 
         function toggleProviderSettingsFields(provider) {
             document.getElementById('field-gemini-key').classList.toggle('hidden', provider !== 'gemini');
+            document.getElementById('field-groq').classList.toggle('hidden', provider !== 'groq');
             document.getElementById('field-ollama').classList.toggle('hidden', provider !== 'ollama');
             document.getElementById('field-deepseek').classList.toggle('hidden', provider !== 'deepseek');
             document.getElementById('field-openrouter').classList.toggle('hidden', provider !== 'openrouter');
@@ -2402,6 +2425,8 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
             }
 
             document.getElementById('input-api-key').value = appData.apiKey || '';
+            document.getElementById('input-groq-key').value = appData.groqKey || '';
+            document.getElementById('input-groq-model').value = appData.groqModel || 'llama-3.3-70b-versatile';
             document.getElementById('input-ollama-url').value = appData.ollamaUrl || 'http://localhost:11434';
             document.getElementById('input-ollama-model').value = appData.ollamaModel || 'llama3';
             document.getElementById('input-deepseek-key').value = appData.deepseekKey || '';
@@ -2417,6 +2442,8 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
         function saveApiKeySetting() {
             appData.aiProvider = document.getElementById('settings-provider-select').value;
             appData.apiKey = document.getElementById('input-api-key').value.trim();
+            appData.groqKey = document.getElementById('input-groq-key').value.trim();
+            appData.groqModel = document.getElementById('input-groq-model').value.trim();
             appData.ollamaUrl = document.getElementById('input-ollama-url').value.trim();
             appData.ollamaModel = document.getElementById('input-ollama-model').value.trim();
             appData.deepseekKey = document.getElementById('input-deepseek-key').value.trim();
@@ -2441,6 +2468,9 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
             if (provider === 'gemini') {
                 isConfigured = !!(appData.apiKey || window.geminiApi);
                 labelName = 'Gemini';
+            } else if (provider === 'groq') {
+                isConfigured = !!appData.groqKey;
+                labelName = `Groq (${appData.groqModel || 'Llama3'})`;
             } else if (provider === 'ollama') {
                 isConfigured = !!appData.ollamaUrl;
                 labelName = `Ollama (${appData.ollamaModel || 'Local'})`;
