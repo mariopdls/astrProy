@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astra WebDev Studio - 2º DAW Hub Inteligente</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        "gray": {
+                                                "50": "#f6f3ec",
+                                                "100": "#ece8df",
+                                                "200": "#d9d4c8",
+                                                "300": "#bcb6a8",
+                                                "400": "#9a9487",
+                                                "500": "#77726a",
+                                                "600": "#57534c",
+                                                "700": "#3d3a35",
+                                                "800": "#2e2c28",
+                                                "900": "#242220",
+                                                "950": "#1b1a18"
+                        },
+                        "astra": {
+                                                "50": "#fbf1ec",
+                                                "100": "#f6ddd2",
+                                                "400": "#e8997c",
+                                                "500": "#d97757",
+                                                "600": "#b9553a",
+                                                "700": "#9a4430",
+                                                "800": "#6e3223",
+                                                "900": "#3a2219",
+                                                "dark": "#1b1a18",
+                                                "card": "#242220",
+                                                "border": "#38352f",
+                                                "cyan": "#d9b48a",
+                                                "emerald": "#8fae86",
+                                                "amber": "#d9a441",
+                                                "rose": "#d0675f"
+                        },
+                        "emerald": {
+                                                "50": "#f3f6f3",
+                                                "100": "#e8eee8",
+                                                "200": "#cedfce",
+                                                "300": "#b0caaf",
+                                                "400": "#8dbb8b",
+                                                "500": "#74ac72",
+                                                "600": "#558d53",
+                                                "700": "#467444",
+                                                "800": "#365a35",
+                                                "900": "#294328",
+                                                "950": "#1b2d1a"
+                        },
+                        "green": {
+                                                "50": "#f3f6f3",
+                                                "100": "#e8eee8",
+                                                "200": "#cedfce",
+                                                "300": "#b0caaf",
+                                                "400": "#8dbb8b",
+                                                "500": "#74ac72",
+                                                "600": "#558d53",
+                                                "700": "#467444",
+                                                "800": "#365a35",
+                                                "900": "#294328",
+                                                "950": "#1b2d1a"
+                        },
+                        "teal": {
+                                                "50": "#f3f6f5",
+                                                "100": "#e8edec",
+                                                "200": "#cededa",
+                                                "300": "#b0c9c3",
+                                                "400": "#8db9ae",
+                                                "500": "#518578",
+                                                "600": "#558b7e",
+                                                "700": "#467267",
+                                                "800": "#365950",
+                                                "900": "#29423c",
+                                                "950": "#1b2c28"
+                        },
+                        "lime": {
+                                                "50": "#f5f6f3",
+                                                "100": "#eceee7",
+                                                "200": "#d9e0cc",
+                                                "300": "#c2cdad",
+                                                "400": "#acbf88",
+                                                "500": "#8ca659",
+                                                "600": "#7b924f",
+                                                "700": "#657740",
+                                                "800": "#4f5d32",
+                                                "900": "#3b4625",
+                                                "950": "#272e19"
+                        },
+                        "amber": {
+                                                "50": "#f8f6f1",
+                                                "100": "#f2ece4",
+                                                "200": "#eadcc2",
+                                                "300": "#dec59c",
+                                                "400": "#dcb26a",
+                                                "500": "#d39f45",
+                                                "600": "#b6832b",
+                                                "700": "#956b23",
+                                                "800": "#74531b",
+                                                "900": "#573e14",
+                                                "950": "#3a2a0e"
+                        },
+                        "yellow": {
+                                                "50": "#f8f6f1",
+                                                "100": "#f1eee4",
+                                                "200": "#eadfc3",
+                                                "300": "#ddcc9d",
+                                                "400": "#dabd6c",
+                                                "500": "#d4b254",
+                                                "600": "#b4902d",
+                                                "700": "#937625",
+                                                "800": "#725b1d",
+                                                "900": "#564515",
+                                                "950": "#392e0e"
+                        },
+                        "orange": {
+                                                "50": "#f8f4f1",
+                                                "100": "#f2e9e4",
+                                                "200": "#ead2c2",
+                                                "300": "#deb69c",
+                                                "400": "#dc986a",
+                                                "500": "#d07539",
+                                                "600": "#b6622b",
+                                                "700": "#955023",
+                                                "800": "#743f1b",
+                                                "900": "#572f14",
+                                                "950": "#3a1f0e"
+                        },
+                        "rose": {
+                                                "50": "#f8f2f2",
+                                                "100": "#f0e6e5",
+                                                "200": "#e7c9c5",
+                                                "300": "#d8a7a1",
+                                                "400": "#d37d73",
+                                                "500": "#cc675c",
+                                                "600": "#ab4236",
+                                                "700": "#8c362c",
+                                                "800": "#6d2a22",
+                                                "900": "#511f1a",
+                                                "950": "#361511"
+                        },
+                        "red": {
+                                                "50": "#f8f2f2",
+                                                "100": "#f0e5e5",
+                                                "200": "#e7c7c6",
+                                                "300": "#d7a4a2",
+                                                "400": "#d17875",
+                                                "500": "#bf4440",
+                                                "600": "#a83c38",
+                                                "700": "#8a312e",
+                                                "800": "#6b2624",
+                                                "900": "#501d1b",
+                                                "950": "#361312"
+                        },
+                        "pink": {
+                                                "50": "#f7f3f4",
+                                                "100": "#efe6e8",
+                                                "200": "#e3cad0",
+                                                "300": "#d1a9b3",
+                                                "400": "#c68092",
+                                                "500": "#b96479",
+                                                "600": "#9b465b",
+                                                "700": "#7f394a",
+                                                "800": "#632c3a",
+                                                "900": "#4a212b",
+                                                "950": "#31161d"
+                        },
+                        "purple": {
+                                                "50": "#f8f3f2",
+                                                "100": "#f1e8e4",
+                                                "200": "#e8cec4",
+                                                "300": "#daaf9f",
+                                                "400": "#d78b70",
+                                                "500": "#cd6e4c",
+                                                "600": "#af5331",
+                                                "700": "#8f4428",
+                                                "800": "#6f351f",
+                                                "900": "#542818",
+                                                "950": "#381a10"
+                        },
+                        "indigo": {
+                                                "50": "#f7f3f2",
+                                                "100": "#f0e7e6",
+                                                "200": "#e5cbc8",
+                                                "300": "#d5aba5",
+                                                "400": "#cd857a",
+                                                "500": "#b15243",
+                                                "600": "#a34b3e",
+                                                "700": "#853e32",
+                                                "800": "#683027",
+                                                "900": "#4e241d",
+                                                "950": "#341814"
+                        },
+                        "violet": {
+                                                "50": "#f6f4f6",
+                                                "100": "#ede8ec",
+                                                "200": "#ddd0dc",
+                                                "300": "#c7b2c6",
+                                                "400": "#b691b3",
+                                                "500": "#996695",
+                                                "600": "#875a83",
+                                                "700": "#6e496b",
+                                                "800": "#563953",
+                                                "900": "#402b3e",
+                                                "950": "#2b1d2a"
+                        },
+                        "fuchsia": {
+                                                "50": "#f6f3f5",
+                                                "100": "#ede8ec",
+                                                "200": "#deced9",
+                                                "300": "#caafc1",
+                                                "400": "#ba8cab",
+                                                "500": "#9f608a",
+                                                "600": "#8c547a",
+                                                "700": "#734563",
+                                                "800": "#59364d",
+                                                "900": "#43283a",
+                                                "950": "#2d1b27"
+                        },
+                        "cyan": {
+                                                "50": "#f4f6f6",
+                                                "100": "#e8edec",
+                                                "200": "#cfdddb",
+                                                "300": "#b1c8c5",
+                                                "400": "#8fb7b2",
+                                                "500": "#639c94",
+                                                "600": "#588982",
+                                                "700": "#48706b",
+                                                "800": "#385753",
+                                                "900": "#2a413e",
+                                                "950": "#1c2c29"
+                        },
+                        "blue": {
+                                                "50": "#f4f5f6",
+                                                "100": "#e8ebed",
+                                                "200": "#d0d8dd",
+                                                "300": "#b2c0c7",
+                                                "400": "#91a9b6",
+                                                "500": "#567281",
+                                                "600": "#5a7887",
+                                                "700": "#49626e",
+                                                "800": "#394c56",
+                                                "900": "#2b3940",
+                                                "950": "#1d262b"
+                        },
+                        "sky": {
+                                                "50": "#f4f5f6",
+                                                "100": "#e8ebed",
+                                                "200": "#d0d8dd",
+                                                "300": "#b2c0c7",
+                                                "400": "#91a9b6",
+                                                "500": "#7594a3",
+                                                "600": "#5a7887",
+                                                "700": "#49626e",
+                                                "800": "#394c56",
+                                                "900": "#2b3940",
+                                                "950": "#1d262b"
+                        }
+},
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        mono: ['Fira Code', 'JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #1b1a18; --surface: #242220; --surface-2: #2e2c28; --line: #38352f;
+            --text: #ece8df; --muted: #9a9487; --clay: #d97757; --clay-deep: #b9553a;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, .font-serif { font-family: 'Newsreader', Georgia, serif; font-weight: 500 !important; letter-spacing: -0.012em; }
+        h1 { line-height: 1.12; }
+        .font-black { font-weight: 600; }
+        .font-mono.font-black { font-weight: 500; }
+
+        ::selection { background: rgba(217,119,87,.35); color: #fff; }
+        :focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; border-radius: 10px; }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #3d3a35; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #57534c; }
+
+        .astra-glass {
+            background: rgba(27, 26, 24, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-color: var(--line);
+        }
+        .astra-glass-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px -16px rgba(0,0,0,.6);
+        }
+        .astra-glow { box-shadow: none; }
+
+        input, textarea, select { transition: border-color .15s, box-shadow .15s; }
+        input:focus, textarea:focus, select:focus { box-shadow: 0 0 0 3px rgba(217,119,87,.18); }
+        button { transition: background-color .15s, color .15s, border-color .15s, transform .1s; }
+        button:active:not(:disabled) { transform: translateY(1px); }
+        button:disabled { cursor: not-allowed; }
+
+        pre code { font-family: 'Fira Code', monospace; font-size: 0.825rem; }
+        .md-body > :first-child { margin-top: 0 !important; }
+        .md-body > :last-child { margin-bottom: 0 !important; }
+        .md-body { overflow-wrap: anywhere; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-ping, .animate-spin, .animate-pulse { animation: none !important; }
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased text-gray-100 selection:bg-astra-600 selection:text-white">
+
+    <!-- LOGIN (Supabase) -->
+    <div id="auth-overlay" class="hidden fixed inset-0 z-[100] bg-gray-950 flex items-center justify-center p-4">
+        <form onsubmit="event.preventDefault(); authSubmit('login');" class="w-full max-w-sm bg-astra-card border border-astra-border rounded-3xl p-6 space-y-5 shadow-2xl">
+            <div class="text-center space-y-2">
+                <i class="fa-solid fa-cloud text-3xl text-astra-cyan"></i>
+                <h2 class="text-lg font-bold text-white">Inicia sesión</h2>
+                <p class="text-xs text-gray-400">Tus asignaturas, chats y retos se guardan en tu cuenta.</p>
+            </div>
+            <input id="auth-email" type="email" required autocomplete="email" placeholder="Email" class="w-full bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-astra-500">
+            <input id="auth-password" type="password" required minlength="6" autocomplete="current-password" placeholder="Contraseña (mín. 6)" class="w-full bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-astra-500">
+            <div id="auth-msg" class="text-xs text-rose-400 min-h-[1rem]"></div>
+            <div class="flex gap-3">
+                <button type="submit" id="auth-login-btn" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-3 rounded-xl transition">Entrar</button>
+                <button type="button" id="auth-signup-btn" onclick="authSubmit('signup')" class="flex-1 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold py-3 rounded-xl transition">Crear cuenta</button>
+            </div>
+        </form>
+    </div>
+
+    <header class="sticky top-0 z-40 astra-glass border-b border-astra-border px-4 lg:px-8 py-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-4">
+            <div class="flex items-center space-x-4 cursor-pointer" onclick="switchTab('dashboard')">
+                <div class="w-10 h-10 rounded-xl bg-astra-600 flex items-center justify-center text-white text-lg">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-3">
+                        <span class="font-serif text-2xl tracking-tight text-white">Astra<span class="text-astra-400">WebDev</span></span>
+                        <span class="text-[11px] tracking-normal font-medium px-2.5 py-1 rounded-md bg-astra-500/10 text-astra-400 border border-astra-500/30">2º DAW</span>
+                    </div>
+                    <span class="text-[11px] text-gray-400 block -mt-0.5">Grado Superior Desarrollo Web</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden lg:flex order-last w-full items-center gap-2 pt-4 border-t border-astra-border">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 bg-astra-600 text-white shadow-md flex items-center space-x-3">
+                    <i class="fa-solid fa-gauge-high"></i><span>Dashboard</span>
+                </button>
+                <button onclick="switchTab('subjects')" id="nav-subjects" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                    <i class="fa-solid fa-cubes"></i><span>Asignaturas</span>
+                </button>
+                <button onclick="switchTab('tutor')" id="nav-tutor" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                    <i class="fa-solid fa-robot text-astra-cyan"></i><span>Tutor Gemini</span>
+                </button>
+                <button onclick="openExamPrepModal()" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-astra-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                    <i class="fa-solid fa-file-pen text-astra-400"></i><span>Prep Examen AI</span>
+                </button>
+                <button onclick="switchTab('planner')" id="nav-planner" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                    <i class="fa-solid fa-calendar-check"></i><span>Planificador AI</span>
+                </button>
+                <button onclick="switchTab('flashcards')" id="nav-flashcards" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                    <i class="fa-solid fa-layer-group"></i><span>Flashcards & Práctica</span>
+                </button>
+                <button onclick="switchTab('pomodoro')" id="nav-pomodoro" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                    <i class="fa-solid fa-stopwatch"></i><span>Pomodoro</span>
+                </button>
+            </nav>
+
+            <!-- Settings & Export -->
+            <div class="flex items-center space-x-4">
+                <button onclick="openSettingsModal()" class="flex items-center space-x-3 bg-astra-card hover:bg-astra-border px-4 py-2 rounded-xl border border-astra-border transition text-xs">
+                    <span id="api-status-ping" class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <i class="fa-solid fa-key text-astra-cyan"></i>
+                    <span id="api-status-text" class="hidden sm:inline font-medium text-gray-300">Gemini Key</span>
+                </button>
+                <span id="sync-status" class="hidden items-center space-x-2 text-[11px] text-gray-400"><i id="sync-icon" class="fa-solid fa-cloud"></i><span id="sync-text" class="hidden sm:inline"></span></span>
+                <button id="logout-btn" onclick="logout()" title="Cerrar sesión" class="hidden p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
+                    <i class="fa-solid fa-right-from-bracket text-xs"></i>
+                </button>
+                <div class="flex items-center space-x-2">
+                    <button onclick="exportData()" title="Exportar Backup JSON" class="p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
+                        <i class="fa-solid fa-download text-xs"></i>
+                    </button>
+                    <label title="Importar Backup JSON" class="p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition cursor-pointer">
+                        <i class="fa-solid fa-upload text-xs"></i>
+                        <input type="file" id="import-json-file" accept=".json" onchange="importData(event)" class="hidden">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Scrollable Navigation Bar -->
+        <div class="flex lg:hidden overflow-x-auto space-x-3 mt-2 pt-2 border-t border-astra-border no-scrollbar">
+            <button onclick="switchTab('dashboard')" id="mobile-nav-dashboard" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-600 text-white">Dashboard</button>
+            <button onclick="switchTab('subjects')" id="mobile-nav-subjects" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Asignaturas</button>
+            <button onclick="switchTab('tutor')" id="mobile-nav-tutor" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Tutor AI</button>
+            <button onclick="openExamPrepModal()" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-500/15 text-astra-400">Prep Examen AI</button>
+            <button onclick="switchTab('planner')" id="mobile-nav-planner" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Planificador</button>
+            <button onclick="switchTab('flashcards')" id="mobile-nav-flashcards" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Flashcards</button>
+            <button onclick="switchTab('pomodoro')" id="mobile-nav-pomodoro" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Pomodoro</button>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 sm:py-10 lg:px-8">
+
+        <!-- SECTION 1: DASHBOARD -->
+        <section id="section-dashboard" class="space-y-8">
+            <div class="relative overflow-hidden rounded-3xl bg-astra-card p-8 sm:p-12 border border-astra-border">
+                <div class="relative z-10 max-w-3xl">
+                    <span class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-astra-500/10 text-astra-400 border border-astra-500/25 text-xs font-medium mb-5">
+                        <i class="fa-solid fa-terminal text-astra-cyan"></i>
+                        <span>Entorno Práctico 2º DAW</span>
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl text-white">
+                        Aprende practicando código Full Stack
+                    </h1>
+                    <p class="text-gray-300 text-sm sm:text-base mt-4 leading-relaxed max-w-2xl">
+                        Crea tu temario personalizado, genera retos con IA según tu contexto de estudio actual y resuelve exámenes reales subiendo imágenes o enunciados.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <button onclick="openExamPrepModal()" class="bg-astra-600 hover:bg-astra-700 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-lg transition flex items-center space-x-3">
+                            <i class="fa-solid fa-file-pen"></i>
+                            <span>Preparar Modelo de Examen</span>
+                        </button>
+                        <button onclick="switchTab('flashcards')" class="bg-astra-card hover:bg-astra-border text-white border border-astra-border font-semibold text-xs sm:text-sm px-5 py-3 rounded-xl transition flex items-center space-x-3">
+                            <i class="fa-solid fa-code text-astra-cyan"></i>
+                            <span>Práctica con Contexto y Código</span>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Stats Overview Row -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                <div class="astra-glass-card p-5 rounded-2xl">
+                    <div class="flex items-center justify-between text-gray-400 mb-1">
+                        <span class="text-xs font-medium">Módulos Oficiales</span>
+                        <i class="fa-solid fa-book-bookmark text-astra-400"></i>
+                    </div>
+                    <div class="text-xl sm:text-2xl font-black text-white">7 Módulos</div>
+                    <p class="text-[11px] text-gray-400 mt-1">Checklists vacías para ti</p>
+                </div>
+                <div class="astra-glass-card p-5 rounded-2xl">
+                    <div class="flex items-center justify-between text-gray-400 mb-1">
+                        <span class="text-xs font-medium">Checks Completados</span>
+                        <i class="fa-solid fa-chart-pie text-emerald-400"></i>
+                    </div>
+                    <div id="stat-progress-pct" class="text-xl sm:text-2xl font-black text-emerald-400">0%</div>
+                    <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2 overflow-hidden">
+                        <div id="stat-progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-500"></div>
+                    </div>
+                </div>
+                <div class="astra-glass-card p-5 rounded-2xl">
+                    <div class="flex items-center justify-between text-gray-400 mb-1">
+                        <span class="text-xs font-medium">Retos Generados</span>
+                        <i class="fa-solid fa-layer-group text-astra-cyan"></i>
+                    </div>
+                    <div id="stat-flashcards-count" class="text-xl sm:text-2xl font-black text-white">0</div>
+                    <p class="text-[11px] text-gray-400 mt-1">Retos guardados</p>
+                </div>
+                <div class="astra-glass-card p-5 rounded-2xl">
+                    <div class="flex items-center justify-between text-gray-400 mb-1">
+                        <span class="text-xs font-medium">Tiempo Enfocado</span>
+                        <i class="fa-solid fa-clock text-amber-400"></i>
+                    </div>
+                    <div id="stat-pomo-hours" class="text-xl sm:text-2xl font-black text-amber-400">0h 0m</div>
+                    <p class="text-[11px] text-gray-400 mt-1">Registrado con Pomodoro</p>
+                </div>
+            </div>
+
+            <!-- Subject Grid Overview -->
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold text-white flex items-center space-x-3">
+                        <i class="fa-solid fa-graduation-cap text-astra-500"></i>
+                        <span>Módulos de 2º DAW</span>
+                    </h2>
+                    <button onclick="switchTab('subjects')" class="text-xs text-astra-400 hover:underline">Añadir temas a tu gusto &rarr;</button>
+                </div>
+                <div id="dash-subjects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SUBJECTS DETAIL HUB -->
+        <section id="section-subjects" class="hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-5 bg-astra-card p-6 rounded-3xl border border-astra-border">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center space-x-3">
+                        <i class="fa-solid fa-cubes text-astra-cyan"></i>
+                        <span>Módulos y Checklist Personalizado DAW</span>
+                    </h2>
+                    <p class="text-xs text-gray-400 mt-1">El espacio está totalmente vacío para que estructures tus propios temas, prácticas o unidades didácticas.</p>
+                </div>
+            </div>
+
+            <div id="full-subjects-list" class="space-y-8">
+                <!-- Rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- SECTION 3: GEMINI AI TUTOR CHAT -->
+        <section id="section-tutor" class="hidden space-y-5">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[600px]">
+                <div class="lg:col-span-8 astra-glass-card rounded-3xl p-4 sm:p-6 flex flex-col justify-between h-full border border-astra-border min-h-[550px]">
+                    <div class="flex flex-col border-b border-astra-border pb-4 mb-4 gap-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-astra-600 flex items-center justify-center text-white font-bold text-lg">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white flex items-center space-x-3">
+                                    <span>Tutor DAW Gemini API</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono whitespace-nowrap">Historial Guardado</span>
+                                </h3>
+                                <p class="text-[11px] text-gray-400">Canal activo de conversación</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-3">
+                            <select id="tutor-conv-select" onchange="selectConversation(this.value)" title="Tus conversaciones de este canal" class="bg-gray-950 border border-astra-border text-gray-300 text-xs rounded-xl px-3 py-2 max-w-[200px] focus:outline-none"></select>
+                            <button onclick="newConversation()" title="Empezar una conversación nueva" class="flex items-center gap-2 px-3.5 py-2 text-xs font-medium text-white bg-astra-600 hover:bg-astra-700 rounded-xl transition">
+                                <i class="fa-solid fa-plus"></i><span>Nueva</span>
+                            </button>
+                            <select id="tutor-channel-select" onchange="switchTutorChannel(this.value)" class="bg-gray-950 border border-astra-border text-astra-cyan font-mono text-xs rounded-xl px-3 py-2 focus:outline-none">
+                                <option value="GLOBAL">🌐 Canal General DAW</option>
+                                <option value="DWES">🐘 DWES (Servidor)</option>
+                                <option value="DWEC">⚡ DWEC (Cliente)</option>
+                                <option value="DIW">🎨 DIW (Interfaces)</option>
+                                <option value="DAW">🐳 DAW (Despliegue)</option>
+                                <option value="INGLES">🇬🇧 Inglés IT</option>
+                                <option value="EIE">💼 EIE / Empleabilidad</option>
+                                <option value="PROYECTO">🚀 Proyecto DAW</option>
+                            </select>
+                            <button onclick="clearTutorChat()" title="Borrar esta conversación" class="p-2.5 text-xs text-gray-500 hover:text-rose-400 bg-gray-900 border border-astra-border rounded-xl transition">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="tutor-chat-stream" class="flex-grow overflow-y-auto space-y-5 pr-2 mb-3 text-xs sm:text-sm max-h-[400px]">
+                        <!-- Messages -->
+                    </div>
+
+                    <div class="flex overflow-x-auto space-x-3 pb-2 no-scrollbar">
+                        <button onclick="setTutorPrompt('Explícame cómo funciona un Middleware en Express.js con un ejemplo en código.')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-4 py-2 rounded-xl whitespace-nowrap transition">
+                            🛠️ Middleware Express
+                        </button>
+                        <button onclick="setTutorPrompt('¿Cuál es la diferencia entre fetch, async/await y Axios en JS?')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-4 py-2 rounded-xl whitespace-nowrap transition">
+                            ⚡ Fetch vs Async
+                        </button>
+                        <button onclick="setTutorPrompt('Escribe un script de PHP con PDO para conectar a MySQL de forma segura.')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-4 py-2 rounded-xl whitespace-nowrap transition">
+                            🐘 PHP PDO MySQL
+                        </button>
+                    </div>
+
+                    <form onsubmit="sendTutorMessage(event)" class="flex items-center space-x-3 mt-1">
+                        <input id="tutor-chat-input" type="text" placeholder="Haz tu pregunta técnica al tutor..." class="flex-grow bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-astra-500 font-sans">
+                        <button type="submit" id="tutor-btn-send" class="bg-astra-600 hover:bg-astra-700 text-white px-5 py-3 rounded-xl font-bold transition flex items-center justify-center">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="hidden lg:flex lg:col-span-4 flex-col space-y-5">
+                    <div class="astra-glass-card p-5 rounded-3xl space-y-4 border border-astra-border">
+                        <h4 class="text-xs font-bold text-white tracking-normal flex items-center space-x-3">
+                            <i class="fa-solid fa-terminal text-astra-cyan"></i>
+                            <span>Consola Rápida</span>
+                        </h4>
+                        <div class="space-y-3 text-xs">
+                            <button onclick="askAIForQuiz()" class="w-full text-left p-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-gray-300 transition flex items-center justify-between">
+                                <span>🎯 Generar Pregunta Test Aleatoria</span>
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                            <button onclick="askAIForCodeBug()" class="w-full text-left p-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-gray-300 transition flex items-center justify-between">
+                                <span>🐛 Ejercicio de Depurar Código Bug</span>
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PLANNER HUB -->
+        <section id="section-planner" class="hidden space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 bg-astra-card p-6 rounded-3xl border border-astra-border">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center space-x-3">
+                        <i class="fa-solid fa-calendar-check text-astra-cyan"></i>
+                        <span>Planificador de Estudio Inteligente</span>
+                    </h2>
+                    <p class="text-xs text-gray-400 mt-1">Genera calendarios adaptados a tus exámenes de DAW con la API de Gemini.</p>
+                </div>
+                <button onclick="openPlannerModal()" class="bg-astra-600 hover:bg-astra-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-lg flex items-center space-x-3">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Nuevo Plan AI</span>
+                </button>
+            </div>
+
+            <div id="planner-plans-container" class="space-y-8">
+                <!-- Loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- SECTION 5: FLASHCARDS MAZO & PRÁCTICA DE CÓDIGO CON CONTEXTO -->
+        <section id="section-flashcards" class="hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-5">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center space-x-3">
+                        <i class="fa-solid fa-code text-astra-cyan"></i>
+                        <span>Práctica Interactiva de Código y Retos</span>
+                    </h2>
+                    <p class="text-xs text-gray-400">Selecciona el módulo, define el contexto de lo que quieres repasar hoy y responde programando.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <select id="flashcard-subject-filter" onchange="renderFlashcards()" class="bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                        <option value="ALL">Todas las Asignaturas</option>
+                        <option value="DWES">DWES - Servidor</option>
+                        <option value="DWEC">DWEC - Cliente</option>
+                        <option value="DIW">DIW - Interfaces</option>
+                        <option value="DAW">DAW - Despliegue</option>
+                        <option value="INGLES">Inglés Profesional</option>
+                        <option value="EIE">EIE / Empleabilidad</option>
+                        <option value="PROYECTO">Proyecto DAW</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Flashcard AI Context Box Block -->
+            <div class="astra-glass-card p-5 rounded-3xl border border-astra-500/30 space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-white flex items-center space-x-3">
+                        <i class="fa-solid fa-sliders text-astra-cyan"></i>
+                        <span>Contexto de Estudio para hoy (AI Prompt)</span>
+                    </span>
+                    <span class="text-[10px] text-gray-400">Gemini genera una tanda de 6 retos con lo que pongas aquí</span>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input id="flashcard-context-input" type="text" onkeydown="if(event.key==='Enter'){generateDynamicAIReto();}" placeholder="Ej: Hoy estoy estudiando PDO, sesiones y cookies en PHP..." class="flex-grow bg-gray-950 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-sans">
+                    <button onclick="generateDynamicAIReto()" class="bg-astra-600 hover:bg-astra-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-lg flex items-center justify-center space-x-3 whitespace-nowrap">
+                        <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+                        <span>Generar 6 Retos</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Practice container: se rellena solo al enviar contexto -->
+            <div class="max-w-2xl mx-auto">
+                <div id="practice-empty" class="astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-astra-border">
+                    <i class="fa-solid fa-wand-magic-sparkles text-4xl text-gray-600"></i>
+                    <h3 class="text-sm font-bold text-white">Aún no hay retos</h3>
+                    <p class="text-xs text-gray-400">Escribe arriba el tema que quieres repasar y pulsa "Generar 6 Retos".</p>
+                </div>
+
+                <div id="practice-loading" class="hidden astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-astra-border">
+                    <div class="w-6 h-6 mx-auto rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
+                    <p class="text-xs text-astra-cyan">Gemini está preparando el repaso y tus 6 retos...</p>
+                </div>
+
+                <div id="practice-intro" class="hidden astra-glass-card p-8 rounded-3xl border border-astra-border space-y-6">
+                    <div class="space-y-2">
+                        <p id="intro-subject-tag" class="text-xs font-medium text-astra-400"></p>
+                        <h3 id="intro-title" class="text-2xl sm:text-3xl text-white"></h3>
+                    </div>
+                    <div id="intro-text" class="text-sm sm:text-base text-gray-300 leading-relaxed"></div>
+                    <div class="space-y-3">
+                        <h4 class="text-lg text-white">Aspectos fundamentales</h4>
+                        <ul id="intro-points" class="space-y-3 text-sm text-gray-300 list-disc pl-5 marker:text-astra-400"></ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <button onclick="beginPracticeCards()" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-sm font-semibold py-3.5 rounded-xl transition">
+                            Empezar los 6 retos
+                        </button>
+                        <button onclick="newPracticeTopic()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-sm font-medium px-5 py-3.5 rounded-xl transition">
+                            Cambiar de tema
+                        </button>
+                    </div>
+                </div>
+
+                <div id="practice-card-box" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-6">
+                    <div class="flex items-center justify-between border-b border-astra-border pb-3">
+                        <span id="card-subject-tag" class="text-[10px] uppercase font-bold text-astra-cyan tracking-widest px-2.5 py-1 rounded-full bg-astra-cyan/10 border border-astra-cyan/20">ASIGNATURA</span>
+                        <span id="flashcard-counter-indicator" class="text-xs text-gray-400 font-mono">0 / 0</span>
+                    </div>
+
+                    <div id="card-front-content" class="text-sm sm:text-base font-bold text-white leading-relaxed"></div>
+
+                    <div class="space-y-3">
+                        <label class="block text-[11px] font-bold text-gray-300 tracking-normal">Escribe tu respuesta o solución en código:</label>
+                        <textarea id="card-user-input" rows="5" placeholder="Escribe aquí tu código PHP, JS, comandos Docker, CSS o explicación..." class="w-full bg-gray-950 border border-astra-border rounded-2xl p-3 text-xs text-astra-cyan focus:outline-none font-mono resize-none"></textarea>
+                    </div>
+
+                    <div id="card-actions" class="flex flex-wrap gap-3 pt-1">
+                        <button id="card-eval-btn" onclick="checkAnswerWithAI()" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-3 shadow-lg">
+                            <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+                            <span>Evaluar mi código con Gemini AI</span>
+                        </button>
+                        <button id="card-reveal-btn" onclick="revealOfficialAnswer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-5 py-3 rounded-xl transition">
+                            👁️ Ver solución (cuenta 0)
+                        </button>
+                    </div>
+
+                    <div id="card-feedback-box" class="hidden p-4 rounded-2xl bg-gray-950 border border-astra-border space-y-4 text-xs">
+                        <div id="ai-eval-result" class="text-gray-300 space-y-2"></div>
+                        <div class="border-t border-gray-900 pt-3">
+                            <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider block mb-1">Solución / Código Esperado:</span>
+                            <div id="card-back-content" class="text-gray-200 font-mono leading-relaxed overflow-x-auto"></div>
+                        </div>
+                    </div>
+
+                    <button id="card-next-btn" onclick="nextPracticeStep()" class="hidden w-full bg-astra-600 hover:bg-astra-500 text-white text-xs font-bold py-2.5 rounded-xl transition">
+                        Siguiente <i class="fa-solid fa-chevron-right ml-1"></i>
+                    </button>
+                </div>
+
+                <div id="practice-results" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-6 text-center"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: POMODORO & LO-FI AUDIO GENERATOR -->
+        <section id="section-pomodoro" class="hidden max-w-3xl mx-auto space-y-8">
+            <div class="astra-glass-card p-8 rounded-3xl text-center space-y-8 border border-astra-border astra-glow">
+                <div class="flex justify-center space-x-3 bg-gray-950 p-1.5 rounded-2xl max-w-md mx-auto border border-astra-border overflow-x-auto">
+                    <button onclick="setPomoMode('work25')" id="pomo-mode-work25" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-astra-600 text-white whitespace-nowrap">Estudio (25m)</button>
+                    <button onclick="setPomoMode('work50')" id="pomo-mode-work50" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-400 whitespace-nowrap">Intenso (50m)</button>
+                    <button onclick="setPomoMode('shortBreak')" id="pomo-mode-short" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-400 whitespace-nowrap">Descanso (5m / 10m)</button>
+                    <button onclick="setPomoMode('longBreak')" id="pomo-mode-long" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-400 whitespace-nowrap">Largo (15m)</button>
+                </div>
+
+                <div>
+                    <div id="pomo-clock-display" class="text-6xl sm:text-8xl font-black font-mono tracking-tight text-white">
+                        25:00
+                    </div>
+                    <p id="pomo-mode-label" class="text-xs uppercase font-bold text-astra-cyan tracking-widest mt-2">
+                        Bloque de Enfoque Estándar (25 minutos)
+                    </p>
+                </div>
+
+                <div class="flex items-center justify-center space-x-4">
+                    <button id="pomo-toggle-btn" onclick="togglePomoTimer()" class="w-36 bg-astra-600 hover:bg-astra-700 text-white font-extrabold py-3.5 rounded-2xl shadow-xl transition flex items-center justify-center space-x-3 text-base">
+                        <i id="pomo-play-icon" class="fa-solid fa-play"></i>
+                        <span id="pomo-btn-text">Iniciar</span>
+                    </button>
+                    <button onclick="resetPomoTimer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 p-3.5 rounded-2xl border border-astra-border transition">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                </div>
+
+                <div class="pt-6 border-t border-astra-border flex flex-wrap items-center justify-between gap-5 text-xs">
+                    <span class="text-gray-400 font-medium flex items-center space-x-3">
+                        <i class="fa-solid fa-headphones text-astra-cyan"></i>
+                        <span>Generador de Ruido Enfoque (Web Audio Synth):</span>
+                    </span>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="toggleSynthAudio('white')" id="synth-white" class="px-4 py-2 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🌫️ Ruido Blanco</button>
+                        <button onclick="toggleSynthAudio('pink')" id="synth-pink" class="px-4 py-2 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🌧️ Lluvia Synth</button>
+                        <button onclick="toggleSynthAudio('binaural')" id="synth-binaural" class="px-4 py-2 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🧠 Pulso Alpha</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL: PREPARACIÓN DE EXAMEN AI -->
+    <div id="modal-exam-prep" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-2xl space-y-5 shadow-2xl my-8">
+            <div class="flex justify-between items-center border-b border-astra-border pb-3">
+                <h3 class="text-base font-bold text-white flex items-center space-x-3">
+                    <i class="fa-solid fa-file-pen text-astra-400"></i>
+                    <span>Preparador de Examen & Modelos AI</span>
+                </h3>
+                <button onclick="closeExamPrepModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="space-y-5 text-xs">
+                <p class="text-gray-300 leading-relaxed">
+                    Sube enunciados de examen, capturas de pantalla de código, PDFs o escribe el modelo de examen esperado para que Gemini simule un examen real o desarrolle soluciones paso a paso.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Módulo Formativo</label>
+                        <select id="exam-prep-subject" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                            <option value="DWES">DWES - Entorno Servidor</option>
+                            <option value="DWEC">DWEC - Entorno Cliente</option>
+                            <option value="DIW">DIW - Interfaces Web</option>
+                            <option value="DAW">DAW - Despliegue de Apps</option>
+                            <option value="INGLES">Inglés Profesional IT</option>
+                            <option value="EIE">EIE / Empleabilidad</option>
+                            <option value="PROYECTO">Proyecto DAW</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Tipo de Salida AI</label>
+                        <select id="exam-prep-mode" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                            <option value="SIMULATION">Simular Examen Completo con Soluciones</option>
+                            <option value="STEP_BY_STEP">Resolver y Explicar Enunciado Adjunto</option>
+                            <option value="FLASHCARDS">Generar Mazo de Flashcards del Examen</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Adjuntar Foto o Imagen de Enunciado/Apuntes (Opcional)</label>
+                    <input type="file" id="exam-prep-file" accept="image/*" class="w-full bg-gray-900 border border-astra-border rounded-xl p-2 text-xs text-gray-400 file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-astra-600 file:text-white hover:file:bg-astra-500 cursor-pointer">
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Enunciado o Instrucciones</label>
+                    <textarea id="exam-prep-text" rows="4" placeholder="Ej: El examen tratará de crear un script de PHP con PDO que gestione un CRUD con sesiones de usuario..." class="w-full bg-gray-900 border border-astra-border rounded-xl p-3 text-xs text-white focus:outline-none resize-none font-mono"></textarea>
+                </div>
+
+                <button onclick="processExamPrepWithAI()" class="w-full bg-astra-600 hover:bg-astra-700 text-white font-bold py-3 rounded-xl transition shadow-lg flex items-center justify-center space-x-3">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Procesar y Generar Modelo con Gemini</span>
+                </button>
+
+                <div id="exam-prep-result-container" class="hidden space-y-4 pt-3 border-t border-astra-border">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-white text-xs">Resultado / Simulación de Examen:</span>
+                        <button onclick="addExamPrepCardsToDeck()" id="exam-add-cards-btn" class="hidden bg-astra-600 hover:bg-astra-500 text-white font-bold text-[11px] px-3 py-1 rounded-lg transition">
+                            + Añadir Tarjetas Generadas
+                        </button>
+                    </div>
+                    <div id="exam-prep-output" class="bg-gray-900 border border-astra-border rounded-2xl p-4 max-h-80 overflow-y-auto font-mono text-xs text-gray-200 leading-relaxed"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: SETTINGS -->
+    <div id="modal-settings" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-md space-y-6 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-astra-border pb-3">
+                <h3 class="text-sm font-bold text-white flex items-center space-x-3">
+                    <i class="fa-solid fa-key text-astra-cyan"></i>
+                    <span>Configuración Gemini API Key</span>
+                </h3>
+                <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="space-y-4 text-xs">
+                <p class="text-gray-300">Ingresa tu clave de la API de Gemini si no usas el entorno por defecto.</p>
+                <div>
+                    <label class="block font-bold text-gray-300 uppercase mb-1">API Key</label>
+                    <input id="input-api-key" type="password" placeholder="AIzaSy..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-4 pt-2 border-t border-astra-border">
+                <button onclick="closeSettingsModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 bg-gray-900">Cancelar</button>
+                <button onclick="saveApiKeySetting()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-500 shadow-lg">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ADD FLASHCARD -->
+    <div id="modal-add-card" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-md space-y-5 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-astra-border pb-3">
+                <h3 class="text-sm font-bold text-white">Añadir Flashcard Manual</h3>
+                <button onclick="closeAddCardModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-gray-300 uppercase mb-1">Módulo</label>
+                    <select id="modal-card-subject" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                        <option value="DWES">DWES</option>
+                        <option value="DWEC">DWEC</option>
+                        <option value="DIW">DIW</option>
+                        <option value="DAW">DAW</option>
+                        <option value="INGLES">Inglés Profesional</option>
+                        <option value="EIE">EIE / Empleabilidad</option>
+                        <option value="PROYECTO">Proyecto DAW</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-300 uppercase mb-1">Reto / Pregunta</label>
+                    <textarea id="modal-card-front" rows="2" placeholder="Ej: ¿Cómo se gestionan las variables de sesión en PHP?" class="w-full bg-gray-900 border border-astra-border rounded-xl p-3 text-xs text-white focus:outline-none resize-none"></textarea>
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-300 uppercase mb-1">Solución / Código Esperado</label>
+                    <textarea id="modal-card-back" rows="3" placeholder="session_start(); $_SESSION['user'] = 'Alex';" class="w-full bg-gray-900 border border-astra-border rounded-xl p-3 text-xs text-white focus:outline-none font-mono resize-none"></textarea>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-4 pt-2">
+                <button onclick="closeAddCardModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 bg-gray-900">Cancelar</button>
+                <button onclick="saveCustomFlashcard()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-500 shadow-lg">Guardar Card</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CREATE PLANNER -->
+    <div id="modal-planner" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-lg space-y-5 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-astra-border pb-3">
+                <h3 class="text-sm font-bold text-white">Generar Plan de Estudio AI</h3>
+                <button onclick="closePlannerModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-gray-300 uppercase mb-1">Asignatura</label>
+                    <select id="modal-plan-subject" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                        <option value="DWES">DWES - Entorno Servidor</option>
+                        <option value="DWEC">DWEC - Entorno Cliente</option>
+                        <option value="DIW">DIW - Interfaces Web</option>
+                        <option value="DAW">DAW - Despliegue de Apps</option>
+                        <option value="INGLES">Inglés Profesional IT</option>
+                        <option value="EIE">EIE / Empleabilidad</option>
+                        <option value="PROYECTO">Proyecto DAW</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-bold text-gray-300 uppercase mb-1">Fecha de Examen</label>
+                        <input id="modal-plan-date" type="date" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-300 uppercase mb-1">Horas Diarias</label>
+                        <input id="modal-plan-hours" type="number" min="1" max="10" value="2" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-300 uppercase mb-1">Temas / Puntos Débiles</label>
+                    <textarea id="modal-plan-topics" rows="3" placeholder="Ej: PDO, Promesas en JS, Nginx VirtualHosts" class="w-full bg-gray-900 border border-astra-border rounded-xl p-3 text-xs text-white focus:outline-none resize-none"></textarea>
+                </div>
+            </div>
+
+            <div class="flex justify-end space-x-4 pt-2">
+                <button onclick="closePlannerModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 bg-gray-900">Cancelar</button>
+                <button onclick="generatePlanWithGemini()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-700 shadow-lg">Generar Itinerario</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const LOCAL_STORAGE_KEY = 'ASTRA_WEBDEV_STUDIO_2DAW_DATA_V5';
+
+        const EMPTY_CUSTOM_DAW_SUBJECTS = [
+            { id: 'DWES', name: 'Desarrollo Web en Entorno Servidor', shortName: 'DWES', icon: 'fa-server', color: 'from-purple-600 to-indigo-600', topics: [] },
+            { id: 'DWEC', name: 'Desarrollo Web en Entorno Cliente', shortName: 'DWEC', icon: 'fa-code', color: 'from-amber-500 to-orange-600', topics: [] },
+            { id: 'DIW', name: 'Diseño de Interfaces Web', shortName: 'DIW', icon: 'fa-palette', color: 'from-pink-500 to-rose-600', topics: [] },
+            { id: 'DAW', name: 'Despliegue de Aplicaciones Web', shortName: 'DAW (Despliegue)', icon: 'fa-network-wired', color: 'from-cyan-500 to-blue-600', topics: [] },
+            { id: 'INGLES', name: 'Inglés Profesional (Grado Superior)', shortName: 'Inglés IT', icon: 'fa-language', color: 'from-emerald-500 to-teal-600', topics: [] },
+            { id: 'EIE', name: 'Empresa e Iniciativa Emprendedora', shortName: 'EIE / Itinerario', icon: 'fa-briefcase', color: 'from-violet-600 to-purple-800', topics: [] },
+            { id: 'PROYECTO', name: 'Proyecto de Desarrollo Web', shortName: 'Proyecto DAW', icon: 'fa-diagram-project', color: 'from-amber-600 to-red-600', topics: [] }
+        ];
+
+        let activeChannel = 'GLOBAL';
+
+        let appData = {
+            apiKey: '',
+            subjects: EMPTY_CUSTOM_DAW_SUBJECTS,
+            flashcards: [],
+            plans: [],
+            pomoTotalSeconds: 0,
+            conversations: [],
+            activeConv: {},
+            chatHistories: {
+                GLOBAL: [{ sender: 'ai', text: '👋 **¡Hola, estudiante de 2º DAW!** Hazme cualquier pregunta sobre tus asignaturas.' }],
+                DWES: [], DWEC: [], DIW: [], DAW: [], INGLES: [], EIE: [], PROYECTO: []
+            }
+        };
+
+        function cleanLegacyCards() {
+            appData.flashcards = (appData.flashcards || []).filter(c => c.id !== 'fc_1' && c.id !== 'fc_2');
+        }
+
+        function saveData() {
+            appData._updatedAt = Date.now();
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(appData));
+            } catch (e) {
+                console.error("Error guardando datos localmente:", e);
+            }
+            scheduleCloudSave();
+        }
+
+        // ================= SUPABASE: LOGIN + SINCRONIZACIÓN =================
+       const SUPABASE_URL = 'https://dnvmjcigxjjiatrhnkrv.supabase.co';          // https://xxxx.supabase.co
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRudm1qY2lneGpqaWF0cmhua3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2ODUzMzgsImV4cCI6MjEwODI2MTMzOH0.hErApqoOTMEk_rjKInwECFjfzS3Jolqo4Qp-r6-Lv9w';        // clave "anon" / "publishable" (pública)
+
+        let sb = null, cloudUser = null, cloudTimer = null, cloudBusy = false, cloudDirty = false;
+
+        // La API key de Gemini NO se sube a la nube: se queda solo en este navegador.
+        function cloudPayload() {
+            const { apiKey, ...rest } = appData;
+            return rest;
+        }
+
+        function setSyncStatus(state, detail) {
+            const box = document.getElementById('sync-status');
+            if (!box) return;
+            const icon = document.getElementById('sync-icon');
+            const text = document.getElementById('sync-text');
+            const map = {
+                saving: ['fa-solid fa-rotate fa-spin text-amber-400', 'Guardando…'],
+                ok:     ['fa-solid fa-cloud text-emerald-400', 'Sincronizado'],
+                error:  ['fa-solid fa-triangle-exclamation text-rose-400', 'Error de sync']
+            };
+            const [cls, label] = map[state] || map.ok;
+            icon.className = cls;
+            text.innerText = label;
+            box.title = detail || label;
+            box.classList.remove('hidden');
+            box.classList.add('flex');
+        }
+
+        function scheduleCloudSave() {
+            if (!sb || !cloudUser) return;
+            cloudDirty = true;
+            setSyncStatus('saving');
+            clearTimeout(cloudTimer);
+            cloudTimer = setTimeout(flushCloudSave, 1500);
+        }
+
+        async function flushCloudSave() {
+            if (!sb || !cloudUser || !cloudDirty) return;
+            if (cloudBusy) { cloudTimer = setTimeout(flushCloudSave, 500); return; }
+            cloudBusy = true;
+            cloudDirty = false;
+            const { error } = await sb.from('user_data').upsert({
+                user_id: cloudUser.id,
+                data: cloudPayload(),
+                updated_at: new Date().toISOString()
+            });
+            cloudBusy = false;
+            if (error) {
+                cloudDirty = true;
+                console.error("Error subiendo datos:", error);
+                setSyncStatus('error', error.message);
+            } else {
+                setSyncStatus(cloudDirty ? 'saving' : 'ok');
+            }
+        }
+
+        function refreshAllViews() {
+            updateApiStatusUI();
+            renderDashboard();
+            renderFullSubjects();
+            renderFlashcards();
+            renderTutorChat();
+            renderPlanner();
+        }
+
+        async function pullCloudData() {
+            setSyncStatus('saving');
+            const { data: row, error } = await sb.from('user_data').select('data, updated_at').eq('user_id', cloudUser.id).maybeSingle();
+            if (error) { setSyncStatus('error', error.message); return; }
+
+            const localTs = appData._updatedAt || 0;
+            const cloudData = row && row.data && Object.keys(row.data).length ? row.data : null;
+            const cloudTs = cloudData ? (cloudData._updatedAt || Date.parse(row.updated_at) || 0) : 0;
+
+            if (cloudData && cloudTs >= localTs) {
+                // La nube es más reciente (o es un dispositivo nuevo): gana la nube
+                const keepKey = appData.apiKey;
+                appData = {
+                    ...appData,
+                    ...cloudData,
+                    apiKey: keepKey,
+                    chatHistories: { ...appData.chatHistories, ...(cloudData.chatHistories || {}) }
+                };
+                cleanLegacyCards();
+                try { localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(appData)); } catch (e) {}
+                refreshAllViews();
+                setSyncStatus('ok');
+            } else {
+                // Primera vez, o lo local es más nuevo: subimos lo local
+                cloudDirty = true;
+                await flushCloudSave();
+            }
+        }
+
+        function showAuth(show) {
+            document.getElementById('auth-overlay').classList.toggle('hidden', !show);
+        }
+
+        async function authSubmit(mode) {
+            const email = document.getElementById('auth-email').value.trim();
+            const password = document.getElementById('auth-password').value;
+            const msg = document.getElementById('auth-msg');
+            msg.className = 'text-xs text-rose-400 min-h-[1rem]';
+            msg.textContent = '';
+            if (!email || password.length < 6) { msg.textContent = 'Pon un email y una contraseña de al menos 6 caracteres.'; return; }
+
+            const btns = [document.getElementById('auth-login-btn'), document.getElementById('auth-signup-btn')];
+            btns.forEach(b => b.disabled = true);
+            const { data, error } = mode === 'signup'
+                ? await sb.auth.signUp({ email, password })
+                : await sb.auth.signInWithPassword({ email, password });
+            btns.forEach(b => b.disabled = false);
+
+            if (error) {
+                msg.textContent = error.message;
+            } else if (mode === 'signup' && !data.session) {
+                msg.className = 'text-xs text-emerald-400 min-h-[1rem]';
+                msg.textContent = 'Cuenta creada. Confirma el email que te han enviado y luego pulsa Entrar.';
+            }
+        }
+
+        async function logout() {
+            clearTimeout(cloudTimer);
+            await flushCloudSave();
+            if (cloudDirty && !confirm("Hay cambios que no se han podido subir. ¿Cerrar sesión igualmente? Se perderán en este dispositivo.")) return;
+            await sb.auth.signOut();
+            try { localStorage.removeItem(LOCAL_STORAGE_KEY); } catch (e) {}
+            location.reload();
+        }
+
+        function showCloudNotice(msg) {
+            console.warn("Supabase: " + msg);
+            const box = document.createElement('div');
+            box.className = 'fixed bottom-4 left-4 right-4 sm:left-auto sm:max-w-sm z-[90] bg-astra-card border border-astra-border rounded-2xl p-4 text-xs text-gray-300 shadow-2xl flex items-start gap-3';
+            const text = document.createElement('div');
+            text.className = 'flex-1 leading-relaxed';
+            text.textContent = 'Modo solo local (sin login). ' + msg;
+            const close = document.createElement('button');
+            close.className = 'text-gray-400 hover:text-white';
+            close.textContent = '✕';
+            close.onclick = () => box.remove();
+            box.append(text, close);
+            document.body.appendChild(box);
+        }
+
+        function initCloud() {
+            let url = (SUPABASE_URL || '').trim();
+            const key = (SUPABASE_ANON_KEY || '').trim();
+            try { url = new URL(url).origin; } catch (e) { url = ''; }   // quita barras finales y /rest/v1
+
+            if (!url) {
+                showCloudNotice('Falta la URL del proyecto en SUPABASE_URL (debe ser tipo https://tuid.supabase.co).');
+                return;
+            }
+            if (!key || key.startsWith('PEGA')) {
+                showCloudNotice('Falta la clave en SUPABASE_ANON_KEY (la publishable "sb_publishable_..." o la anon "eyJ...").');
+                return;
+            }
+            if (key.startsWith('http')) {
+                showCloudNotice('En SUPABASE_ANON_KEY has pegado una URL. Ahí va la clave (sb_publishable_... o eyJ...).');
+                return;
+            }
+            if (!window.supabase) {
+                showCloudNotice('No se pudo cargar la librería de Supabase (¿sin internet o bloqueada?).');
+                return;
+            }
+            sb = window.supabase.createClient(url, key);
+
+            sb.auth.onAuthStateChange((event, session) => {
+                const user = session ? session.user : null;
+                if (user && (!cloudUser || cloudUser.id !== user.id)) {
+                    cloudUser = user;
+                    showAuth(false);
+                    document.getElementById('logout-btn').classList.remove('hidden');
+                    setTimeout(pullCloudData, 0); // fuera del callback para evitar bloqueos de supabase-js
+                } else if (!user) {
+                    cloudUser = null;
+                    document.getElementById('logout-btn').classList.add('hidden');
+                    showAuth(true);
+                }
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'hidden') flushCloudSave();
+            });
+        }
+
+        function loadData() {
+            try {
+                const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    appData = { 
+                        ...appData, 
+                        ...parsed,
+                        chatHistories: { ...appData.chatHistories, ...(parsed.chatHistories || {}) }
+                    };
+                    cleanLegacyCards();
+                }
+            } catch (e) {
+                console.error("Error cargando datos:", e);
+            }
+        }
+
+        function exportData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `astra_daw_backup_${new Date().toISOString().split('T')[0]}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (parsed && typeof parsed === 'object') {
+                        appData = {
+                            ...appData,
+                            ...parsed,
+                            chatHistories: { 
+                                GLOBAL: [], DWES: [], DWEC: [], DIW: [], DAW: [], INGLES: [], EIE: [], PROYECTO: [],
+                                ...(parsed.chatHistories || {}) 
+                            }
+                        };
+                        cleanLegacyCards();
+                        saveData();
+                        updateApiStatusUI();
+                        renderDashboard();
+                        renderFullSubjects();
+                        renderFlashcards();
+                        renderTutorChat();
+                        renderPlanner();
+                        alert("¡Datos e historial importados correctamente!");
+                    } else {
+                        alert("El archivo JSON no contiene un formato de backup válido.");
+                    }
+                } catch (err) {
+                    alert("Error al leer e importar el archivo JSON.");
+                }
+                event.target.value = '';
+            };
+            reader.readAsText(file);
+        }
+
+        function switchTab(tabId) {
+            const sections = ['dashboard', 'subjects', 'tutor', 'planner', 'flashcards', 'pomodoro'];
+            sections.forEach(s => {
+                const el = document.getElementById(`section-${s}`);
+                if (el) el.classList.add('hidden');
+            });
+
+            const activeSec = document.getElementById(`section-${tabId}`);
+            if (activeSec) activeSec.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.className = "nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3";
+            });
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if (activeBtn) activeBtn.className = "nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 bg-astra-600 text-white shadow-md flex items-center space-x-3";
+
+            document.querySelectorAll('.mobile-nav-btn').forEach(b => {
+                b.className = "mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300";
+            });
+            const mobileBtn = document.getElementById(`mobile-nav-${tabId}`);
+            if (mobileBtn) mobileBtn.className = "mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-600 text-white";
+
+            if (tabId === 'dashboard') renderDashboard();
+            if (tabId === 'subjects') renderFullSubjects();
+            if (tabId === 'tutor') renderTutorChat();
+            if (tabId === 'planner') renderPlanner();
+            if (tabId === 'flashcards') renderFlashcards();
+            if (tabId === 'pomodoro') updatePomoDisplay();
+        }
+
+        async function callGeminiAPI(prompt, systemInstruction = "", imageBase64Data = null, imageMimeType = "image/jpeg", history = []) {
+            const apiKey = appData.apiKey || window.geminiApi || "";
+            if (!apiKey) {
+                openSettingsModal();
+                throw new Error("Falta configurar la Gemini API Key. Por favor, introdúcela en la configuración.");
+            }
+
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            const userPart = [{ text: prompt }];
+            if (imageBase64Data) {
+                userPart.push({
+                    inlineData: {
+                        mimeType: imageMimeType || "image/jpeg",
+                        data: imageBase64Data
+                    }
+                });
+            }
+
+            const payload = {
+                contents: [
+                    ...history.map(m => ({ role: m.sender === 'user' ? 'user' : 'model', parts: [{ text: String(m.text) }] })),
+                    { role: 'user', parts: userPart }
+                ],
+                systemInstruction: systemInstruction ? { parts: [{ text: systemInstruction }] } : undefined
+            };
+
+            let retries = 3;
+            let delay = 1000;
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errData = await response.json().catch(() => ({}));
+                        throw new Error(errData.error?.message || `Error HTTP API: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (text) return text;
+                    throw new Error("Respuesta de API vacía");
+                } catch (err) {
+                    if (i === retries - 1) throw err;
+                    await new Promise(r => setTimeout(r, delay));
+                    delay *= 2;
+                }
+            }
+        }
+
+        function renderDashboard() {
+            let totalTopics = 0;
+            let completedTopics = 0;
+
+            appData.subjects.forEach(sub => {
+                (sub.topics || []).forEach(t => {
+                    totalTopics++;
+                    if (t.done) completedTopics++;
+                });
+            });
+
+            const pct = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
+            const pctEl = document.getElementById('stat-progress-pct');
+            const barEl = document.getElementById('stat-progress-bar');
+            if (pctEl) pctEl.innerText = `${pct}%`;
+            if (barEl) barEl.style.width = `${pct}%`;
+            
+            const countEl = document.getElementById('stat-flashcards-count');
+            if (countEl) countEl.innerText = appData.flashcards.length;
+
+            const hours = Math.floor(appData.pomoTotalSeconds / 3600);
+            const mins = Math.floor((appData.pomoTotalSeconds % 3600) / 60);
+            const pomoEl = document.getElementById('stat-pomo-hours');
+            if (pomoEl) pomoEl.innerText = `${hours}h ${mins}m`;
+
+            const grid = document.getElementById('dash-subjects-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            appData.subjects.forEach(sub => {
+                const subTotal = (sub.topics || []).length;
+                const subDone = (sub.topics || []).filter(t => t.done).length;
+                const subPct = subTotal > 0 ? Math.round((subDone / subTotal) * 100) : 0;
+
+                const card = document.createElement('div');
+                card.className = "astra-glass-card p-5 rounded-3xl space-y-4 border border-astra-border hover:border-astra-500/40 transition cursor-pointer";
+                card.onclick = () => switchTab('subjects');
+                card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${sub.color} flex items-center justify-center text-white text-base shadow-md">
+                            <i class="fa-solid ${sub.icon}"></i>
+                        </div>
+                        <span class="text-xs font-bold font-mono text-astra-cyan">${sub.shortName}</span>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-white leading-snug">${escapeHTML(sub.name)}</h3>
+                        <p class="text-[11px] text-gray-400 mt-0.5">${subDone} de ${subTotal} temas completados</p>
+                    </div>
+                    <div class="w-full bg-gray-900 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-astra-500 h-full" style="width: ${subPct}%"></div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderFullSubjects() {
+            const list = document.getElementById('full-subjects-list');
+            if (!list) return;
+            list.innerHTML = '';
+
+            appData.subjects.forEach(sub => {
+                const card = document.createElement('div');
+                card.className = "astra-glass-card p-6 rounded-3xl space-y-5 border border-astra-border";
+                card.innerHTML = `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-astra-border pb-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${sub.color} flex items-center justify-center text-white text-lg">
+                                <i class="fa-solid ${sub.icon}"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-base font-bold text-white">${escapeHTML(sub.name)}</h3>
+                                <span class="text-[11px] text-astra-cyan font-mono font-bold">${sub.id}</span>
+                            </div>
+                        </div>
+                        <button onclick="promptAddNewTopic('${sub.id}')" class="bg-astra-600 hover:bg-astra-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                            + Añadir Tema/Check
+                        </button>
+                    </div>
+
+                    <div class="space-y-3">
+                        ${(sub.topics && sub.topics.length > 0) ? sub.topics.map(t => `
+                            <div class="flex items-center justify-between p-3 rounded-2xl bg-gray-950/60 border border-gray-900 hover:border-astra-border transition">
+                                <label class="flex items-center space-x-4 cursor-pointer text-xs text-gray-200">
+                                    <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleSubjectTopic('${sub.id}', '${t.id}')" class="w-4 h-4 rounded text-astra-600 bg-gray-900 border-gray-800 focus:ring-astra-500">
+                                    <span class="${t.done ? 'line-through text-gray-500' : 'font-medium'}">${escapeHTML(t.title)}</span>
+                                </label>
+                                <button onclick="deleteTopic('${sub.id}', '${t.id}')" class="text-gray-600 hover:text-rose-400 text-xs px-2"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
+                        `).join('') : '<p class="text-xs text-gray-500 italic py-2">Lista vacía. Pulsa "+ Añadir Tema/Check" para ir construyendo tu programa.</p>'}
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function promptAddNewTopic(subId) {
+            const title = prompt("Escribe el nombre del tema, práctica o check a añadir:");
+            if (title && title.trim()) {
+                const sub = appData.subjects.find(s => s.id === subId);
+                if (sub) {
+                    if (!sub.topics) sub.topics = [];
+                    sub.topics.push({ id: 'top_' + Date.now(), title: title.trim(), done: false });
+                    saveData();
+                    renderDashboard();
+                    renderFullSubjects();
+                }
+            }
+        }
+
+        function toggleSubjectTopic(subId, topicId) {
+            const sub = appData.subjects.find(s => s.id === subId);
+            if (sub && sub.topics) {
+                const t = sub.topics.find(top => top.id === topicId);
+                if (t) {
+                    t.done = !t.done;
+                    saveData();
+                    renderDashboard();
+                    renderFullSubjects();
+                }
+            }
+        }
+
+        function deleteTopic(subId, topicId) {
+            const sub = appData.subjects.find(s => s.id === subId);
+            if (sub && sub.topics) {
+                sub.topics = sub.topics.filter(t => t.id !== topicId);
+                saveData();
+                renderDashboard();
+                renderFullSubjects();
+            }
+        }
+
+        // ===== Conversaciones del tutor (se guardan en appData y se sincronizan con Supabase) =====
+        function ensureConversations() {
+            if (!Array.isArray(appData.conversations)) appData.conversations = [];
+            if (!appData.activeConv || typeof appData.activeConv !== 'object') appData.activeConv = {};
+            if (!appData._chatsMigrated) {
+                // Pasa los chats antiguos (uno por canal) a conversaciones
+                Object.entries(appData.chatHistories || {}).forEach(([channel, msgs]) => {
+                    if (Array.isArray(msgs) && msgs.some(m => m.sender === 'user')) {
+                        const t = Date.now();
+                        appData.conversations.push({
+                            id: 'c_' + t + '_' + channel,
+                            channel,
+                            title: makeConvTitle((msgs.find(m => m.sender === 'user') || {}).text),
+                            messages: msgs.filter(m => m && m.text),
+                            createdAt: t,
+                            updatedAt: t
+                        });
+                    }
+                });
+                appData._chatsMigrated = true;
+            }
+        }
+
+        function makeConvTitle(text) {
+            const t = plainMd(text || '');
+            return t.length > 46 ? t.slice(0, 46) + '…' : (t || 'Conversación');
+        }
+
+        function convsOfChannel() {
+            ensureConversations();
+            return appData.conversations.filter(c => c.channel === activeChannel).sort((x, y) => (y.updatedAt || 0) - (x.updatedAt || 0));
+        }
+
+        function getActiveConv() {
+            const list = convsOfChannel();
+            const sel = appData.activeConv[activeChannel];
+            if (sel === 'NEW') return null;
+            return list.find(c => c.id === sel) || list[0] || null;
+        }
+
+        function tutorWelcome() {
+            return activeChannel === 'GLOBAL'
+                ? '👋 **¡Hola, estudiante de 2º DAW!** Hazme cualquier pregunta sobre tus asignaturas.'
+                : `👋 **Canal de ${activeChannel}**. Haz tus preguntas específicas sobre este módulo.`;
+        }
+
+        function renderConvSelect() {
+            const sel = document.getElementById('tutor-conv-select');
+            if (!sel) return;
+            const list = convsOfChannel();
+            const active = getActiveConv();
+            sel.innerHTML = '';
+            if (!list.length) {
+                sel.innerHTML = '<option value="">Sin conversaciones guardadas</option>';
+                sel.disabled = true;
+                return;
+            }
+            sel.disabled = false;
+            if (!active) sel.add(new Option('Nueva conversación…', ''));
+            list.forEach(c => {
+                const d = new Date(c.updatedAt || Date.now());
+                const label = `${c.title || 'Conversación'} · ${d.getDate()}/${d.getMonth() + 1}`;
+                sel.add(new Option(label, c.id, false, !!active && active.id === c.id));
+            });
+        }
+
+        function renderTutorChat() {
+            const stream = document.getElementById('tutor-chat-stream');
+            if (!stream) return;
+            stream.innerHTML = '';
+            renderConvSelect();
+
+            const conv = getActiveConv();
+            if (!conv || !conv.messages.length) {
+                appendTutorBubble('ai', tutorWelcome(), false);
+            } else {
+                conv.messages.forEach(msg => appendTutorBubble(msg.sender, msg.text, false));
+            }
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        function switchTutorChannel(channel) {
+            activeChannel = channel;
+            renderTutorChat();
+        }
+
+        function newConversation() {
+            appData.activeConv[activeChannel] = 'NEW';
+            renderTutorChat();
+            const input = document.getElementById('tutor-chat-input');
+            if (input) input.focus();
+        }
+
+        function selectConversation(id) {
+            if (!id) return;
+            appData.activeConv[activeChannel] = id;
+            renderTutorChat();
+        }
+
+        function clearTutorChat() {
+            const conv = getActiveConv();
+            if (!conv) return;
+            if (!confirm(`¿Borrar la conversación "${conv.title}"? No se puede recuperar.`)) return;
+            appData.conversations = appData.conversations.filter(c => c.id !== conv.id);
+            delete appData.activeConv[activeChannel];
+            saveData();
+            renderTutorChat();
+        }
+
+        function setTutorPrompt(promptText) {
+            const input = document.getElementById('tutor-chat-input');
+            if (input) {
+                input.value = promptText;
+                input.focus();
+            }
+        }
+
+        async function sendTutorMessage(e) {
+            if (e) e.preventDefault();
+            const input = document.getElementById('tutor-chat-input');
+            if (!input) return;
+            const message = input.value.trim();
+            if (!message) return;
+
+            let conv = getActiveConv();
+            if (!conv) {
+                conv = { id: 'c_' + Date.now(), channel: activeChannel, title: makeConvTitle(message), messages: [], createdAt: Date.now(), updatedAt: Date.now() };
+                appData.conversations.push(conv);
+                appData.activeConv[activeChannel] = conv.id;
+            }
+            const history = conv.messages.filter(m => m && m.text && !String(m.text).startsWith('⚠️')).slice(-12);
+
+            conv.messages.push({ sender: 'user', text: message });
+            conv.updatedAt = Date.now();
+            saveData();
+
+            input.value = '';
+            renderTutorChat();
+            const loadingId = appendTutorLoading();
+            const channelAtSend = activeChannel;
+
+            try {
+                const systemPrompt = `Eres el Tutor de IA especializado en 2º DAW. Canal actual: ${channelAtSend}. Responde con explicaciones claras y ejemplos de código. Usa Markdown estándar: títulos con ##, negrita con **texto**, listas con guiones y el código en bloques con su lenguaje.`;
+                const responseText = await callGeminiAPI(message, systemPrompt, null, "image/jpeg", history);
+                conv.messages.push({ sender: 'ai', text: responseText });
+                conv.updatedAt = Date.now();
+                saveData();
+                removeTutorLoading(loadingId);
+                if (getActiveConv() === conv && activeChannel === channelAtSend) appendTutorBubble('ai', responseText, true);
+                else renderConvSelect();
+            } catch (err) {
+                removeTutorLoading(loadingId);
+                if (getActiveConv() === conv) appendTutorBubble('ai', `⚠️ ${err.message || 'Error al conectar con la API de Gemini.'}`, true);
+            }
+        }
+
+        function appendTutorBubble(sender, text, shouldScroll = true) {
+            const stream = document.getElementById('tutor-chat-stream');
+            if (!stream) return;
+            const wrapper = document.createElement('div');
+            wrapper.className = sender === 'user' ? "flex items-start justify-end space-x-4" : "flex items-start space-x-4";
+
+            if (sender === 'user') {
+                wrapper.innerHTML = `
+                    <div class="bg-astra-600 text-white rounded-2xl rounded-tr-none p-3.5 max-w-[85%] leading-relaxed font-sans">
+                        ${escapeHTML(text)}
+                    </div>
+                    <div class="w-8 h-8 rounded-lg bg-gray-800 flex-shrink-0 flex items-center justify-center text-xs font-bold text-gray-300">Tú</div>
+                `;
+            } else {
+                wrapper.innerHTML = `
+                    <div class="w-8 h-8 rounded-lg bg-astra-600 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">AI</div>
+                    <div class="bg-gray-900 border border-astra-border rounded-2xl rounded-tl-none p-4 text-gray-200 max-w-[90%] leading-relaxed space-y-3 overflow-x-auto">
+                        ${formatMarkdownCode(text)}
+                    </div>
+                `;
+            }
+
+            stream.appendChild(wrapper);
+            if (shouldScroll) {
+                setTimeout(() => { stream.scrollTop = stream.scrollHeight; }, 50);
+            }
+        }
+
+        function appendTutorLoading() {
+            const stream = document.getElementById('tutor-chat-stream');
+            if (!stream) return null;
+
+            const id = 'loading_' + Date.now();
+            const wrapper = document.createElement('div');
+            wrapper.id = id;
+            wrapper.className = "flex items-start space-x-4";
+            wrapper.innerHTML = `
+                <div class="w-8 h-8 rounded-lg bg-astra-600 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">AI</div>
+                <div class="bg-gray-900 border border-astra-border rounded-2xl rounded-tl-none p-4 text-gray-400 text-xs flex items-center space-x-3">
+                    <div class="w-2 h-2 rounded-full bg-astra-cyan animate-ping"></div>
+                    <span>Escribiendo respuesta...</span>
+                </div>
+            `;
+
+            stream.appendChild(wrapper);
+            stream.scrollTop = stream.scrollHeight;
+            return id;
+        }
+
+        function removeTutorLoading(id) {
+            if (!id) return;
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        async function askAIForQuiz() {
+            setTutorPrompt(`Genera 1 pregunta tipo test o reto práctico sobre ${activeChannel}.`);
+            await sendTutorMessage();
+        }
+
+        async function askAIForCodeBug() {
+            setTutorPrompt(`Muéstrame un fragmento de código breve en ${activeChannel} con un bug para resolver.`);
+            await sendTutorMessage();
+        }
+
+        const PRACTICE_TOTAL = 6;
+        const PASS_GRADE = 5;
+        let practiceSession = null; // { subject, context, cards, index, finished, loading, seenFronts }
+
+        function showPracticeView(view) {
+            ['empty', 'loading', 'intro', 'card-box', 'results'].forEach(v => {
+                const el = document.getElementById(`practice-${v}`);
+                if (el) el.classList.toggle('hidden', v !== view);
+            });
+        }
+
+        function renderFlashcards() { renderPractice(); }
+
+        function renderPractice() {
+            const s = practiceSession;
+            if (!s) return showPracticeView('empty');
+            if (s.loading) return showPracticeView('loading');
+            if (s.finished) return renderPracticeResults();
+            if (s.phase === 'intro') return renderPracticeIntro();
+            renderPracticeCard();
+        }
+
+        function renderPracticeIntro() {
+            const s = practiceSession;
+            showPracticeView('intro');
+            document.getElementById('intro-subject-tag').innerText = s.subject;
+            document.getElementById('intro-title').innerText = s.intro.title;
+            document.getElementById('intro-text').innerHTML = formatMarkdownCode(s.intro.text);
+            document.getElementById('intro-points').innerHTML = s.intro.points.map(p => `<li>${mdInline(p)}</li>`).join('');
+        }
+
+        function beginPracticeCards() {
+            if (!practiceSession) return;
+            practiceSession.phase = 'cards';
+            renderPractice();
+        }
+
+        function renderPracticeCard() {
+            const s = practiceSession;
+            const card = s.cards[s.index];
+            showPracticeView('card-box');
+
+            document.getElementById('card-subject-tag').innerText = s.subject;
+            document.getElementById('flashcard-counter-indicator').innerText = `${s.index + 1} / ${s.cards.length}`;
+            document.getElementById('card-front-content').innerHTML = formatMarkdownCode(card.front);
+            document.getElementById('card-back-content').innerHTML = formatMarkdownCode(card.back);
+
+            const input = document.getElementById('card-user-input');
+            input.value = card.userAnswer || '';
+            input.disabled = card.answered;
+
+            const feedbackBox = document.getElementById('card-feedback-box');
+            const evalResult = document.getElementById('ai-eval-result');
+            const actions = document.getElementById('card-actions');
+            const nextBtn = document.getElementById('card-next-btn');
+
+            document.getElementById('card-eval-btn').disabled = false;
+            document.getElementById('card-eval-btn').classList.remove('opacity-50');
+
+            if (card.answered) {
+                feedbackBox.classList.remove('hidden');
+                const color = card.score >= PASS_GRADE ? 'text-emerald-400' : 'text-rose-400';
+                evalResult.innerHTML = `<div class="font-bold ${color}">Puntuación: ${card.score}/10</div><div>${formatMarkdownCode(card.feedback || '')}</div>`;
+                actions.classList.add('hidden');
+                nextBtn.classList.remove('hidden');
+                nextBtn.innerHTML = s.index === s.cards.length - 1
+                    ? 'Ver mi nota final <i class="fa-solid fa-flag-checkered ml-1"></i>'
+                    : 'Siguiente <i class="fa-solid fa-chevron-right ml-1"></i>';
+            } else {
+                feedbackBox.classList.add('hidden');
+                evalResult.innerHTML = '';
+                actions.classList.remove('hidden');
+                nextBtn.classList.add('hidden');
+            }
+        }
+
+        async function generateDynamicAIReto() {
+            const filter = document.getElementById('flashcard-subject-filter')?.value || 'DWES';
+            const subject = filter === 'ALL' ? 'DWES' : filter;
+            const contextText = document.getElementById('flashcard-context-input')?.value.trim();
+
+            if (!contextText) {
+                alert("Escribe primero el contexto o tema que quieres repasar.");
+                return;
+            }
+            await startPracticeSession(subject, contextText, []);
+        }
+
+        async function startPracticeSession(subject, contextText, seenFronts, skipIntro = false) {
+            practiceSession = { subject, context: contextText, cards: [], index: 0, finished: false, loading: true, phase: 'cards', intro: null, seenFronts: seenFronts || [] };
+            renderPractice();
+
+            const avoid = practiceSession.seenFronts.length
+                ? `\nNo repitas ni te parezcas a estos retos ya usados:\n- ${practiceSession.seenFronts.join('\n- ')}`
+                : '';
+
+            const prompt = `Prepara un repaso para un estudiante de 2º DAW, módulo ${subject}.
+Contexto de estudio del estudiante: "${contextText}"
+
+Devuelve:
+1. "title": nombre corto del tema (máximo 8 palabras).
+2. "intro": un párrafo de 3 o 4 frases que explique de qué trata el tema, empezando de forma natural (por ejemplo "Este tema trata de..." o "PDO es...").
+3. "key_points": entre 4 y 5 aspectos fundamentales que hay que tener claros antes de practicar, una frase corta cada uno.
+4. "cards": exactamente ${PRACTICE_TOTAL} retos prácticos distintos. Cada reto toca un aspecto diferente, con dificultad creciente (de más básico a más completo), y se puede resolver con un fragmento corto de código o una explicación breve.${avoid}
+
+En los textos puedes usar \`código\` y **negrita**, nada más de Markdown.
+Responde ÚNICAMENTE con un objeto JSON, sin bloques markdown:
+{"title":"...","intro":"...","key_points":["..."],"cards":[{"front":"enunciado del reto","back":"solución esperada en código o respuesta explicada"}]}`;
+
+            try {
+                const response = await callGeminiAPI(prompt, "Eres un profesor de desarrollo web y generas material de estudio. Respondes solo JSON válido.");
+                const objMatch = response.match(/\{[\s\S]*\}/);
+                const arrMatch = response.match(/\[[\s\S]*\]/);
+                let data;
+                if (objMatch) { try { data = JSON.parse(objMatch[0]); } catch (e) { data = null; } }
+                if (!data || !Array.isArray(data.cards)) {
+                    if (!arrMatch) throw new Error("Gemini no devolvió retos en formato válido. Prueba otra vez.");
+                    data = { cards: JSON.parse(arrMatch[0]) };   // por si devuelve solo la lista de retos
+                }
+                const parsed = data.cards.filter(c => c && c.front && c.back).slice(0, PRACTICE_TOTAL);
+                if (parsed.length === 0) throw new Error("No se generó ningún reto válido. Prueba otra vez.");
+
+                const points = Array.isArray(data.key_points) ? data.key_points.map(String).filter(Boolean).slice(0, 6) : [];
+                const introText = data.intro ? String(data.intro) : '';
+                if (!skipIntro && (introText || points.length)) {
+                    practiceSession.intro = { title: String(data.title || contextText), text: introText, points };
+                    practiceSession.phase = 'intro';
+                }
+
+                practiceSession.cards = parsed.map((c, i) => ({
+                    id: 'fc_' + Date.now() + '_' + i,
+                    subject,
+                    front: String(c.front),
+                    back: String(c.back),
+                    answered: false,
+                    score: 0,
+                    userAnswer: '',
+                    feedback: ''
+                }));
+                practiceSession.seenFronts = [...practiceSession.seenFronts, ...practiceSession.cards.map(c => c.front)];
+                practiceSession.loading = false;
+
+                // Banco histórico solo para el contador del dashboard
+                appData.flashcards.push(...practiceSession.cards.map(c => ({ id: c.id, subject: c.subject, front: c.front, back: c.back, mastery: 'medium' })));
+                saveData();
+                renderDashboard();
+                renderPractice();
+            } catch (e) {
+                practiceSession = null;
+                renderPractice();
+                alert(e.message || "Error generando los retos con Gemini. Revisa la clave API.");
+            }
+        }
+
+        function revealOfficialAnswer() {
+            const s = practiceSession;
+            if (!s || s.loading || s.finished) return;
+            const card = s.cards[s.index];
+            if (card.answered) return;
+            card.answered = true;
+            card.score = 0;
+            card.userAnswer = document.getElementById('card-user-input').value.trim();
+            card.feedback = 'Viste la solución sin evaluar tu respuesta, así que este reto cuenta 0.';
+            renderPracticeCard();
+        }
+
+        async function checkAnswerWithAI() {
+            const s = practiceSession;
+            if (!s || s.loading || s.finished) return;
+            const card = s.cards[s.index];
+            if (card.answered) return;
+
+            const userCode = document.getElementById('card-user-input').value.trim();
+            if (!userCode) {
+                alert("Escribe primero tu respuesta o código en la casilla.");
+                return;
+            }
+
+            const evalBtn = document.getElementById('card-eval-btn');
+            evalBtn.disabled = true;
+            evalBtn.classList.add('opacity-50');
+
+            const feedbackBox = document.getElementById('card-feedback-box');
+            const evalResult = document.getElementById('ai-eval-result');
+            feedbackBox.classList.remove('hidden');
+            document.getElementById('card-back-content').innerHTML = '<span class="text-gray-500">La solución se mostrará al evaluar.</span>';
+            evalResult.innerHTML = `
+                <div class="flex items-center space-x-3 text-astra-cyan">
+                    <div class="w-3 h-3 rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
+                    <span>Evaluando tu código con Gemini...</span>
+                </div>`;
+
+            const prompt = `Evalúa la solución de un estudiante de 2º DAW.
+Reto: ${card.front}
+Solución esperada: ${card.back}
+Respuesta del estudiante: "${userCode}"
+
+Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero válidas). Responde ÚNICAMENTE con JSON plano: {"score": <entero 0-10>, "feedback": "2 líneas máximo en español explicando aciertos y fallos"}`;
+
+            try {
+                const response = await callGeminiAPI(prompt, "Eres un evaluador de código estricto pero justo. Respondes solo JSON válido.");
+                const match = response.match(/\{[\s\S]*\}/);
+                if (!match) throw new Error("No se pudo interpretar la evaluación. Inténtalo de nuevo.");
+                const result = JSON.parse(match[0]);
+                const score = Math.max(0, Math.min(10, Math.round(Number(result.score))));
+                if (Number.isNaN(score)) throw new Error("La evaluación no incluyó una nota válida. Inténtalo de nuevo.");
+
+                card.answered = true;
+                card.score = score;
+                card.userAnswer = userCode;
+                card.feedback = String(result.feedback || '');
+                renderPracticeCard();
+            } catch (err) {
+                evalBtn.disabled = false;
+                evalBtn.classList.remove('opacity-50');
+                document.getElementById('card-back-content').innerHTML = '';
+                evalResult.innerHTML = `<span class="text-rose-400">${escapeHTML(err.message || "Error conectando con la API.")}</span>`;
+            }
+        }
+
+        function nextPracticeStep() {
+            const s = practiceSession;
+            if (!s) return;
+            if (s.index < s.cards.length - 1) {
+                s.index++;
+            } else {
+                s.finished = true;
+            }
+            renderPractice();
+        }
+
+        function getGradeMessage(grade) {
+            if (grade < PASS_GRADE) return { title: 'Suspenso', icon: '😕', color: 'text-rose-400', msg: 'Esta vez no ha salido. Repasa las soluciones, ataca los puntos flojos y reinicia: la siguiente tanda será distinta.' };
+            if (grade < 7) return { title: 'Aprobado', icon: '🙂', color: 'text-amber-400', msg: 'Has aprobado, pero justito. Un repaso más y subes la nota fácil. Dale otra tanda.' };
+            if (grade < 9) return { title: 'Notable', icon: '💪', color: 'text-emerald-400', msg: '¡Buen trabajo! Dominas bastante el tema. Sigue así y pule los detalles que fallaste.' };
+            return { title: 'Sobresaliente', icon: '🏆', color: 'text-emerald-300', msg: '¡Felicidades! Tema dominado. Puedes subir la dificultad o pasar a otro contexto.' };
+        }
+
+        function renderPracticeResults() {
+            const s = practiceSession;
+            const total = s.cards.reduce((acc, c) => acc + c.score, 0);
+            const grade = Math.round((total / s.cards.length) * 10) / 10;
+            const passed = grade >= PASS_GRADE;
+            const g = getGradeMessage(grade);
+
+            showPracticeView('results');
+            document.getElementById('practice-results').innerHTML = `
+                <div class="text-5xl">${g.icon}</div>
+                <div>
+                    <div class="text-6xl font-black font-mono ${g.color}">${grade.toFixed(1)}<span class="text-2xl text-gray-500">/10</span></div>
+                    <div class="mt-2 inline-block px-3 py-1 rounded-full text-xs font-bold border ${passed ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-rose-500/10 text-rose-400 border-rose-500/30'}">
+                        ${passed ? 'APROBADO' : 'SUSPENSO'} · ${g.title}
+                    </div>
+                </div>
+                <p class="text-sm text-gray-300 leading-relaxed">${g.msg}</p>
+                <div class="text-left space-y-3 text-xs">
+                    ${s.cards.map((c, i) => `
+                        <div class="flex items-start justify-between gap-4 p-3 rounded-2xl bg-gray-950/60 border border-gray-900">
+                            <span class="text-gray-300"><span class="font-mono text-astra-cyan">${i + 1}.</span> ${escapeHTML(plainMd(c.front).length > 110 ? plainMd(c.front).slice(0, 110) + '…' : plainMd(c.front))}</span>
+                            <span class="font-mono font-bold whitespace-nowrap ${c.score >= PASS_GRADE ? 'text-emerald-400' : 'text-rose-400'}">${c.score}/10</span>
+                        </div>`).join('')}
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button onclick="restartPractice()" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-3 rounded-xl transition shadow-lg">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Reiniciar con el mismo tema
+                    </button>
+                    <button onclick="newPracticeTopic()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-4 py-3 rounded-xl transition">
+                        Cambiar de tema
+                    </button>
+                </div>`;
+        }
+
+        async function restartPractice() {
+            const s = practiceSession;
+            if (!s) return;
+            await startPracticeSession(s.subject, s.context, s.seenFronts, true);
+        }
+
+        function newPracticeTopic() {
+            practiceSession = null;
+            renderPractice();
+            const input = document.getElementById('flashcard-context-input');
+            if (input) { input.value = ''; input.focus(); }
+        }
+
+        function openAddCardModal() { document.getElementById('modal-add-card')?.classList.remove('hidden'); }
+        function closeAddCardModal() { document.getElementById('modal-add-card')?.classList.add('hidden'); }
+
+        function saveCustomFlashcard() {
+            const sub = document.getElementById('modal-card-subject').value;
+            const front = document.getElementById('modal-card-front').value.trim();
+            const back = document.getElementById('modal-card-back').value.trim();
+
+            if (!front || !back) {
+                alert("Completa ambos campos.");
+                return;
+            }
+
+            appData.flashcards.push({ id: 'fc_' + Date.now(), subject: sub, front, back, mastery: 'medium' });
+            saveData();
+            closeAddCardModal();
+            document.getElementById('modal-card-front').value = '';
+            document.getElementById('modal-card-back').value = '';
+            renderFlashcards();
+            renderDashboard();
+        }
+
+        let tempExamCards = [];
+        function openExamPrepModal() { document.getElementById('modal-exam-prep')?.classList.remove('hidden'); }
+        function closeExamPrepModal() { document.getElementById('modal-exam-prep')?.classList.add('hidden'); }
+
+        async function processExamPrepWithAI() {
+            const subject = document.getElementById('exam-prep-subject').value;
+            const mode = document.getElementById('exam-prep-mode').value;
+            const text = document.getElementById('exam-prep-text').value.trim();
+            const fileInput = document.getElementById('exam-prep-file');
+            const outputEl = document.getElementById('exam-prep-output');
+            const container = document.getElementById('exam-prep-result-container');
+            const addCardsBtn = document.getElementById('exam-add-cards-btn');
+
+            if (!text && (!fileInput.files || fileInput.files.length === 0)) {
+                alert("Adjunta un archivo o escribe instrucciones.");
+                return;
+            }
+
+            if (container) container.classList.remove('hidden');
+            if (addCardsBtn) addCardsBtn.classList.add('hidden');
+            if (outputEl) outputEl.innerHTML = `⌛ Procesando modelo de examen con Gemini...`;
+
+            let imageBase64 = null;
+            let imageMimeType = "image/jpeg";
+
+            if (fileInput.files && fileInput.files[0]) {
+                const file = fileInput.files[0];
+                imageMimeType = file.type || "image/jpeg";
+                imageBase64 = await new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result.split(',')[1]);
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            const prompt = `Examen módulo ${subject} DAW. Modo: ${mode}.\nTexto: "${text || 'Imagen adjunta'}"`;
+
+            try {
+                const response = await callGeminiAPI(prompt, "Profesor experto de desarrollo web.", imageBase64, imageMimeType);
+                if (outputEl) outputEl.innerHTML = formatMarkdownCode(response);
+            } catch (err) {
+                if (outputEl) outputEl.innerHTML = `<span class="text-rose-400">${escapeHTML(err.message || "Error en la llamada de la API. Revisa tu clave API.")}</span>`;
+            }
+        }
+
+        function addExamPrepCardsToDeck() {
+            if (tempExamCards.length > 0) {
+                appData.flashcards.push(...tempExamCards);
+                saveData();
+                alert(`¡Se añadieron ${tempExamCards.length} tarjetas!`);
+                tempExamCards = [];
+                renderDashboard();
+            }
+        }
+
+        function openPlannerModal() { document.getElementById('modal-planner')?.classList.remove('hidden'); }
+        function closePlannerModal() { document.getElementById('modal-planner')?.classList.add('hidden'); }
+
+        async function generatePlanWithGemini() {
+            const subject = document.getElementById('modal-plan-subject').value;
+            const date = document.getElementById('modal-plan-date').value;
+            const hours = document.getElementById('modal-plan-hours').value;
+            const topics = document.getElementById('modal-plan-topics').value.trim();
+
+            if (!date) { alert("Selecciona la fecha."); return; }
+
+            closePlannerModal();
+            switchTab('planner');
+
+            const container = document.getElementById('planner-plans-container');
+            if (container) container.innerHTML = `<p class="text-xs text-astra-cyan">Generando plan con Gemini...</p>`;
+
+            const prompt = `Crea un plan día a día para ${subject} con examen el ${date}, estudiando ${hours}h/día. Puntos clave: ${topics}`;
+
+            try {
+                const response = await callGeminiAPI(prompt, "Asesor pedagógico.");
+                appData.plans.unshift({ id: 'plan_' + Date.now(), subject, examDate: date, dailyHours: hours, content: response });
+                saveData();
+                renderPlanner();
+            } catch (e) {
+                alert(e.message || "Error generando plan.");
+                renderPlanner();
+            }
+        }
+
+        function renderPlanner() {
+            const container = document.getElementById('planner-plans-container');
+            if (!container) return;
+
+            if (appData.plans.length === 0) {
+                container.innerHTML = `
+                    <div class="astra-glass-card p-12 rounded-3xl text-center space-y-4 border border-astra-border">
+                        <i class="fa-solid fa-calendar-plus text-4xl text-gray-600"></i>
+                        <h3 class="text-sm font-bold text-white">No tienes planes de estudio generados</h3>
+                        <p class="text-xs text-gray-400">Haz clic en "Nuevo Plan AI" para crear un calendario.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '';
+            appData.plans.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "astra-glass-card p-6 rounded-3xl space-y-5 border border-astra-border";
+                card.innerHTML = `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-astra-border pb-3 gap-3">
+                        <div>
+                            <h3 class="text-base font-bold text-white flex items-center space-x-3">
+                                <i class="fa-solid fa-graduation-cap text-astra-cyan"></i>
+                                <span>${escapeHTML(p.subject)}</span>
+                            </h3>
+                            <span class="text-[11px] text-gray-400">Examen: <strong class="text-amber-400">${escapeHTML(p.examDate)}</strong> | ${escapeHTML(p.dailyHours)}h/día</span>
+                        </div>
+                        <button onclick="deletePlan('${p.id}')" class="text-gray-500 hover:text-rose-400 text-xs"><i class="fa-solid fa-trash-can mr-1"></i>Eliminar</button>
+                    </div>
+                    <div class="text-xs leading-relaxed text-gray-300 max-h-96 overflow-y-auto font-sans">
+                        ${formatMarkdownCode(p.content)}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function deletePlan(planId) {
+            appData.plans = appData.plans.filter(p => p.id !== planId);
+            saveData();
+            renderPlanner();
+        }
+
+        let pomoInterval = null;
+        let pomoEndTime = null;
+        let pomoSecondsLeft = 25 * 60;
+        let isPomoRunning = false;
+        let currentPomoMode = 'work25';
+
+        const POMO_TIMES = { work25: 25 * 60, work50: 50 * 60, shortBreak: 5 * 60, longBreak: 15 * 60 };
+
+        function setPomoMode(mode) {
+            currentPomoMode = mode;
+            pomoSecondsLeft = POMO_TIMES[mode];
+            if (isPomoRunning) togglePomoTimer();
+            updatePomoDisplay();
+
+            document.querySelectorAll('#section-pomodoro button[id^="pomo-mode-"]').forEach(btn => {
+                btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-400 whitespace-nowrap";
+            });
+            const activeBtn = document.getElementById(`pomo-mode-${mode === 'work25' ? 'work25' : mode === 'work50' ? 'work50' : mode === 'shortBreak' ? 'short' : 'long'}`);
+            if (activeBtn) activeBtn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-astra-600 text-white whitespace-nowrap";
+        }
+
+        function togglePomoTimer() {
+            const btnText = document.getElementById('pomo-btn-text');
+            const icon = document.getElementById('pomo-play-icon');
+
+            if (isPomoRunning) {
+                clearInterval(pomoInterval);
+                isPomoRunning = false;
+                if (btnText) btnText.innerText = "Continuar";
+                if (icon) icon.className = "fa-solid fa-play";
+            } else {
+                isPomoRunning = true;
+                pomoEndTime = Date.now() + (pomoSecondsLeft * 1000);
+                if (btnText) btnText.innerText = "Pausar";
+                if (icon) icon.className = "fa-solid fa-pause";
+
+                pomoInterval = setInterval(() => {
+                    const now = Date.now();
+                    const diff = Math.max(0, Math.round((pomoEndTime - now) / 1000));
+                    
+                    if (currentPomoMode.startsWith('work')) {
+                        appData.pomoTotalSeconds += Math.max(0, pomoSecondsLeft - diff);
+                    }
+                    pomoSecondsLeft = diff;
+
+                    if (pomoSecondsLeft <= 0) {
+                        clearInterval(pomoInterval);
+                        isPomoRunning = false;
+                        alert("¡Tiempo finalizado! Tómate un respiro.");
+                        saveData();
+                        setPomoMode('shortBreak');
+                    }
+
+                    updatePomoDisplay();
+                }, 500);
+            }
+        }
+
+        function resetPomoTimer() {
+            if (isPomoRunning) togglePomoTimer();
+            pomoSecondsLeft = POMO_TIMES[currentPomoMode];
+            updatePomoDisplay();
+        }
+
+        function updatePomoDisplay() {
+            const mins = Math.floor(pomoSecondsLeft / 60);
+            const secs = pomoSecondsLeft % 60;
+            const clock = document.getElementById('pomo-clock-display');
+            if (clock) clock.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        let audioCtx = null;
+        let activeSynthNode = null;
+        let currentSynthType = null;
+
+        function toggleSynthAudio(type) {
+            if (currentSynthType === type) { stopSynthAudio(); return; }
+            stopSynthAudio();
+            currentSynthType = type;
+
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                const bufferSize = audioCtx.sampleRate * 2;
+                const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = type === 'white' ? Math.random() * 2 - 1 : (Math.random() * 2 - 1) * 0.5;
+                }
+
+                const whiteNoise = audioCtx.createBufferSource();
+                whiteNoise.buffer = noiseBuffer;
+                whiteNoise.loop = true;
+
+                const gainNode = audioCtx.createGain();
+                gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+
+                whiteNoise.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                whiteNoise.start();
+
+                activeSynthNode = whiteNoise;
+            } catch (e) {}
+        }
+
+        function stopSynthAudio() {
+            if (activeSynthNode) {
+                try { activeSynthNode.stop(); } catch (e) {}
+                activeSynthNode = null;
+            }
+            currentSynthType = null;
+        }
+
+        function openSettingsModal() {
+            const input = document.getElementById('input-api-key');
+            if (input) input.value = appData.apiKey || '';
+            document.getElementById('modal-settings')?.classList.remove('hidden');
+        }
+
+        function closeSettingsModal() { document.getElementById('modal-settings')?.classList.add('hidden'); }
+
+        function saveApiKeySetting() {
+            const input = document.getElementById('input-api-key');
+            if (input) {
+                appData.apiKey = input.value.trim();
+                saveData();
+                closeSettingsModal();
+                updateApiStatusUI();
+            }
+        }
+
+        function updateApiStatusUI() {
+            const ping = document.getElementById('api-status-ping');
+            const text = document.getElementById('api-status-text');
+            const hasKey = !!(appData.apiKey || window.geminiApi);
+
+            if (ping) ping.className = hasKey ? "w-2 h-2 rounded-full bg-emerald-400 animate-ping" : "w-2 h-2 rounded-full bg-amber-400 animate-ping";
+            if (text) text.innerText = hasKey ? "Gemini Key OK" : "Configurar Key";
+        }
+
+        /* HELPERS */
+        function plainMd(str) {
+            return String(str || '').replace(/[*`#]/g, '').replace(/\s+/g, ' ').trim();
+        }
+
+        function escapeHTML(str) {
+            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // ===== Renderizador de Markdown (seguro: escapa el HTML antes de formatear) =====
+        function mdInline(raw) {
+            const codes = [];
+            let t = String(raw).replace(/`([^`\n]+)`/g, (m, c) => {
+                codes.push(`<code class="bg-gray-950 px-1.5 py-0.5 rounded text-astra-cyan font-mono text-[0.85em] border border-gray-800">${escapeHTML(c)}</code>`);
+                return `\u0000I${codes.length - 1}\u0000`;
+            });
+            t = escapeHTML(t);
+            t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-astra-400 underline underline-offset-2 hover:text-astra-500">$1</a>');
+            t = t.replace(/\*\*\*([^*\n]+)\*\*\*/g, '<strong class="text-white font-semibold"><em>$1</em></strong>');
+            t = t.replace(/\*\*\s*([^\n]+?)\s*\*\*/g, '<strong class="text-white font-semibold">$1</strong>');
+            t = t.replace(/__([^_\n]+)__/g, '<strong class="text-white font-semibold">$1</strong>');
+            t = t.replace(/(^|[\s(])\*([^*\s][^*\n]*?)\*(?=[\s.,;:!?)]|$)/g, '$1<em>$2</em>');
+            t = t.replace(/(^|[\s(])_([^_\s][^_\n]*?)_(?=[\s.,;:!?)]|$)/g, '$1<em>$2</em>');
+            t = t.replace(/~~([^~\n]+)~~/g, '<del class="text-gray-500">$1</del>');
+            t = t.replace(/\*\*/g, '');   // asteriscos sueltos que no han cerrado
+            return t.replace(/\u0000I(\d+)\u0000/g, (m, n) => codes[+n]);
+        }
+
+        function formatMarkdownCode(text) {
+            let src = String(text == null ? '' : text).replace(/\r\n?/g, '\n');
+            const blocks = [];
+            const stash = (lang, code) => {
+                blocks.push(`<pre class="bg-gray-950 p-4 rounded-xl my-3 overflow-x-auto max-w-full border border-astra-border"><code class="text-xs text-astra-cyan font-mono leading-relaxed">${escapeHTML(code.replace(/\n$/, ''))}</code></pre>`);
+                return `\n\u0000B${blocks.length - 1}\u0000\n`;
+            };
+            src = src.replace(/```([\w+#.-]*)[ \t]*\n([\s\S]*?)```/g, (m, lang, code) => stash(lang, code));
+            src = src.replace(/```([\s\S]*?)```/g, (m, code) => stash('', code));
+
+            src = src.replace(/([^\n#\s])[ \t]*(#{3,6}[ \t]+\S)/g, '$1\n\n$2');   // títulos pegados al texto
+            const lines = src.split('\n');
+            const out = [];
+            const isTableSep = l => /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?\s*$/.test(l) && l.includes('-');
+            const cells = l => l.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim());
+            let i = 0;
+
+            while (i < lines.length) {
+                const line = lines[i];
+                if (!line.trim()) { i++; continue; }
+
+                let m;
+                if ((m = line.match(/^\u0000B(\d+)\u0000$/))) { out.push(blocks[+m[1]]); i++; continue; }
+
+                if ((m = line.match(/^\s{0,3}(#{1,6})\s+(.+?)\s*#*\s*$/))) {
+                    const lvl = m[1].length;
+                    const cls = ['text-xl mt-5 mb-2 text-white', 'text-lg mt-5 mb-2 text-white', 'text-base mt-4 mb-1.5 text-white', 'text-sm mt-4 mb-1.5 text-white', 'text-sm mt-3 mb-1 text-gray-200', 'text-sm mt-3 mb-1 text-gray-300'][lvl - 1];
+                    out.push(`<h${Math.min(lvl + 1, 6)} class="${cls}">${mdInline(m[2])}</h${Math.min(lvl + 1, 6)}>`);
+                    i++; continue;
+                }
+
+                if (/^\s*([-*_])(\s*\1){2,}\s*$/.test(line)) { out.push('<hr class="my-4 border-astra-border">'); i++; continue; }
+
+                if (/^\s*>/.test(line)) {
+                    const q = [];
+                    while (i < lines.length && /^\s*>/.test(lines[i])) { q.push(lines[i].replace(/^\s*>\s?/, '')); i++; }
+                    out.push(`<blockquote class="my-3 border-l-2 border-astra-500/60 pl-4 text-gray-300">${q.map(mdInline).join('<br>')}</blockquote>`);
+                    continue;
+                }
+
+                if (line.includes('|') && i + 1 < lines.length && isTableSep(lines[i + 1])) {
+                    const head = cells(line);
+                    i += 2;
+                    const rows = [];
+                    while (i < lines.length && lines[i].trim() && lines[i].includes('|')) { rows.push(cells(lines[i])); i++; }
+                    out.push(`<div class="my-3 overflow-x-auto"><table class="w-full text-xs border-collapse"><thead><tr>${head.map(h => `<th class="text-left font-semibold text-white border-b border-astra-border px-3 py-2">${mdInline(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td class="border-b border-gray-800 px-3 py-2 align-top">${mdInline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
+                    continue;
+                }
+
+                if (/^\s*([-*+]|\d+[.)])\s+/.test(line)) {
+                    const items = [];
+                    const ordered = /^\s*\d+[.)]\s+/.test(line);
+                    while (i < lines.length && /^\s*([-*+]|\d+[.)])\s+/.test(lines[i])) {
+                        const mm = lines[i].match(/^(\s*)(?:[-*+]|\d+[.)])\s+(.*)$/);
+                        items.push({ indent: Math.min(Math.floor(mm[1].replace(/\t/g, '    ').length / 2), 3), text: mm[2] });
+                        i++;
+                        // línea de continuación sin viñeta
+                        while (i < lines.length && lines[i].trim() && /^\s{2,}\S/.test(lines[i]) && !/^\s*([-*+]|\d+[.)])\s+/.test(lines[i]) && !/^\u0000B/.test(lines[i].trim())) {
+                            items[items.length - 1].text += ' ' + lines[i].trim(); i++;
+                        }
+                    }
+                    const tag = ordered ? 'ol' : 'ul';
+                    out.push(`<${tag} class="my-3 pl-5 space-y-1.5 ${ordered ? 'list-decimal' : 'list-disc'} marker:text-astra-400">${items.map(it => `<li style="margin-left:${it.indent * 1.1}rem">${mdInline(it.text)}</li>`).join('')}</${tag}>`);
+                    continue;
+                }
+
+                const para = [];
+                while (i < lines.length && lines[i].trim()
+                       && !/^\u0000B\d+\u0000$/.test(lines[i])
+                       && !/^\s{0,3}#{1,6}\s+/.test(lines[i])
+                       && !/^\s*([-*+]|\d+[.)])\s+/.test(lines[i])
+                       && !/^\s*>/.test(lines[i])
+                       && !/^\s*([-*_])(\s*\1){2,}\s*$/.test(lines[i])) {
+                    para.push(lines[i].trim()); i++;
+                }
+                out.push(`<p class="my-2.5">${para.map(mdInline).join('<br>')}</p>`);
+            }
+            return `<div class="md-body">${out.join('')}</div>`;
+        }
+
+        window.onload = function() {
+            loadData();
+            updateApiStatusUI();
+            renderDashboard();
+            renderFlashcards();
+            renderTutorChat();
+            renderPlanner();
+            initCloud();
+        };
+    </script>
+</body>
+</html>
