@@ -1416,34 +1416,54 @@
             throw new Error("Respuesta de Gemini vacía.");
         }
 
-        async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemInstruction = "", history = []) {
-            const messages = [];
-            if (systemInstruction) messages.push({ role: 'system', content: systemInstruction });
-            history.forEach(m => messages.push({ role: m.sender === 'user' ? 'user' : 'assistant', content: String(m.text) }));
-            messages.push({ role: 'user', content: prompt });
+async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemInstruction = "", history = []) {
+    const cleanApiKey = (apiKey || '').trim();
+    const cleanModel = (model || '').trim();
+    
+    const messages = [];
 
-            const headers = { 'Content-Type': 'application/json' };
-            if (apiKey) headers['Authorization'] = `Bearer ${apiKey}`;
+    // Inyectamos las instrucciones del sistema
+    if (systemInstruction) {
+        messages.push({ role: 'system', content: systemInstruction });
+    }
 
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers,
-                body: JSON.stringify({
-                    model: model || 'llama-3.3-70b-versatile',
-                    messages: messages,
-                    temperature: 0.7
-                })
+    // Filtramos el historial activo
+    history.forEach(m => {
+        if (m && m.text && !String(m.text).startsWith('⚠️')) {
+            messages.push({ 
+                role: m.sender === 'user' ? 'user' : 'assistant', 
+                content: String(m.text) 
             });
-
-            if (!response.ok) {
-                const errData = await response.json().catch(() => ({}));
-                throw new Error(errData.error?.message || `Error HTTP API (${response.status})`);
-            }
-            const data = await response.json();
-            const text = data.choices?.[0]?.message?.content;
-            if (text) return text;
-            throw new Error("Respuesta de API vacía.");
         }
+    });
+
+    messages.push({ role: 'user', content: prompt });
+
+    const headers = { 'Content-Type': 'application/json' };
+    if (cleanApiKey) {
+        headers['Authorization'] = `Bearer ${cleanApiKey}`;
+    }
+
+    const response = await fetch(endpoint, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+            model: cleanModel || 'openai/gpt-oss-20b',
+            messages: messages,
+            temperature: 0.6
+        })
+    });
+
+    if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error?.message || `Error HTTP API Groq (${response.status})`);
+    }
+    
+    const data = await response.json();
+    const text = data.choices?.[0]?.message?.content;
+    if (text) return text;
+    throw new Error("Respuesta de API vacía.");
+}
 
         // FUNCIÓN UNIFICADA LLAMADA POR TODA LA APP
         async function callAI(prompt, systemInstruction = "", imageBase64Data = null, imageMimeType = "image/jpeg", history = []) {
