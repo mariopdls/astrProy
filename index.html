@@ -984,7 +984,7 @@
         }
 
         // ================= SUPABASE: LOGIN + SINCRONIZACIÓN =================
-        const SUPABASE_URL = 'PEGA_AQUI_TU_PROJECT_URL';          // https://xxxx.supabase.co
+        const SUPABASE_URL = 'https://dnvmjcigxjjiatrhnkrv.supabase.co';          // https://xxxx.supabase.co
         const SUPABASE_ANON_KEY = 'https://dnvmjcigxjjiatrhnkrv.supabase.co/';        // clave "anon" / "publishable" (pública)
 
         let sb = null, cloudUser = null, cloudTimer = null, cloudBusy = false, cloudDirty = false;
@@ -1115,13 +1115,43 @@
             location.reload();
         }
 
+        function showCloudNotice(msg) {
+            console.warn("Supabase: " + msg);
+            const box = document.createElement('div');
+            box.className = 'fixed bottom-4 left-4 right-4 sm:left-auto sm:max-w-sm z-[90] bg-astra-card border border-astra-border rounded-2xl p-4 text-xs text-gray-300 shadow-2xl flex items-start gap-3';
+            const text = document.createElement('div');
+            text.className = 'flex-1 leading-relaxed';
+            text.textContent = 'Modo solo local (sin login). ' + msg;
+            const close = document.createElement('button');
+            close.className = 'text-gray-400 hover:text-white';
+            close.textContent = '✕';
+            close.onclick = () => box.remove();
+            box.append(text, close);
+            document.body.appendChild(box);
+        }
+
         function initCloud() {
-            const configured = SUPABASE_URL.startsWith('https://') && SUPABASE_ANON_KEY && !SUPABASE_ANON_KEY.startsWith('PEGA');
-            if (!configured || !window.supabase) {
-                console.warn("Supabase no configurado o no cargado: modo solo local.");
+            let url = (SUPABASE_URL || '').trim();
+            const key = (SUPABASE_ANON_KEY || '').trim();
+            try { url = new URL(url).origin; } catch (e) { url = ''; }   // quita barras finales y /rest/v1
+
+            if (!url) {
+                showCloudNotice('Falta la URL del proyecto en SUPABASE_URL (debe ser tipo https://tuid.supabase.co).');
                 return;
             }
-            sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            if (!key || key.startsWith('PEGA')) {
+                showCloudNotice('Falta la clave en SUPABASE_ANON_KEY (la publishable "sb_publishable_..." o la anon "eyJ...").');
+                return;
+            }
+            if (key.startsWith('http')) {
+                showCloudNotice('En SUPABASE_ANON_KEY has pegado una URL. Ahí va la clave (sb_publishable_... o eyJ...).');
+                return;
+            }
+            if (!window.supabase) {
+                showCloudNotice('No se pudo cargar la librería de Supabase (¿sin internet o bloqueada?).');
+                return;
+            }
+            sb = window.supabase.createClient(url, key);
 
             sb.auth.onAuthStateChange((event, session) => {
                 const user = session ? session.user : null;
