@@ -13,79 +13,335 @@
             theme: {
                 extend: {
                     colors: {
-                        astra: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            400: '#a78bfa',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            800: '#5b21b6',
-                            900: '#4c1d95',
-                            dark: '#0a0814',
-                            card: '#130f26',
-                            border: '#231c42',
-                            cyan: '#06b6d4',
-                            emerald: '#10b981',
-                            amber: '#f59e0b',
-                            rose: '#f43f5e'
+                        "gray": {
+                                                "50": "#f6f3ec",
+                                                "100": "#ece8df",
+                                                "200": "#d9d4c8",
+                                                "300": "#bcb6a8",
+                                                "400": "#9a9487",
+                                                "500": "#77726a",
+                                                "600": "#57534c",
+                                                "700": "#3d3a35",
+                                                "800": "#2e2c28",
+                                                "900": "#242220",
+                                                "950": "#1b1a18"
+                        },
+                        "astra": {
+                                                "50": "#fbf1ec",
+                                                "100": "#f6ddd2",
+                                                "400": "#e8997c",
+                                                "500": "#d97757",
+                                                "600": "#b9553a",
+                                                "700": "#9a4430",
+                                                "800": "#6e3223",
+                                                "900": "#3a2219",
+                                                "dark": "#1b1a18",
+                                                "card": "#242220",
+                                                "border": "#38352f",
+                                                "cyan": "#d9b48a",
+                                                "emerald": "#8fae86",
+                                                "amber": "#d9a441",
+                                                "rose": "#d0675f"
+                        },
+                        "emerald": {
+                                                "50": "#f3f6f3",
+                                                "100": "#e8eee8",
+                                                "200": "#cedfce",
+                                                "300": "#b0caaf",
+                                                "400": "#8dbb8b",
+                                                "500": "#74ac72",
+                                                "600": "#558d53",
+                                                "700": "#467444",
+                                                "800": "#365a35",
+                                                "900": "#294328",
+                                                "950": "#1b2d1a"
+                        },
+                        "green": {
+                                                "50": "#f3f6f3",
+                                                "100": "#e8eee8",
+                                                "200": "#cedfce",
+                                                "300": "#b0caaf",
+                                                "400": "#8dbb8b",
+                                                "500": "#74ac72",
+                                                "600": "#558d53",
+                                                "700": "#467444",
+                                                "800": "#365a35",
+                                                "900": "#294328",
+                                                "950": "#1b2d1a"
+                        },
+                        "teal": {
+                                                "50": "#f3f6f5",
+                                                "100": "#e8edec",
+                                                "200": "#cededa",
+                                                "300": "#b0c9c3",
+                                                "400": "#8db9ae",
+                                                "500": "#518578",
+                                                "600": "#558b7e",
+                                                "700": "#467267",
+                                                "800": "#365950",
+                                                "900": "#29423c",
+                                                "950": "#1b2c28"
+                        },
+                        "lime": {
+                                                "50": "#f5f6f3",
+                                                "100": "#eceee7",
+                                                "200": "#d9e0cc",
+                                                "300": "#c2cdad",
+                                                "400": "#acbf88",
+                                                "500": "#8ca659",
+                                                "600": "#7b924f",
+                                                "700": "#657740",
+                                                "800": "#4f5d32",
+                                                "900": "#3b4625",
+                                                "950": "#272e19"
+                        },
+                        "amber": {
+                                                "50": "#f8f6f1",
+                                                "100": "#f2ece4",
+                                                "200": "#eadcc2",
+                                                "300": "#dec59c",
+                                                "400": "#dcb26a",
+                                                "500": "#d39f45",
+                                                "600": "#b6832b",
+                                                "700": "#956b23",
+                                                "800": "#74531b",
+                                                "900": "#573e14",
+                                                "950": "#3a2a0e"
+                        },
+                        "yellow": {
+                                                "50": "#f8f6f1",
+                                                "100": "#f1eee4",
+                                                "200": "#eadfc3",
+                                                "300": "#ddcc9d",
+                                                "400": "#dabd6c",
+                                                "500": "#d4b254",
+                                                "600": "#b4902d",
+                                                "700": "#937625",
+                                                "800": "#725b1d",
+                                                "900": "#564515",
+                                                "950": "#392e0e"
+                        },
+                        "orange": {
+                                                "50": "#f8f4f1",
+                                                "100": "#f2e9e4",
+                                                "200": "#ead2c2",
+                                                "300": "#deb69c",
+                                                "400": "#dc986a",
+                                                "500": "#d07539",
+                                                "600": "#b6622b",
+                                                "700": "#955023",
+                                                "800": "#743f1b",
+                                                "900": "#572f14",
+                                                "950": "#3a1f0e"
+                        },
+                        "rose": {
+                                                "50": "#f8f2f2",
+                                                "100": "#f0e6e5",
+                                                "200": "#e7c9c5",
+                                                "300": "#d8a7a1",
+                                                "400": "#d37d73",
+                                                "500": "#cc675c",
+                                                "600": "#ab4236",
+                                                "700": "#8c362c",
+                                                "800": "#6d2a22",
+                                                "900": "#511f1a",
+                                                "950": "#361511"
+                        },
+                        "red": {
+                                                "50": "#f8f2f2",
+                                                "100": "#f0e5e5",
+                                                "200": "#e7c7c6",
+                                                "300": "#d7a4a2",
+                                                "400": "#d17875",
+                                                "500": "#bf4440",
+                                                "600": "#a83c38",
+                                                "700": "#8a312e",
+                                                "800": "#6b2624",
+                                                "900": "#501d1b",
+                                                "950": "#361312"
+                        },
+                        "pink": {
+                                                "50": "#f7f3f4",
+                                                "100": "#efe6e8",
+                                                "200": "#e3cad0",
+                                                "300": "#d1a9b3",
+                                                "400": "#c68092",
+                                                "500": "#b96479",
+                                                "600": "#9b465b",
+                                                "700": "#7f394a",
+                                                "800": "#632c3a",
+                                                "900": "#4a212b",
+                                                "950": "#31161d"
+                        },
+                        "purple": {
+                                                "50": "#f8f3f2",
+                                                "100": "#f1e8e4",
+                                                "200": "#e8cec4",
+                                                "300": "#daaf9f",
+                                                "400": "#d78b70",
+                                                "500": "#cd6e4c",
+                                                "600": "#af5331",
+                                                "700": "#8f4428",
+                                                "800": "#6f351f",
+                                                "900": "#542818",
+                                                "950": "#381a10"
+                        },
+                        "indigo": {
+                                                "50": "#f7f3f2",
+                                                "100": "#f0e7e6",
+                                                "200": "#e5cbc8",
+                                                "300": "#d5aba5",
+                                                "400": "#cd857a",
+                                                "500": "#b15243",
+                                                "600": "#a34b3e",
+                                                "700": "#853e32",
+                                                "800": "#683027",
+                                                "900": "#4e241d",
+                                                "950": "#341814"
+                        },
+                        "violet": {
+                                                "50": "#f6f4f6",
+                                                "100": "#ede8ec",
+                                                "200": "#ddd0dc",
+                                                "300": "#c7b2c6",
+                                                "400": "#b691b3",
+                                                "500": "#996695",
+                                                "600": "#875a83",
+                                                "700": "#6e496b",
+                                                "800": "#563953",
+                                                "900": "#402b3e",
+                                                "950": "#2b1d2a"
+                        },
+                        "fuchsia": {
+                                                "50": "#f6f3f5",
+                                                "100": "#ede8ec",
+                                                "200": "#deced9",
+                                                "300": "#caafc1",
+                                                "400": "#ba8cab",
+                                                "500": "#9f608a",
+                                                "600": "#8c547a",
+                                                "700": "#734563",
+                                                "800": "#59364d",
+                                                "900": "#43283a",
+                                                "950": "#2d1b27"
+                        },
+                        "cyan": {
+                                                "50": "#f4f6f6",
+                                                "100": "#e8edec",
+                                                "200": "#cfdddb",
+                                                "300": "#b1c8c5",
+                                                "400": "#8fb7b2",
+                                                "500": "#639c94",
+                                                "600": "#588982",
+                                                "700": "#48706b",
+                                                "800": "#385753",
+                                                "900": "#2a413e",
+                                                "950": "#1c2c29"
+                        },
+                        "blue": {
+                                                "50": "#f4f5f6",
+                                                "100": "#e8ebed",
+                                                "200": "#d0d8dd",
+                                                "300": "#b2c0c7",
+                                                "400": "#91a9b6",
+                                                "500": "#567281",
+                                                "600": "#5a7887",
+                                                "700": "#49626e",
+                                                "800": "#394c56",
+                                                "900": "#2b3940",
+                                                "950": "#1d262b"
+                        },
+                        "sky": {
+                                                "50": "#f4f5f6",
+                                                "100": "#e8ebed",
+                                                "200": "#d0d8dd",
+                                                "300": "#b2c0c7",
+                                                "400": "#91a9b6",
+                                                "500": "#7594a3",
+                                                "600": "#5a7887",
+                                                "700": "#49626e",
+                                                "800": "#394c56",
+                                                "900": "#2b3940",
+                                                "950": "#1d262b"
                         }
-                    },
+},
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Newsreader', 'Georgia', 'serif'],
                         mono: ['Fira Code', 'JetBrains Mono', 'monospace'],
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #080612;
-            color: #f3f4f6;
+        :root {
+            --bg: #1b1a18; --surface: #242220; --surface-2: #2e2c28; --line: #38352f;
+            --text: #ece8df; --muted: #9a9487; --clay: #d97757; --clay-deep: #b9553a;
         }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, .font-serif { font-family: 'Newsreader', Georgia, serif; font-weight: 500 !important; letter-spacing: -0.012em; }
+        h1 { line-height: 1.12; }
+        .font-black { font-weight: 600; }
+        .font-mono.font-black { font-weight: 500; }
 
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0c091a; }
-        ::-webkit-scrollbar-thumb { background: #261e4a; border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3c3070; }
+        ::selection { background: rgba(217,119,87,.35); color: #fff; }
+        :focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; border-radius: 10px; }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #3d3a35; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #57534c; }
 
         .astra-glass {
-            background: rgba(19, 15, 38, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(139, 92, 246, 0.15);
-        }
-
-        .astra-glass-card {
-            background: rgba(23, 18, 46, 0.65);
+            background: rgba(27, 26, 24, 0.92);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 92, 246, 0.12);
+            -webkit-backdrop-filter: blur(10px);
+            border-color: var(--line);
         }
-
-        .astra-glow {
-            box-shadow: 0 0 25px -5px rgba(124, 58, 237, 0.3);
+        .astra-glass-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px -16px rgba(0,0,0,.6);
         }
+        .astra-glow { box-shadow: none; }
 
-        pre code {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.825rem;
-        }
+        input, textarea, select { transition: border-color .15s, box-shadow .15s; }
+        input:focus, textarea:focus, select:focus { box-shadow: 0 0 0 3px rgba(217,119,87,.18); }
+        button { transition: background-color .15s, color .15s, border-color .15s, transform .1s; }
+        button:active:not(:disabled) { transform: translateY(1px); }
+        button:disabled { cursor: not-allowed; }
 
+        pre code { font-family: 'Fira Code', monospace; font-size: 0.825rem; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-ping, .animate-spin, .animate-pulse { animation: none !important; }
+            html { scroll-behavior: auto; }
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased text-gray-100 selection:bg-astra-600 selection:text-white">
 
     <!-- LOGIN (Supabase) -->
     <div id="auth-overlay" class="hidden fixed inset-0 z-[100] bg-gray-950 flex items-center justify-center p-4">
+<<<<<<< HEAD
         <form onsubmit="event.preventDefault(); authSubmit('login');" class="w-full max-w-sm bg-astra-card border border-astra-border rounded-3xl p-6 space-y-4 shadow-2xl">
             <div class="text-center space-y-1">
+=======
+        <form onsubmit="event.preventDefault(); authSubmit('login');" class="w-full max-w-sm bg-astra-card border border-astra-border rounded-3xl p-6 space-y-5 shadow-2xl">
+            <div class="text-center space-y-2">
+>>>>>>> f44f12c (added)
                 <i class="fa-solid fa-cloud text-3xl text-astra-cyan"></i>
                 <h2 class="text-lg font-bold text-white">Inicia sesión</h2>
                 <p class="text-xs text-gray-400">Tus asignaturas, chats y retos se guardan en tu cuenta.</p>
@@ -93,69 +349,90 @@
             <input id="auth-email" type="email" required autocomplete="email" placeholder="Email" class="w-full bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-astra-500">
             <input id="auth-password" type="password" required minlength="6" autocomplete="current-password" placeholder="Contraseña (mín. 6)" class="w-full bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-astra-500">
             <div id="auth-msg" class="text-xs text-rose-400 min-h-[1rem]"></div>
+<<<<<<< HEAD
             <div class="flex gap-2">
                 <button type="submit" id="auth-login-btn" class="flex-1 bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white text-xs font-bold py-3 rounded-xl transition">Entrar</button>
+=======
+            <div class="flex gap-3">
+                <button type="submit" id="auth-login-btn" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-3 rounded-xl transition">Entrar</button>
+>>>>>>> f44f12c (added)
                 <button type="button" id="auth-signup-btn" onclick="authSubmit('signup')" class="flex-1 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold py-3 rounded-xl transition">Crear cuenta</button>
             </div>
         </form>
     </div>
 
+<<<<<<< HEAD
     <header class="sticky top-0 z-40 astra-glass border-b border-astra-border px-4 lg:px-8 py-3">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('dashboard')">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-astra-700 via-astra-500 to-astra-cyan flex items-center justify-center text-white font-black text-xl shadow-lg astra-glow">
+=======
+    <header class="sticky top-0 z-40 astra-glass border-b border-astra-border px-4 lg:px-8 py-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-4">
+            <div class="flex items-center space-x-4 cursor-pointer" onclick="switchTab('dashboard')">
+                <div class="w-10 h-10 rounded-xl bg-astra-600 flex items-center justify-center text-white text-lg">
+>>>>>>> f44f12c (added)
                     <i class="fa-solid fa-code"></i>
                 </div>
                 <div>
-                    <div class="flex items-center space-x-2">
-                        <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-astra-100 to-astra-400 bg-clip-text text-transparent">Astra<span class="text-astra-cyan">WebDev</span></span>
-                        <span class="text-[10px] uppercase tracking-wider font-extrabold px-2 py-0.5 rounded-md bg-astra-600/30 text-astra-400 border border-astra-500/40">2º DAW</span>
+                    <div class="flex items-center space-x-3">
+                        <span class="font-serif text-2xl tracking-tight text-white">Astra<span class="text-astra-400">WebDev</span></span>
+                        <span class="text-[11px] tracking-normal font-medium px-2.5 py-1 rounded-md bg-astra-500/10 text-astra-400 border border-astra-500/30">2º DAW</span>
                     </div>
                     <span class="text-[11px] text-gray-400 block -mt-0.5">Grado Superior Desarrollo Web</span>
                 </div>
             </div>
 
             <!-- Desktop Nav Menu -->
-            <nav class="hidden lg:flex items-center space-x-1 bg-gray-950/70 p-1.5 rounded-2xl border border-astra-border">
-                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 bg-astra-600 text-white shadow-md flex items-center space-x-2">
+            <nav class="hidden lg:flex order-last w-full items-center gap-2 pt-4 border-t border-astra-border">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 bg-astra-600 text-white shadow-md flex items-center space-x-3">
                     <i class="fa-solid fa-gauge-high"></i><span>Dashboard</span>
                 </button>
-                <button onclick="switchTab('subjects')" id="nav-subjects" class="nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-2">
+                <button onclick="switchTab('subjects')" id="nav-subjects" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
                     <i class="fa-solid fa-cubes"></i><span>Asignaturas</span>
                 </button>
-                <button onclick="switchTab('tutor')" id="nav-tutor" class="nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-2">
+                <button onclick="switchTab('tutor')" id="nav-tutor" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
                     <i class="fa-solid fa-robot text-astra-cyan"></i><span>Tutor Gemini</span>
                 </button>
-                <button onclick="openExamPrepModal()" class="nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 text-amber-300 hover:text-white hover:bg-astra-card flex items-center space-x-2">
-                    <i class="fa-solid fa-file-pen text-amber-400"></i><span>Prep Examen AI</span>
+                <button onclick="openExamPrepModal()" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-astra-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                    <i class="fa-solid fa-file-pen text-astra-400"></i><span>Prep Examen AI</span>
                 </button>
-                <button onclick="switchTab('planner')" id="nav-planner" class="nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-2">
+                <button onclick="switchTab('planner')" id="nav-planner" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
                     <i class="fa-solid fa-calendar-check"></i><span>Planificador AI</span>
                 </button>
-                <button onclick="switchTab('flashcards')" id="nav-flashcards" class="nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-2">
+                <button onclick="switchTab('flashcards')" id="nav-flashcards" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
                     <i class="fa-solid fa-layer-group"></i><span>Flashcards & Práctica</span>
                 </button>
-                <button onclick="switchTab('pomodoro')" id="nav-pomodoro" class="nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-2">
+                <button onclick="switchTab('pomodoro')" id="nav-pomodoro" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
                     <i class="fa-solid fa-stopwatch"></i><span>Pomodoro</span>
                 </button>
             </nav>
 
             <!-- Settings & Export -->
-            <div class="flex items-center space-x-3">
-                <button onclick="openSettingsModal()" class="flex items-center space-x-2 bg-astra-card hover:bg-astra-border px-3 py-1.5 rounded-xl border border-astra-border transition text-xs">
+            <div class="flex items-center space-x-4">
+                <button onclick="openSettingsModal()" class="flex items-center space-x-3 bg-astra-card hover:bg-astra-border px-4 py-2 rounded-xl border border-astra-border transition text-xs">
                     <span id="api-status-ping" class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                     <i class="fa-solid fa-key text-astra-cyan"></i>
                     <span id="api-status-text" class="hidden sm:inline font-medium text-gray-300">Gemini Key</span>
                 </button>
+<<<<<<< HEAD
                 <span id="sync-status" class="hidden items-center space-x-1 text-[11px] text-gray-400"><i id="sync-icon" class="fa-solid fa-cloud"></i><span id="sync-text" class="hidden sm:inline"></span></span>
                 <button id="logout-btn" onclick="logout()" title="Cerrar sesión" class="hidden p-2 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
                     <i class="fa-solid fa-right-from-bracket text-xs"></i>
                 </button>
                 <div class="flex items-center space-x-1">
                     <button onclick="exportData()" title="Exportar Backup JSON" class="p-2 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
+=======
+                <span id="sync-status" class="hidden items-center space-x-2 text-[11px] text-gray-400"><i id="sync-icon" class="fa-solid fa-cloud"></i><span id="sync-text" class="hidden sm:inline"></span></span>
+                <button id="logout-btn" onclick="logout()" title="Cerrar sesión" class="hidden p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
+                    <i class="fa-solid fa-right-from-bracket text-xs"></i>
+                </button>
+                <div class="flex items-center space-x-2">
+                    <button onclick="exportData()" title="Exportar Backup JSON" class="p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
+>>>>>>> f44f12c (added)
                         <i class="fa-solid fa-download text-xs"></i>
                     </button>
-                    <label title="Importar Backup JSON" class="p-2 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition cursor-pointer">
+                    <label title="Importar Backup JSON" class="p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition cursor-pointer">
                         <i class="fa-solid fa-upload text-xs"></i>
                         <input type="file" id="import-json-file" accept=".json" onchange="importData(event)" class="hidden">
                     </label>
@@ -164,78 +441,78 @@
         </div>
 
         <!-- Mobile Scrollable Navigation Bar -->
-        <div class="flex lg:hidden overflow-x-auto space-x-2 mt-2 pt-2 border-t border-astra-border no-scrollbar">
-            <button onclick="switchTab('dashboard')" id="mobile-nav-dashboard" class="mobile-nav-btn px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-astra-600 text-white">Dashboard</button>
-            <button onclick="switchTab('subjects')" id="mobile-nav-subjects" class="mobile-nav-btn px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Asignaturas</button>
-            <button onclick="switchTab('tutor')" id="mobile-nav-tutor" class="mobile-nav-btn px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Tutor AI</button>
-            <button onclick="openExamPrepModal()" class="mobile-nav-btn px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-amber-500/20 text-amber-300">Prep Examen AI</button>
-            <button onclick="switchTab('planner')" id="mobile-nav-planner" class="mobile-nav-btn px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Planificador</button>
-            <button onclick="switchTab('flashcards')" id="mobile-nav-flashcards" class="mobile-nav-btn px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Flashcards</button>
-            <button onclick="switchTab('pomodoro')" id="mobile-nav-pomodoro" class="mobile-nav-btn px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Pomodoro</button>
+        <div class="flex lg:hidden overflow-x-auto space-x-3 mt-2 pt-2 border-t border-astra-border no-scrollbar">
+            <button onclick="switchTab('dashboard')" id="mobile-nav-dashboard" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-600 text-white">Dashboard</button>
+            <button onclick="switchTab('subjects')" id="mobile-nav-subjects" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Asignaturas</button>
+            <button onclick="switchTab('tutor')" id="mobile-nav-tutor" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Tutor AI</button>
+            <button onclick="openExamPrepModal()" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-500/15 text-astra-400">Prep Examen AI</button>
+            <button onclick="switchTab('planner')" id="mobile-nav-planner" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Planificador</button>
+            <button onclick="switchTab('flashcards')" id="mobile-nav-flashcards" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Flashcards</button>
+            <button onclick="switchTab('pomodoro')" id="mobile-nav-pomodoro" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Pomodoro</button>
         </div>
     </header>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 sm:py-10 lg:px-8">
 
         <!-- SECTION 1: DASHBOARD -->
-        <section id="section-dashboard" class="space-y-6">
-            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-astra-900 via-indigo-950 to-astra-card p-6 sm:p-8 border border-astra-500/30 astra-glow">
+        <section id="section-dashboard" class="space-y-8">
+            <div class="relative overflow-hidden rounded-3xl bg-astra-card p-8 sm:p-12 border border-astra-border">
                 <div class="relative z-10 max-w-3xl">
-                    <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-astra-500/20 text-astra-400 border border-astra-500/30 text-xs font-semibold mb-3">
+                    <span class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-astra-500/10 text-astra-400 border border-astra-500/25 text-xs font-medium mb-5">
                         <i class="fa-solid fa-terminal text-astra-cyan"></i>
                         <span>Entorno Práctico 2º DAW</span>
                     </span>
-                    <h1 class="text-2xl sm:text-4xl font-black text-white leading-tight">
-                        Aprende practicando código <span class="bg-gradient-to-r from-astra-400 via-astra-cyan to-emerald-400 bg-clip-text text-transparent">Full Stack</span>
+                    <h1 class="text-3xl sm:text-5xl text-white">
+                        Aprende practicando código Full Stack
                     </h1>
-                    <p class="text-gray-300 text-xs sm:text-sm mt-2 leading-relaxed">
+                    <p class="text-gray-300 text-sm sm:text-base mt-4 leading-relaxed max-w-2xl">
                         Crea tu temario personalizado, genera retos con IA según tu contexto de estudio actual y resuelve exámenes reales subiendo imágenes o enunciados.
                     </p>
-                    <div class="flex flex-wrap gap-3 mt-5">
-                        <button onclick="openExamPrepModal()" class="bg-gradient-to-r from-amber-500 to-orange-600 hover:opacity-90 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-lg transition flex items-center space-x-2">
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <button onclick="openExamPrepModal()" class="bg-astra-600 hover:bg-astra-700 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-lg transition flex items-center space-x-3">
                             <i class="fa-solid fa-file-pen"></i>
                             <span>Preparar Modelo de Examen</span>
                         </button>
-                        <button onclick="switchTab('flashcards')" class="bg-astra-card hover:bg-astra-border text-white border border-astra-border font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition flex items-center space-x-2">
+                        <button onclick="switchTab('flashcards')" class="bg-astra-card hover:bg-astra-border text-white border border-astra-border font-semibold text-xs sm:text-sm px-5 py-3 rounded-xl transition flex items-center space-x-3">
                             <i class="fa-solid fa-code text-astra-cyan"></i>
                             <span>Práctica con Contexto y Código</span>
                         </button>
                     </div>
                 </div>
-                <div class="absolute -right-12 -bottom-12 w-80 h-80 bg-astra-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                
             </div>
 
             <!-- Stats Overview Row -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="astra-glass-card p-4 rounded-2xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                <div class="astra-glass-card p-5 rounded-2xl">
                     <div class="flex items-center justify-between text-gray-400 mb-1">
-                        <span class="text-[11px] font-bold uppercase tracking-wider">Módulos Oficiales</span>
+                        <span class="text-xs font-medium">Módulos Oficiales</span>
                         <i class="fa-solid fa-book-bookmark text-astra-400"></i>
                     </div>
                     <div class="text-xl sm:text-2xl font-black text-white">7 Módulos</div>
                     <p class="text-[11px] text-gray-400 mt-1">Checklists vacías para ti</p>
                 </div>
-                <div class="astra-glass-card p-4 rounded-2xl">
+                <div class="astra-glass-card p-5 rounded-2xl">
                     <div class="flex items-center justify-between text-gray-400 mb-1">
-                        <span class="text-[11px] font-bold uppercase tracking-wider">Checks Completados</span>
+                        <span class="text-xs font-medium">Checks Completados</span>
                         <i class="fa-solid fa-chart-pie text-emerald-400"></i>
                     </div>
                     <div id="stat-progress-pct" class="text-xl sm:text-2xl font-black text-emerald-400">0%</div>
                     <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2 overflow-hidden">
-                        <div id="stat-progress-bar" class="bg-emerald-400 h-full w-0 transition-all duration-500"></div>
+                        <div id="stat-progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-500"></div>
                     </div>
                 </div>
-                <div class="astra-glass-card p-4 rounded-2xl">
+                <div class="astra-glass-card p-5 rounded-2xl">
                     <div class="flex items-center justify-between text-gray-400 mb-1">
-                        <span class="text-[11px] font-bold uppercase tracking-wider">Retos Generados</span>
+                        <span class="text-xs font-medium">Retos Generados</span>
                         <i class="fa-solid fa-layer-group text-astra-cyan"></i>
                     </div>
                     <div id="stat-flashcards-count" class="text-xl sm:text-2xl font-black text-white">0</div>
                     <p class="text-[11px] text-gray-400 mt-1">Retos guardados</p>
                 </div>
-                <div class="astra-glass-card p-4 rounded-2xl">
+                <div class="astra-glass-card p-5 rounded-2xl">
                     <div class="flex items-center justify-between text-gray-400 mb-1">
-                        <span class="text-[11px] font-bold uppercase tracking-wider">Tiempo Enfocado</span>
+                        <span class="text-xs font-medium">Tiempo Enfocado</span>
                         <i class="fa-solid fa-clock text-amber-400"></i>
                     </div>
                     <div id="stat-pomo-hours" class="text-xl sm:text-2xl font-black text-amber-400">0h 0m</div>
@@ -246,23 +523,23 @@
             <!-- Subject Grid Overview -->
             <div>
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+                    <h2 class="text-lg font-bold text-white flex items-center space-x-3">
                         <i class="fa-solid fa-graduation-cap text-astra-500"></i>
                         <span>Módulos de 2º DAW</span>
                     </h2>
                     <button onclick="switchTab('subjects')" class="text-xs text-astra-400 hover:underline">Añadir temas a tu gusto &rarr;</button>
                 </div>
-                <div id="dash-subjects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div id="dash-subjects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     <!-- Dynamic rendering -->
                 </div>
             </div>
         </section>
 
         <!-- SECTION 2: SUBJECTS DETAIL HUB -->
-        <section id="section-subjects" class="hidden space-y-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-astra-card p-6 rounded-3xl border border-astra-border">
+        <section id="section-subjects" class="hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-5 bg-astra-card p-6 rounded-3xl border border-astra-border">
                 <div>
-                    <h2 class="text-xl font-bold text-white flex items-center space-x-2">
+                    <h2 class="text-xl font-bold text-white flex items-center space-x-3">
                         <i class="fa-solid fa-cubes text-astra-cyan"></i>
                         <span>Módulos y Checklist Personalizado DAW</span>
                     </h2>
@@ -270,22 +547,22 @@
                 </div>
             </div>
 
-            <div id="full-subjects-list" class="space-y-6">
+            <div id="full-subjects-list" class="space-y-8">
                 <!-- Rendered dynamically -->
             </div>
         </section>
 
         <!-- SECTION 3: GEMINI AI TUTOR CHAT -->
-        <section id="section-tutor" class="hidden space-y-4">
+        <section id="section-tutor" class="hidden space-y-5">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[600px]">
                 <div class="lg:col-span-8 astra-glass-card rounded-3xl p-4 sm:p-6 flex flex-col justify-between h-full border border-astra-border min-h-[550px]">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-astra-border pb-3 mb-3 gap-2">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-astra-600 to-astra-cyan flex items-center justify-center text-white font-bold text-lg">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-astra-border pb-3 mb-3 gap-3">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-astra-600 flex items-center justify-center text-white font-bold text-lg">
                                 <i class="fa-solid fa-robot"></i>
                             </div>
                             <div>
-                                <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+                                <h3 class="text-sm font-bold text-white flex items-center space-x-3">
                                     <span>Tutor DAW Gemini API</span>
                                     <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono">Historial Guardado</span>
                                 </h3>
@@ -293,7 +570,7 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center space-x-2">
+                        <div class="flex items-center space-x-3">
                             <select id="tutor-channel-select" onchange="switchTutorChannel(this.value)" class="bg-gray-950 border border-astra-border text-astra-cyan font-mono text-xs rounded-xl px-3 py-1.5 focus:outline-none">
                                 <option value="GLOBAL">🌐 Canal General DAW</option>
                                 <option value="DWES">🐘 DWES (Servidor)</option>
@@ -310,37 +587,37 @@
                         </div>
                     </div>
 
-                    <div id="tutor-chat-stream" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-3 text-xs sm:text-sm max-h-[400px]">
+                    <div id="tutor-chat-stream" class="flex-grow overflow-y-auto space-y-5 pr-2 mb-3 text-xs sm:text-sm max-h-[400px]">
                         <!-- Messages -->
                     </div>
 
-                    <div class="flex overflow-x-auto space-x-2 pb-2 no-scrollbar">
-                        <button onclick="setTutorPrompt('Explícame cómo funciona un Middleware en Express.js con un ejemplo en código.')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-3 py-1.5 rounded-xl whitespace-nowrap transition">
+                    <div class="flex overflow-x-auto space-x-3 pb-2 no-scrollbar">
+                        <button onclick="setTutorPrompt('Explícame cómo funciona un Middleware en Express.js con un ejemplo en código.')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-4 py-2 rounded-xl whitespace-nowrap transition">
                             🛠️ Middleware Express
                         </button>
-                        <button onclick="setTutorPrompt('¿Cuál es la diferencia entre fetch, async/await y Axios en JS?')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-3 py-1.5 rounded-xl whitespace-nowrap transition">
+                        <button onclick="setTutorPrompt('¿Cuál es la diferencia entre fetch, async/await y Axios en JS?')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-4 py-2 rounded-xl whitespace-nowrap transition">
                             ⚡ Fetch vs Async
                         </button>
-                        <button onclick="setTutorPrompt('Escribe un script de PHP con PDO para conectar a MySQL de forma segura.')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-3 py-1.5 rounded-xl whitespace-nowrap transition">
+                        <button onclick="setTutorPrompt('Escribe un script de PHP con PDO para conectar a MySQL de forma segura.')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-4 py-2 rounded-xl whitespace-nowrap transition">
                             🐘 PHP PDO MySQL
                         </button>
                     </div>
 
-                    <form onsubmit="sendTutorMessage(event)" class="flex items-center space-x-2 mt-1">
+                    <form onsubmit="sendTutorMessage(event)" class="flex items-center space-x-3 mt-1">
                         <input id="tutor-chat-input" type="text" placeholder="Haz tu pregunta técnica al tutor..." class="flex-grow bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-astra-500 font-sans">
-                        <button type="submit" id="tutor-btn-send" class="bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white px-5 py-3 rounded-xl font-bold transition flex items-center justify-center">
+                        <button type="submit" id="tutor-btn-send" class="bg-astra-600 hover:bg-astra-700 text-white px-5 py-3 rounded-xl font-bold transition flex items-center justify-center">
                             <i class="fa-solid fa-paper-plane"></i>
                         </button>
                     </form>
                 </div>
 
-                <div class="hidden lg:flex lg:col-span-4 flex-col space-y-4">
-                    <div class="astra-glass-card p-5 rounded-3xl space-y-3 border border-astra-border">
-                        <h4 class="text-xs font-bold text-white uppercase tracking-wider flex items-center space-x-2">
+                <div class="hidden lg:flex lg:col-span-4 flex-col space-y-5">
+                    <div class="astra-glass-card p-5 rounded-3xl space-y-4 border border-astra-border">
+                        <h4 class="text-xs font-bold text-white tracking-normal flex items-center space-x-3">
                             <i class="fa-solid fa-terminal text-astra-cyan"></i>
                             <span>Consola Rápida</span>
                         </h4>
-                        <div class="space-y-2 text-xs">
+                        <div class="space-y-3 text-xs">
                             <button onclick="askAIForQuiz()" class="w-full text-left p-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-gray-300 transition flex items-center justify-between">
                                 <span>🎯 Generar Pregunta Test Aleatoria</span>
                                 <i class="fa-solid fa-chevron-right text-[10px]"></i>
@@ -356,37 +633,37 @@
         </section>
 
         <!-- SECTION 4: PLANNER HUB -->
-        <section id="section-planner" class="hidden space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-astra-card p-6 rounded-3xl border border-astra-border">
+        <section id="section-planner" class="hidden space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 bg-astra-card p-6 rounded-3xl border border-astra-border">
                 <div>
-                    <h2 class="text-xl font-bold text-white flex items-center space-x-2">
+                    <h2 class="text-xl font-bold text-white flex items-center space-x-3">
                         <i class="fa-solid fa-calendar-check text-astra-cyan"></i>
                         <span>Planificador de Estudio Inteligente</span>
                     </h2>
                     <p class="text-xs text-gray-400 mt-1">Genera calendarios adaptados a tus exámenes de DAW con la API de Gemini.</p>
                 </div>
-                <button onclick="openPlannerModal()" class="bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-lg flex items-center space-x-2">
+                <button onclick="openPlannerModal()" class="bg-astra-600 hover:bg-astra-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-lg flex items-center space-x-3">
                     <i class="fa-solid fa-plus"></i>
                     <span>Nuevo Plan AI</span>
                 </button>
             </div>
 
-            <div id="planner-plans-container" class="space-y-6">
+            <div id="planner-plans-container" class="space-y-8">
                 <!-- Loaded dynamically -->
             </div>
         </section>
 
         <!-- SECTION 5: FLASHCARDS MAZO & PRÁCTICA DE CÓDIGO CON CONTEXTO -->
-        <section id="section-flashcards" class="hidden space-y-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <section id="section-flashcards" class="hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-5">
                 <div>
-                    <h2 class="text-xl font-bold text-white flex items-center space-x-2">
+                    <h2 class="text-xl font-bold text-white flex items-center space-x-3">
                         <i class="fa-solid fa-code text-astra-cyan"></i>
                         <span>Práctica Interactiva de Código y Retos</span>
                     </h2>
                     <p class="text-xs text-gray-400">Selecciona el módulo, define el contexto de lo que quieres repasar hoy y responde programando.</p>
                 </div>
-                <div class="flex flex-wrap items-center gap-2">
+                <div class="flex flex-wrap items-center gap-3">
                     <select id="flashcard-subject-filter" onchange="renderFlashcards()" class="bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
                         <option value="ALL">Todas las Asignaturas</option>
                         <option value="DWES">DWES - Servidor</option>
@@ -401,17 +678,17 @@
             </div>
 
             <!-- Flashcard AI Context Box Block -->
-            <div class="astra-glass-card p-5 rounded-3xl border border-astra-500/30 space-y-3">
+            <div class="astra-glass-card p-5 rounded-3xl border border-astra-500/30 space-y-4">
                 <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold text-white flex items-center space-x-2">
+                    <span class="text-xs font-bold text-white flex items-center space-x-3">
                         <i class="fa-solid fa-sliders text-astra-cyan"></i>
                         <span>Contexto de Estudio para hoy (AI Prompt)</span>
                     </span>
                     <span class="text-[10px] text-gray-400">Gemini genera una tanda de 6 retos con lo que pongas aquí</span>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-2">
+                <div class="flex flex-col sm:flex-row gap-3">
                     <input id="flashcard-context-input" type="text" onkeydown="if(event.key==='Enter'){generateDynamicAIReto();}" placeholder="Ej: Hoy estoy estudiando PDO, sesiones y cookies en PHP..." class="flex-grow bg-gray-950 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-sans">
-                    <button onclick="generateDynamicAIReto()" class="bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-lg flex items-center justify-center space-x-2 whitespace-nowrap">
+                    <button onclick="generateDynamicAIReto()" class="bg-astra-600 hover:bg-astra-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-lg flex items-center justify-center space-x-3 whitespace-nowrap">
                         <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
                         <span>Generar 6 Retos</span>
                     </button>
@@ -420,18 +697,18 @@
 
             <!-- Practice container: se rellena solo al enviar contexto -->
             <div class="max-w-2xl mx-auto">
-                <div id="practice-empty" class="astra-glass-card p-10 rounded-3xl text-center space-y-3 border border-astra-border">
+                <div id="practice-empty" class="astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-astra-border">
                     <i class="fa-solid fa-wand-magic-sparkles text-4xl text-gray-600"></i>
                     <h3 class="text-sm font-bold text-white">Aún no hay retos</h3>
                     <p class="text-xs text-gray-400">Escribe arriba el tema que quieres repasar y pulsa "Generar 6 Retos".</p>
                 </div>
 
-                <div id="practice-loading" class="hidden astra-glass-card p-10 rounded-3xl text-center space-y-3 border border-astra-border">
+                <div id="practice-loading" class="hidden astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-astra-border">
                     <div class="w-6 h-6 mx-auto rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
                     <p class="text-xs text-astra-cyan">Gemini está preparando tus 6 retos...</p>
                 </div>
 
-                <div id="practice-card-box" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-5">
+                <div id="practice-card-box" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-6">
                     <div class="flex items-center justify-between border-b border-astra-border pb-3">
                         <span id="card-subject-tag" class="text-[10px] uppercase font-bold text-astra-cyan tracking-widest px-2.5 py-1 rounded-full bg-astra-cyan/10 border border-astra-cyan/20">ASIGNATURA</span>
                         <span id="flashcard-counter-indicator" class="text-xs text-gray-400 font-mono">0 / 0</span>
@@ -439,23 +716,23 @@
 
                     <div id="card-front-content" class="text-sm sm:text-base font-bold text-white leading-relaxed"></div>
 
-                    <div class="space-y-2">
-                        <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider">Escribe tu respuesta o solución en código:</label>
+                    <div class="space-y-3">
+                        <label class="block text-[11px] font-bold text-gray-300 tracking-normal">Escribe tu respuesta o solución en código:</label>
                         <textarea id="card-user-input" rows="5" placeholder="Escribe aquí tu código PHP, JS, comandos Docker, CSS o explicación..." class="w-full bg-gray-950 border border-astra-border rounded-2xl p-3 text-xs text-astra-cyan focus:outline-none font-mono resize-none"></textarea>
                     </div>
 
-                    <div id="card-actions" class="flex flex-wrap gap-2 pt-1">
-                        <button id="card-eval-btn" onclick="checkAnswerWithAI()" class="flex-1 bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg">
+                    <div id="card-actions" class="flex flex-wrap gap-3 pt-1">
+                        <button id="card-eval-btn" onclick="checkAnswerWithAI()" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-3 shadow-lg">
                             <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
                             <span>Evaluar mi código con Gemini AI</span>
                         </button>
-                        <button id="card-reveal-btn" onclick="revealOfficialAnswer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-4 py-2.5 rounded-xl transition">
+                        <button id="card-reveal-btn" onclick="revealOfficialAnswer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-5 py-3 rounded-xl transition">
                             👁️ Ver solución (cuenta 0)
                         </button>
                     </div>
 
-                    <div id="card-feedback-box" class="hidden p-4 rounded-2xl bg-gray-950 border border-astra-border space-y-3 text-xs">
-                        <div id="ai-eval-result" class="text-gray-300 space-y-1"></div>
+                    <div id="card-feedback-box" class="hidden p-4 rounded-2xl bg-gray-950 border border-astra-border space-y-4 text-xs">
+                        <div id="ai-eval-result" class="text-gray-300 space-y-2"></div>
                         <div class="border-t border-gray-900 pt-3">
                             <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider block mb-1">Solución / Código Esperado:</span>
                             <div id="card-back-content" class="text-gray-200 font-mono leading-relaxed overflow-x-auto"></div>
@@ -467,14 +744,14 @@
                     </button>
                 </div>
 
-                <div id="practice-results" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-5 text-center"></div>
+                <div id="practice-results" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-6 text-center"></div>
             </div>
         </section>
 
         <!-- SECTION 6: POMODORO & LO-FI AUDIO GENERATOR -->
-        <section id="section-pomodoro" class="hidden max-w-3xl mx-auto space-y-6">
+        <section id="section-pomodoro" class="hidden max-w-3xl mx-auto space-y-8">
             <div class="astra-glass-card p-8 rounded-3xl text-center space-y-8 border border-astra-border astra-glow">
-                <div class="flex justify-center space-x-2 bg-gray-950 p-1.5 rounded-2xl max-w-md mx-auto border border-astra-border overflow-x-auto">
+                <div class="flex justify-center space-x-3 bg-gray-950 p-1.5 rounded-2xl max-w-md mx-auto border border-astra-border overflow-x-auto">
                     <button onclick="setPomoMode('work25')" id="pomo-mode-work25" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-astra-600 text-white whitespace-nowrap">Estudio (25m)</button>
                     <button onclick="setPomoMode('work50')" id="pomo-mode-work50" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-400 whitespace-nowrap">Intenso (50m)</button>
                     <button onclick="setPomoMode('shortBreak')" id="pomo-mode-short" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-400 whitespace-nowrap">Descanso (5m / 10m)</button>
@@ -491,7 +768,7 @@
                 </div>
 
                 <div class="flex items-center justify-center space-x-4">
-                    <button id="pomo-toggle-btn" onclick="togglePomoTimer()" class="w-36 bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white font-extrabold py-3.5 rounded-2xl shadow-xl transition flex items-center justify-center space-x-2 text-base">
+                    <button id="pomo-toggle-btn" onclick="togglePomoTimer()" class="w-36 bg-astra-600 hover:bg-astra-700 text-white font-extrabold py-3.5 rounded-2xl shadow-xl transition flex items-center justify-center space-x-3 text-base">
                         <i id="pomo-play-icon" class="fa-solid fa-play"></i>
                         <span id="pomo-btn-text">Iniciar</span>
                     </button>
@@ -500,15 +777,15 @@
                     </button>
                 </div>
 
-                <div class="pt-6 border-t border-astra-border flex flex-wrap items-center justify-between gap-4 text-xs">
-                    <span class="text-gray-400 font-medium flex items-center space-x-2">
+                <div class="pt-6 border-t border-astra-border flex flex-wrap items-center justify-between gap-5 text-xs">
+                    <span class="text-gray-400 font-medium flex items-center space-x-3">
                         <i class="fa-solid fa-headphones text-astra-cyan"></i>
                         <span>Generador de Ruido Enfoque (Web Audio Synth):</span>
                     </span>
-                    <div class="flex items-center space-x-2">
-                        <button onclick="toggleSynthAudio('white')" id="synth-white" class="px-3 py-1.5 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🌫️ Ruido Blanco</button>
-                        <button onclick="toggleSynthAudio('pink')" id="synth-pink" class="px-3 py-1.5 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🌧️ Lluvia Synth</button>
-                        <button onclick="toggleSynthAudio('binaural')" id="synth-binaural" class="px-3 py-1.5 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🧠 Pulso Alpha</button>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="toggleSynthAudio('white')" id="synth-white" class="px-4 py-2 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🌫️ Ruido Blanco</button>
+                        <button onclick="toggleSynthAudio('pink')" id="synth-pink" class="px-4 py-2 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🌧️ Lluvia Synth</button>
+                        <button onclick="toggleSynthAudio('binaural')" id="synth-binaural" class="px-4 py-2 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🧠 Pulso Alpha</button>
                     </div>
                 </div>
             </div>
@@ -518,21 +795,21 @@
 
     <!-- MODAL: PREPARACIÓN DE EXAMEN AI -->
     <div id="modal-exam-prep" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-2xl space-y-4 shadow-2xl my-8">
+        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-2xl space-y-5 shadow-2xl my-8">
             <div class="flex justify-between items-center border-b border-astra-border pb-3">
-                <h3 class="text-base font-bold text-white flex items-center space-x-2">
-                    <i class="fa-solid fa-file-pen text-amber-400"></i>
+                <h3 class="text-base font-bold text-white flex items-center space-x-3">
+                    <i class="fa-solid fa-file-pen text-astra-400"></i>
                     <span>Preparador de Examen & Modelos AI</span>
                 </h3>
                 <button onclick="closeExamPrepModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <div class="space-y-4 text-xs">
+            <div class="space-y-5 text-xs">
                 <p class="text-gray-300 leading-relaxed">
                     Sube enunciados de examen, capturas de pantalla de código, PDFs o escribe el modelo de examen esperado para que Gemini simule un examen real o desarrolle soluciones paso a paso.
                 </p>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Módulo Formativo</label>
                         <select id="exam-prep-subject" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
@@ -565,12 +842,12 @@
                     <textarea id="exam-prep-text" rows="4" placeholder="Ej: El examen tratará de crear un script de PHP con PDO que gestione un CRUD con sesiones de usuario..." class="w-full bg-gray-900 border border-astra-border rounded-xl p-3 text-xs text-white focus:outline-none resize-none font-mono"></textarea>
                 </div>
 
-                <button onclick="processExamPrepWithAI()" class="w-full bg-gradient-to-r from-amber-500 via-orange-600 to-astra-cyan hover:opacity-90 text-white font-bold py-3 rounded-xl transition shadow-lg flex items-center justify-center space-x-2">
+                <button onclick="processExamPrepWithAI()" class="w-full bg-astra-600 hover:bg-astra-700 text-white font-bold py-3 rounded-xl transition shadow-lg flex items-center justify-center space-x-3">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                     <span>Procesar y Generar Modelo con Gemini</span>
                 </button>
 
-                <div id="exam-prep-result-container" class="hidden space-y-3 pt-3 border-t border-astra-border">
+                <div id="exam-prep-result-container" class="hidden space-y-4 pt-3 border-t border-astra-border">
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-white text-xs">Resultado / Simulación de Examen:</span>
                         <button onclick="addExamPrepCardsToDeck()" id="exam-add-cards-btn" class="hidden bg-astra-600 hover:bg-astra-500 text-white font-bold text-[11px] px-3 py-1 rounded-lg transition">
@@ -585,16 +862,16 @@
 
     <!-- MODAL: SETTINGS -->
     <div id="modal-settings" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-md space-y-5 shadow-2xl">
+        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-md space-y-6 shadow-2xl">
             <div class="flex justify-between items-center border-b border-astra-border pb-3">
-                <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+                <h3 class="text-sm font-bold text-white flex items-center space-x-3">
                     <i class="fa-solid fa-key text-astra-cyan"></i>
                     <span>Configuración Gemini API Key</span>
                 </h3>
                 <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <div class="space-y-3 text-xs">
+            <div class="space-y-4 text-xs">
                 <p class="text-gray-300">Ingresa tu clave de la API de Gemini si no usas el entorno por defecto.</p>
                 <div>
                     <label class="block font-bold text-gray-300 uppercase mb-1">API Key</label>
@@ -602,7 +879,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-end space-x-3 pt-2 border-t border-astra-border">
+            <div class="flex justify-end space-x-4 pt-2 border-t border-astra-border">
                 <button onclick="closeSettingsModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 bg-gray-900">Cancelar</button>
                 <button onclick="saveApiKeySetting()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-500 shadow-lg">Guardar</button>
             </div>
@@ -611,13 +888,13 @@
 
     <!-- MODAL: ADD FLASHCARD -->
     <div id="modal-add-card" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-md space-y-4 shadow-2xl">
+        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-md space-y-5 shadow-2xl">
             <div class="flex justify-between items-center border-b border-astra-border pb-3">
                 <h3 class="text-sm font-bold text-white">Añadir Flashcard Manual</h3>
                 <button onclick="closeAddCardModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <div class="space-y-3 text-xs">
+            <div class="space-y-4 text-xs">
                 <div>
                     <label class="block font-bold text-gray-300 uppercase mb-1">Módulo</label>
                     <select id="modal-card-subject" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
@@ -640,7 +917,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-end space-x-3 pt-2">
+            <div class="flex justify-end space-x-4 pt-2">
                 <button onclick="closeAddCardModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 bg-gray-900">Cancelar</button>
                 <button onclick="saveCustomFlashcard()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-500 shadow-lg">Guardar Card</button>
             </div>
@@ -649,13 +926,13 @@
 
     <!-- MODAL: CREATE PLANNER -->
     <div id="modal-planner" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-lg space-y-4 shadow-2xl">
+        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-lg space-y-5 shadow-2xl">
             <div class="flex justify-between items-center border-b border-astra-border pb-3">
                 <h3 class="text-sm font-bold text-white">Generar Plan de Estudio AI</h3>
                 <button onclick="closePlannerModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
-            <div class="space-y-3 text-xs">
+            <div class="space-y-4 text-xs">
                 <div>
                     <label class="block font-bold text-gray-300 uppercase mb-1">Asignatura</label>
                     <select id="modal-plan-subject" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
@@ -668,7 +945,7 @@
                         <option value="PROYECTO">Proyecto DAW</option>
                     </select>
                 </div>
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">Fecha de Examen</label>
                         <input id="modal-plan-date" type="date" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
@@ -684,9 +961,9 @@
                 </div>
             </div>
 
-            <div class="flex justify-end space-x-3 pt-2">
+            <div class="flex justify-end space-x-4 pt-2">
                 <button onclick="closePlannerModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 bg-gray-900">Cancelar</button>
-                <button onclick="generatePlanWithGemini()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-astra-600 to-astra-cyan shadow-lg">Generar Itinerario</button>
+                <button onclick="generatePlanWithGemini()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-700 shadow-lg">Generar Itinerario</button>
             </div>
         </div>
     </div>
@@ -733,8 +1010,13 @@
         }
 
         // ================= SUPABASE: LOGIN + SINCRONIZACIÓN =================
+<<<<<<< HEAD
         const SUPABASE_URL = 'https://dnvmjcigxjjiatrhnkrv.supabase.co/';          // https://xxxx.supabase.co
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRudm1qY2lneGpqaWF0cmhua3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2ODUzMzgsImV4cCI6MjEwODI2MTMzOH0.hErApqoOTMEk_rjKInwECFjfzS3Jolqo4Qp-r6-Lv9w';        // clave "anon" / "publishable" (pública)
+=======
+        const SUPABASE_URL = 'PEGA_AQUI_TU_PROJECT_URL';          // https://xxxx.supabase.co
+        const SUPABASE_ANON_KEY = 'PEGA_AQUI_TU_ANON_KEY';        // clave "anon" / "publishable" (pública)
+>>>>>>> f44f12c (added)
 
         let sb = null, cloudUser = null, cloudTimer = null, cloudBusy = false, cloudDirty = false;
 
@@ -966,16 +1248,16 @@
             if (activeSec) activeSec.classList.remove('hidden');
 
             document.querySelectorAll('.nav-btn').forEach(b => {
-                b.className = "nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-2";
+                b.className = "nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3";
             });
             const activeBtn = document.getElementById(`nav-${tabId}`);
-            if (activeBtn) activeBtn.className = "nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 bg-astra-600 text-white shadow-md flex items-center space-x-2";
+            if (activeBtn) activeBtn.className = "nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 bg-astra-600 text-white shadow-md flex items-center space-x-3";
 
             document.querySelectorAll('.mobile-nav-btn').forEach(b => {
-                b.className = "mobile-nav-btn px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300";
+                b.className = "mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300";
             });
             const mobileBtn = document.getElementById(`mobile-nav-${tabId}`);
-            if (mobileBtn) mobileBtn.className = "mobile-nav-btn px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap bg-astra-600 text-white";
+            if (mobileBtn) mobileBtn.className = "mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-600 text-white";
 
             if (tabId === 'dashboard') renderDashboard();
             if (tabId === 'subjects') renderFullSubjects();
@@ -1071,11 +1353,11 @@
                 const subPct = subTotal > 0 ? Math.round((subDone / subTotal) * 100) : 0;
 
                 const card = document.createElement('div');
-                card.className = "astra-glass-card p-5 rounded-3xl space-y-3 border border-astra-border hover:border-astra-500/40 transition cursor-pointer";
+                card.className = "astra-glass-card p-5 rounded-3xl space-y-4 border border-astra-border hover:border-astra-500/40 transition cursor-pointer";
                 card.onclick = () => switchTab('subjects');
                 card.innerHTML = `
                     <div class="flex items-center justify-between">
-                        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr ${sub.color} flex items-center justify-center text-white text-base shadow-md">
+                        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${sub.color} flex items-center justify-center text-white text-base shadow-md">
                             <i class="fa-solid ${sub.icon}"></i>
                         </div>
                         <span class="text-xs font-bold font-mono text-astra-cyan">${sub.shortName}</span>
@@ -1099,11 +1381,11 @@
 
             appData.subjects.forEach(sub => {
                 const card = document.createElement('div');
-                card.className = "astra-glass-card p-6 rounded-3xl space-y-4 border border-astra-border";
+                card.className = "astra-glass-card p-6 rounded-3xl space-y-5 border border-astra-border";
                 card.innerHTML = `
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-astra-border pb-4">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr ${sub.color} flex items-center justify-center text-white text-lg">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-astra-border pb-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${sub.color} flex items-center justify-center text-white text-lg">
                                 <i class="fa-solid ${sub.icon}"></i>
                             </div>
                             <div>
@@ -1111,15 +1393,15 @@
                                 <span class="text-[11px] text-astra-cyan font-mono font-bold">${sub.id}</span>
                             </div>
                         </div>
-                        <button onclick="promptAddNewTopic('${sub.id}')" class="bg-astra-600 hover:bg-astra-500 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition">
+                        <button onclick="promptAddNewTopic('${sub.id}')" class="bg-astra-600 hover:bg-astra-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
                             + Añadir Tema/Check
                         </button>
                     </div>
 
-                    <div class="space-y-2">
+                    <div class="space-y-3">
                         ${(sub.topics && sub.topics.length > 0) ? sub.topics.map(t => `
                             <div class="flex items-center justify-between p-3 rounded-2xl bg-gray-950/60 border border-gray-900 hover:border-astra-border transition">
-                                <label class="flex items-center space-x-3 cursor-pointer text-xs text-gray-200">
+                                <label class="flex items-center space-x-4 cursor-pointer text-xs text-gray-200">
                                     <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleSubjectTopic('${sub.id}', '${t.id}')" class="w-4 h-4 rounded text-astra-600 bg-gray-900 border-gray-800 focus:ring-astra-500">
                                     <span class="${t.done ? 'line-through text-gray-500' : 'font-medium'}">${escapeHTML(t.title)}</span>
                                 </label>
@@ -1242,7 +1524,7 @@
             const stream = document.getElementById('tutor-chat-stream');
             if (!stream) return;
             const wrapper = document.createElement('div');
-            wrapper.className = sender === 'user' ? "flex items-start justify-end space-x-3" : "flex items-start space-x-3";
+            wrapper.className = sender === 'user' ? "flex items-start justify-end space-x-4" : "flex items-start space-x-4";
 
             if (sender === 'user') {
                 wrapper.innerHTML = `
@@ -1253,8 +1535,8 @@
                 `;
             } else {
                 wrapper.innerHTML = `
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-astra-600 to-astra-cyan flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">AI</div>
-                    <div class="bg-gray-900 border border-astra-border rounded-2xl rounded-tl-none p-4 text-gray-200 max-w-[90%] leading-relaxed space-y-2 overflow-x-auto">
+                    <div class="w-8 h-8 rounded-lg bg-astra-600 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">AI</div>
+                    <div class="bg-gray-900 border border-astra-border rounded-2xl rounded-tl-none p-4 text-gray-200 max-w-[90%] leading-relaxed space-y-3 overflow-x-auto">
                         ${formatMarkdownCode(text)}
                     </div>
                 `;
@@ -1273,10 +1555,10 @@
             const id = 'loading_' + Date.now();
             const wrapper = document.createElement('div');
             wrapper.id = id;
-            wrapper.className = "flex items-start space-x-3";
+            wrapper.className = "flex items-start space-x-4";
             wrapper.innerHTML = `
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-astra-600 to-astra-cyan flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">AI</div>
-                <div class="bg-gray-900 border border-astra-border rounded-2xl rounded-tl-none p-4 text-gray-400 text-xs flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-lg bg-astra-600 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">AI</div>
+                <div class="bg-gray-900 border border-astra-border rounded-2xl rounded-tl-none p-4 text-gray-400 text-xs flex items-center space-x-3">
                     <div class="w-2 h-2 rounded-full bg-astra-cyan animate-ping"></div>
                     <span>Escribiendo respuesta...</span>
                 </div>
@@ -1454,7 +1736,7 @@ Responde ÚNICAMENTE con un array JSON plano, sin bloques markdown: [{"front":"e
             feedbackBox.classList.remove('hidden');
             document.getElementById('card-back-content').innerHTML = '<span class="text-gray-500">La solución se mostrará al evaluar.</span>';
             evalResult.innerHTML = `
-                <div class="flex items-center space-x-2 text-astra-cyan">
+                <div class="flex items-center space-x-3 text-astra-cyan">
                     <div class="w-3 h-3 rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
                     <span>Evaluando tu código con Gemini...</span>
                 </div>`;
@@ -1522,15 +1804,15 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
                     </div>
                 </div>
                 <p class="text-sm text-gray-300 leading-relaxed">${g.msg}</p>
-                <div class="text-left space-y-2 text-xs">
+                <div class="text-left space-y-3 text-xs">
                     ${s.cards.map((c, i) => `
-                        <div class="flex items-start justify-between gap-3 p-3 rounded-2xl bg-gray-950/60 border border-gray-900">
+                        <div class="flex items-start justify-between gap-4 p-3 rounded-2xl bg-gray-950/60 border border-gray-900">
                             <span class="text-gray-300"><span class="font-mono text-astra-cyan">${i + 1}.</span> ${escapeHTML(c.front.length > 110 ? c.front.slice(0, 110) + '…' : c.front)}</span>
                             <span class="font-mono font-bold whitespace-nowrap ${c.score >= PASS_GRADE ? 'text-emerald-400' : 'text-rose-400'}">${c.score}/10</span>
                         </div>`).join('')}
                 </div>
-                <div class="flex flex-col sm:flex-row gap-2 pt-2">
-                    <button onclick="restartPractice()" class="flex-1 bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white text-xs font-bold py-3 rounded-xl transition shadow-lg">
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button onclick="restartPractice()" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-3 rounded-xl transition shadow-lg">
                         <i class="fa-solid fa-rotate-right mr-1"></i> Reiniciar con el mismo tema
                     </button>
                     <button onclick="newPracticeTopic()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-4 py-3 rounded-xl transition">
@@ -1665,7 +1947,7 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
 
             if (appData.plans.length === 0) {
                 container.innerHTML = `
-                    <div class="astra-glass-card p-12 rounded-3xl text-center space-y-3 border border-astra-border">
+                    <div class="astra-glass-card p-12 rounded-3xl text-center space-y-4 border border-astra-border">
                         <i class="fa-solid fa-calendar-plus text-4xl text-gray-600"></i>
                         <h3 class="text-sm font-bold text-white">No tienes planes de estudio generados</h3>
                         <p class="text-xs text-gray-400">Haz clic en "Nuevo Plan AI" para crear un calendario.</p>
@@ -1677,11 +1959,11 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
             container.innerHTML = '';
             appData.plans.forEach(p => {
                 const card = document.createElement('div');
-                card.className = "astra-glass-card p-6 rounded-3xl space-y-4 border border-astra-border";
+                card.className = "astra-glass-card p-6 rounded-3xl space-y-5 border border-astra-border";
                 card.innerHTML = `
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-astra-border pb-3 gap-2">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-astra-border pb-3 gap-3">
                         <div>
-                            <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                            <h3 class="text-base font-bold text-white flex items-center space-x-3">
                                 <i class="fa-solid fa-graduation-cap text-astra-cyan"></i>
                                 <span>${escapeHTML(p.subject)}</span>
                             </h3>
