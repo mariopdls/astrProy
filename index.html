@@ -378,7 +378,7 @@
                     <i class="fa-solid fa-cubes"></i><span>Asignaturas</span>
                 </button>
                 <button onclick="switchTab('tutor')" id="nav-tutor" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
-                    <i class="fa-solid fa-robot text-astra-cyan"></i><span>Tutor Gemini</span>
+                    <i class="fa-solid fa-robot text-astra-cyan"></i><span>Tutor IA</span>
                 </button>
                 <button onclick="openExamPrepModal()" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-astra-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
                     <i class="fa-solid fa-file-pen text-astra-400"></i><span>Prep Examen AI</span>
@@ -399,7 +399,7 @@
                 <button onclick="openSettingsModal()" class="flex items-center space-x-3 bg-astra-card hover:bg-astra-border px-4 py-2 rounded-xl border border-astra-border transition text-xs">
                     <span id="api-status-ping" class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                     <i class="fa-solid fa-key text-astra-cyan"></i>
-                    <span id="api-status-text" class="hidden sm:inline font-medium text-gray-300">Gemini Key</span>
+                    <span id="api-status-text" class="hidden sm:inline font-medium text-gray-300">Config IA</span>
                 </button>
                 <span id="sync-status" class="hidden items-center space-x-2 text-[11px] text-gray-400"><i id="sync-icon" class="fa-solid fa-cloud"></i><span id="sync-text" class="hidden sm:inline"></span></span>
                 <button id="logout-btn" onclick="logout()" title="Cerrar sesión" class="hidden p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
@@ -456,7 +456,6 @@
                         </button>
                     </div>
                 </div>
-                
             </div>
 
             <!-- Stats Overview Row -->
@@ -529,7 +528,7 @@
             </div>
         </section>
 
-        <!-- SECTION 3: GEMINI AI TUTOR CHAT -->
+        <!-- SECTION 3: MULTI-AI TUTOR CHAT -->
         <section id="section-tutor" class="hidden space-y-5">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[750px]">
                 
@@ -583,8 +582,8 @@
                             </div>
                             <div>
                                 <h3 class="text-sm font-bold text-white flex items-center space-x-3">
-                                    <span>Tutor DAW Gemini API</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono whitespace-nowrap">Historial Guardado</span>
+                                    <span>Tutor DAW Multi-IA</span>
+                                    <span id="active-provider-badge" class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono whitespace-nowrap">Gemini</span>
                                 </h3>
                                 <p class="text-[11px] text-gray-400" id="tutor-chat-subtitle">Canal activo: General</p>
                             </div>
@@ -629,7 +628,7 @@
                         <i class="fa-solid fa-calendar-check text-astra-cyan"></i>
                         <span>Planificador de Estudio Inteligente</span>
                     </h2>
-                    <p class="text-xs text-gray-400 mt-1">Genera calendarios adaptados a tus exámenes de DAW con la API de Gemini.</p>
+                    <p class="text-xs text-gray-400 mt-1">Genera calendarios adaptados a tus exámenes de DAW con Inteligencia Artificial.</p>
                 </div>
                 <button onclick="openPlannerModal()" class="bg-astra-600 hover:bg-astra-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-lg flex items-center space-x-3">
                     <i class="fa-solid fa-plus"></i>
@@ -673,7 +672,7 @@
                         <i class="fa-solid fa-sliders text-astra-cyan"></i>
                         <span>Contexto de Estudio para hoy (AI Prompt)</span>
                     </span>
-                    <span class="text-[10px] text-gray-400">Gemini genera una tanda de 6 retos con lo que pongas aquí</span>
+                    <span class="text-[10px] text-gray-400">La IA genera una tanda de 6 retos con lo que pongas aquí</span>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3">
                     <input id="flashcard-context-input" type="text" onkeydown="if(event.key==='Enter'){generateDynamicAIReto();}" placeholder="Ej: Hoy estoy estudiando PDO, sesiones y cookies en PHP..." class="flex-grow bg-gray-950 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-sans">
@@ -684,7 +683,7 @@
                 </div>
             </div>
 
-            <!-- Practice container: se rellena solo al enviar contexto -->
+            <!-- Practice container -->
             <div class="max-w-2xl mx-auto">
                 <div id="practice-empty" class="astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-astra-border">
                     <i class="fa-solid fa-wand-magic-sparkles text-4xl text-gray-600"></i>
@@ -694,7 +693,7 @@
 
                 <div id="practice-loading" class="hidden astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-astra-border">
                     <div class="w-6 h-6 mx-auto rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
-                    <p class="text-xs text-astra-cyan">Gemini está preparando el repaso y tus 6 retos...</p>
+                    <p class="text-xs text-astra-cyan">La IA está preparando el repaso y tus 6 retos...</p>
                 </div>
 
                 <div id="practice-intro" class="hidden astra-glass-card p-8 rounded-3xl border border-astra-border space-y-6">
@@ -733,7 +732,7 @@
                     <div id="card-actions" class="flex flex-wrap gap-3 pt-1">
                         <button id="card-eval-btn" onclick="checkAnswerWithAI()" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-3 shadow-lg">
                             <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
-                            <span>Evaluar mi código con Gemini AI</span>
+                            <span>Evaluar mi código con IA</span>
                         </button>
                         <button id="card-reveal-btn" onclick="revealOfficialAnswer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-5 py-3 rounded-xl transition">
                             👁️ Ver solución (cuenta 0)
@@ -815,7 +814,7 @@
 
             <div class="space-y-5 text-xs">
                 <p class="text-gray-300 leading-relaxed">
-                    Sube enunciados de examen, capturas de pantalla de código, PDFs o escribe el modelo de examen esperado para que Gemini simule un examen real o desarrolle soluciones paso a paso.
+                    Sube enunciados de examen, capturas de pantalla de código, PDFs o escribe el modelo de examen esperado para que la IA simule un examen real o desarrolle soluciones paso a paso.
                 </p>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -853,7 +852,7 @@
 
                 <button onclick="processExamPrepWithAI()" class="w-full bg-astra-600 hover:bg-astra-700 text-white font-bold py-3 rounded-xl transition shadow-lg flex items-center justify-center space-x-3">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <span>Procesar y Generar Modelo con Gemini</span>
+                    <span>Procesar y Generar Modelo con IA</span>
                 </button>
 
                 <div id="exam-prep-result-container" class="hidden space-y-4 pt-3 border-t border-astra-border">
@@ -869,28 +868,76 @@
         </div>
     </div>
 
-    <!-- MODAL: SETTINGS -->
+    <!-- MODAL: SETTINGS MULTI-AI -->
     <div id="modal-settings" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-md space-y-6 shadow-2xl">
+        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-md space-y-6 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center border-b border-astra-border pb-3">
                 <h3 class="text-sm font-bold text-white flex items-center space-x-3">
-                    <i class="fa-solid fa-key text-astra-cyan"></i>
-                    <span>Configuración Gemini API Key</span>
+                    <i class="fa-solid fa-sliders text-astra-cyan"></i>
+                    <span>Configuración de Proveedor de IA</span>
                 </h3>
                 <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
             <div class="space-y-4 text-xs">
-                <p class="text-gray-300">Ingresa tu clave de la API de Gemini si no usas el entorno por defecto.</p>
                 <div>
-                    <label class="block font-bold text-gray-300 uppercase mb-1">API Key</label>
+                    <label class="block font-bold text-gray-300 uppercase mb-1">Proveedor Activo</label>
+                    <select id="settings-provider-select" onchange="toggleProviderSettingsFields(this.value)" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                        <option value="gemini">Google Gemini (Gratuito/Amplio)</option>
+                        <option value="ollama">Ollama Local (100% Gratuito/Sin Límites)</option>
+                        <option value="deepseek">DeepSeek API (Económico/Gratuito)</option>
+                        <option value="openrouter">OpenRouter (Claude, Llama, Mistral, etc.)</option>
+                    </select>
+                </div>
+
+                <!-- CAMPO: Gemini -->
+                <div id="field-gemini-key" class="space-y-1">
+                    <label class="block font-bold text-gray-300 uppercase mb-1">Gemini API Key</label>
                     <input id="input-api-key" type="password" placeholder="AIzaSy..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                    <p class="text-[10px] text-gray-500">Gratis con límites amplios en Google AI Studio.</p>
+                </div>
+
+                <!-- CAMPO: Ollama -->
+                <div id="field-ollama" class="hidden space-y-3">
+                    <div>
+                        <label class="block font-bold text-gray-300 uppercase mb-1">Endpoint Local Ollama</label>
+                        <input id="input-ollama-url" type="text" placeholder="http://localhost:11434" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-300 uppercase mb-1">Modelo Ollama</label>
+                        <input id="input-ollama-model" type="text" placeholder="llama3, mistral, codellama, qwen..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                    </div>
+                    <p class="text-[10px] text-gray-500">Recuerda habilitar CORS en Ollama ejecutando <code class="text-astra-cyan">OLLAMA_ORIGINS="*" ollama serve</code> si lo ejecutas en local.</p>
+                </div>
+
+                <!-- CAMPO: DeepSeek -->
+                <div id="field-deepseek" class="hidden space-y-3">
+                    <div>
+                        <label class="block font-bold text-gray-300 uppercase mb-1">DeepSeek API Key</label>
+                        <input id="input-deepseek-key" type="password" placeholder="sk-..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-300 uppercase mb-1">Modelo DeepSeek</label>
+                        <input id="input-deepseek-model" type="text" placeholder="deepseek-chat" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                    </div>
+                </div>
+
+                <!-- CAMPO: OpenRouter (Claude / Varios) -->
+                <div id="field-openrouter" class="hidden space-y-3">
+                    <div>
+                        <label class="block font-bold text-gray-300 uppercase mb-1">OpenRouter API Key</label>
+                        <input id="input-openrouter-key" type="password" placeholder="sk-or-..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-300 uppercase mb-1">Modelo OpenRouter</label>
+                        <input id="input-openrouter-model" type="text" placeholder="anthropic/claude-3.5-sonnet, meta-llama/llama-3-70b..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                    </div>
                 </div>
             </div>
 
             <div class="flex justify-end space-x-4 pt-2 border-t border-astra-border">
                 <button onclick="closeSettingsModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 bg-gray-900">Cancelar</button>
-                <button onclick="saveApiKeySetting()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-500 shadow-lg">Guardar</button>
+                <button onclick="saveApiKeySetting()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-500 shadow-lg">Guardar Configuración</button>
             </div>
         </div>
     </div>
@@ -994,6 +1041,13 @@
 
         let appData = {
             apiKey: '',
+            aiProvider: 'gemini', // 'gemini', 'ollama', 'deepseek', 'openrouter'
+            ollamaUrl: 'http://localhost:11434',
+            ollamaModel: 'llama3',
+            deepseekKey: '',
+            deepseekModel: 'deepseek-chat',
+            openrouterKey: '',
+            openrouterModel: 'anthropic/claude-3.5-sonnet',
             subjects: EMPTY_CUSTOM_DAW_SUBJECTS,
             flashcards: [],
             plans: [],
@@ -1027,7 +1081,7 @@
         let sb = null, cloudUser = null, cloudTimer = null, cloudBusy = false, cloudDirty = false;
 
         function cloudPayload() {
-            const { apiKey, ...rest } = appData;
+            const { apiKey, deepseekKey, openrouterKey, ...rest } = appData;
             return rest;
         }
 
@@ -1096,11 +1150,15 @@
             const cloudTs = cloudData ? (cloudData._updatedAt || Date.parse(row.updated_at) || 0) : 0;
 
             if (cloudData && cloudTs >= localTs) {
-                const keepKey = appData.apiKey;
+                const keepGeminiKey = appData.apiKey;
+                const keepDeepseekKey = appData.deepseekKey;
+                const keepOpenrouterKey = appData.openrouterKey;
                 appData = {
                     ...appData,
                     ...cloudData,
-                    apiKey: keepKey,
+                    apiKey: keepGeminiKey,
+                    deepseekKey: keepDeepseekKey,
+                    openrouterKey: keepOpenrouterKey,
                     chatHistories: { ...appData.chatHistories, ...(cloudData.chatHistories || {}) }
                 };
                 cleanLegacyCards();
@@ -1170,19 +1228,15 @@
             try { url = new URL(url).origin; } catch (e) { url = ''; }
 
             if (!url) {
-                showCloudNotice('Falta la URL del proyecto en SUPABASE_URL (debe ser tipo https://tuid.supabase.co).');
+                showCloudNotice('Falta la URL del proyecto en SUPABASE_URL.');
                 return;
             }
             if (!key || key.startsWith('PEGA')) {
-                showCloudNotice('Falta la clave en SUPABASE_ANON_KEY (la publishable "sb_publishable_..." o la anon "eyJ...").');
-                return;
-            }
-            if (key.startsWith('http')) {
-                showCloudNotice('En SUPABASE_ANON_KEY has pegado una URL. Ahí va la clave (sb_publishable_... o eyJ...).');
+                showCloudNotice('Falta la clave en SUPABASE_ANON_KEY.');
                 return;
             }
             if (!window.supabase) {
-                showCloudNotice('No se pudo cargar la librería de Supabase (¿sin internet o bloqueada?).');
+                showCloudNotice('No se pudo cargar la librería de Supabase.');
                 return;
             }
             sb = window.supabase.createClient(url, key);
@@ -1300,11 +1354,12 @@
             if (tabId === 'pomodoro') updatePomoDisplay();
         }
 
+        // ================= ABSTRACCIÓN DE PETICIONES MULTI-IA =================
         async function callGeminiAPI(prompt, systemInstruction = "", imageBase64Data = null, imageMimeType = "image/jpeg", history = []) {
             const apiKey = appData.apiKey || window.geminiApi || "";
             if (!apiKey) {
                 openSettingsModal();
-                throw new Error("Falta configurar la Gemini API Key. Por favor, introdúcela en la configuración.");
+                throw new Error("Falta configurar la API Key de Gemini.");
             }
 
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
@@ -1327,30 +1382,71 @@
                 systemInstruction: systemInstruction ? { parts: [{ text: systemInstruction }] } : undefined
             };
 
-            let retries = 3;
-            let delay = 1000;
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
 
-            for (let i = 0; i < retries; i++) {
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
+            if (!response.ok) {
+                const errData = await response.json().catch(() => ({}));
+                throw new Error(errData.error?.message || `Error HTTP Gemini: ${response.status}`);
+            }
+            const data = await response.json();
+            const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (text) return text;
+            throw new Error("Respuesta de Gemini vacía.");
+        }
 
-                    if (!response.ok) {
-                        const errData = await response.json().catch(() => ({}));
-                        throw new Error(errData.error?.message || `Error HTTP API: ${response.status}`);
-                    }
-                    const data = await response.json();
-                    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                    if (text) return text;
-                    throw new Error("Respuesta de API vacía");
-                } catch (err) {
-                    if (i === retries - 1) throw err;
-                    await new Promise(r => setTimeout(r, delay));
-                    delay *= 2;
-                }
+        async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemInstruction = "", history = []) {
+            const messages = [];
+            if (systemInstruction) messages.push({ role: 'system', content: systemInstruction });
+            history.forEach(m => messages.push({ role: m.sender === 'user' ? 'user' : 'assistant', content: String(m.text) }));
+            messages.push({ role: 'user', content: prompt });
+
+            const headers = { 'Content-Type': 'application/json' };
+            if (apiKey) headers['Authorization'] = `Bearer ${apiKey}`;
+
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({
+                    model: model || 'llama3',
+                    messages: messages,
+                    temperature: 0.7
+                })
+            });
+
+            if (!response.ok) {
+                const errData = await response.json().catch(() => ({}));
+                throw new Error(errData.error?.message || `Error HTTP API (${response.status})`);
+            }
+            const data = await response.json();
+            const text = data.choices?.[0]?.message?.content;
+            if (text) return text;
+            throw new Error("Respuesta de API vacía.");
+        }
+
+        // FUNCIÓN UNIFICADA LLAMADA POR TODA LA APP
+        async function callAI(prompt, systemInstruction = "", imageBase64Data = null, imageMimeType = "image/jpeg", history = []) {
+            const provider = appData.aiProvider || 'gemini';
+
+            if (provider === 'gemini') {
+                return await callGeminiAPI(prompt, systemInstruction, imageBase64Data, imageMimeType, history);
+            } else if (provider === 'ollama') {
+                const baseUrl = (appData.ollamaUrl || 'http://localhost:11434').replace(/\/$/, '');
+                const model = appData.ollamaModel || 'llama3';
+                return await callOpenAICompatibleAPI(`${baseUrl}/v1/chat/completions`, '', model, prompt, systemInstruction, history);
+            } else if (provider === 'deepseek') {
+                if (!appData.deepseekKey) { openSettingsModal(); throw new Error("Falta configurar la API Key de DeepSeek."); }
+                const model = appData.deepseekModel || 'deepseek-chat';
+                return await callOpenAICompatibleAPI('https://api.deepseek.com/v1/chat/completions', appData.deepseekKey, model, prompt, systemInstruction, history);
+            } else if (provider === 'openrouter') {
+                if (!appData.openrouterKey) { openSettingsModal(); throw new Error("Falta configurar la API Key de OpenRouter."); }
+                const model = appData.openrouterModel || 'anthropic/claude-3.5-sonnet';
+                return await callOpenAICompatibleAPI('https://openrouter.ai/api/v1/chat/completions', appData.openrouterKey, model, prompt, systemInstruction, history);
+            } else {
+                return await callGeminiAPI(prompt, systemInstruction, imageBase64Data, imageMimeType, history);
             }
         }
 
@@ -1487,7 +1583,7 @@
             }
         }
 
-        // ===== Conversaciones del tutor (se guardan en appData y se sincronizan con Supabase) =====
+        // ===== Conversaciones del tutor =====
         function ensureConversations() {
             if (!Array.isArray(appData.conversations)) appData.conversations = [];
             if (!appData.activeConv || typeof appData.activeConv !== 'object') appData.activeConv = {};
@@ -1623,12 +1719,10 @@
             const newText = prompt("Edita tu mensaje:", oldText);
             
             if (newText !== null && newText.trim() !== "" && newText !== oldText) {
-                // Truncamos la conversación desde el mensaje editado
                 conv.messages = conv.messages.slice(0, msgIdx);
                 saveData();
                 renderTutorChat();
                 
-                // Reenviamos con el nuevo texto
                 const input = document.getElementById('tutor-chat-input');
                 if (input) input.value = newText;
                 sendTutorMessage();
@@ -1661,7 +1755,7 @@
 
             try {
                 const systemPrompt = `Eres el Tutor de IA especializado en 2º DAW. Canal actual: ${channelAtSend}. Responde con explicaciones claras y ejemplos de código. Usa Markdown estándar: títulos con ##, negrita con **texto**, listas con guiones y el código en bloques con su lenguaje.`;
-                const responseText = await callGeminiAPI(message, systemPrompt, null, "image/jpeg", history);
+                const responseText = await callAI(message, systemPrompt, null, "image/jpeg", history);
                 conv.messages.push({ sender: 'ai', text: responseText });
                 conv.updatedAt = Date.now();
                 saveData();
@@ -1670,7 +1764,7 @@
                 else renderConvSidebar();
             } catch (err) {
                 removeTutorLoading(loadingId);
-                if (getActiveConv() === conv) appendTutorBubble('ai', `⚠️ ${err.message || 'Error al conectar con la API de Gemini.'}`, true);
+                if (getActiveConv() === conv) appendTutorBubble('ai', `⚠️ ${err.message || 'Error al conectar con el servicio de IA.'}`, true);
             }
         }
 
@@ -1844,22 +1938,22 @@ Contexto de estudio del estudiante: "${contextText}"
 
 Devuelve:
 1. "title": nombre corto del tema (máximo 8 palabras).
-2. "intro": un párrafo de 3 o 4 frases que explique de qué trata el tema, empezando de forma natural (por ejemplo "Este tema trata de..." o "PDO es...").
-3. "key_points": entre 4 y 5 aspectos fundamentales que hay que tener claros antes de practicar, una frase corta cada uno.
-4. "cards": exactamente ${PRACTICE_TOTAL} retos prácticos distintos. Cada reto toca un aspecto diferente, con dificultad creciente (de más básico a más completo), y se puede resolver con un fragmento corto de código o una explicación breve.${avoid}
+2. "intro": un párrafo de 3 o 4 frases que explique de qué trata el tema.
+3. "key_points": entre 4 y 5 aspectos fundamentales que hay que tener claros antes de practicar.
+4. "cards": exactamente ${PRACTICE_TOTAL} retos prácticos distintos. Cada reto toca un aspecto diferente, con dificultad creciente, y se puede resolver con código o explicación corta.${avoid}
 
-En los textos puedes usar \`código\` y **negrita**, nada más de Markdown.
-Responde ÚNICAMENTE con un objeto JSON, sin bloques markdown:
+En los textos puedes usar \`código\` y **negrita**.
+Responde ÚNICAMENTE con un objeto JSON, sin bloques markdown extra:
 {"title":"...","intro":"...","key_points":["..."],"cards":[{"front":"enunciado del reto","back":"solución esperada en código o respuesta explicada"}]}`;
 
             try {
-                const response = await callGeminiAPI(prompt, "Eres un profesor de desarrollo web y generas material de estudio. Respondes solo JSON válido.");
+                const response = await callAI(prompt, "Eres un profesor de desarrollo web y generas material de estudio. Respondes solo JSON válido.");
                 const objMatch = response.match(/\{[\s\S]*\}/);
                 const arrMatch = response.match(/\[[\s\S]*\]/);
                 let data;
                 if (objMatch) { try { data = JSON.parse(objMatch[0]); } catch (e) { data = null; } }
                 if (!data || !Array.isArray(data.cards)) {
-                    if (!arrMatch) throw new Error("Gemini no devolvió retos en formato válido. Prueba otra vez.");
+                    if (!arrMatch) throw new Error("La IA no devolvió retos en formato válido. Prueba otra vez.");
                     data = { cards: JSON.parse(arrMatch[0]) };
                 }
                 const parsed = data.cards.filter(c => c && c.front && c.back).slice(0, PRACTICE_TOTAL);
@@ -1892,7 +1986,7 @@ Responde ÚNICAMENTE con un objeto JSON, sin bloques markdown:
             } catch (e) {
                 practiceSession = null;
                 renderPractice();
-                alert(e.message || "Error generando los retos con Gemini. Revisa la clave API.");
+                alert(e.message || "Error generando los retos. Revisa la configuración de la IA.");
             }
         }
 
@@ -1931,7 +2025,7 @@ Responde ÚNICAMENTE con un objeto JSON, sin bloques markdown:
             evalResult.innerHTML = `
                 <div class="flex items-center space-x-3 text-astra-cyan">
                     <div class="w-3 h-3 rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
-                    <span>Evaluando tu código con Gemini...</span>
+                    <span>Evaluando tu código con la IA...</span>
                 </div>`;
 
             const prompt = `Evalúa la solución de un estudiante de 2º DAW.
@@ -1939,10 +2033,10 @@ Reto: ${card.front}
 Solución esperada: ${card.back}
 Respuesta del estudiante: "${userCode}"
 
-Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero válidas). Responde ÚNICAMENTE con JSON plano: {"score": <entero 0-10>, "feedback": "2 líneas máximo en español explicando aciertos y fallos"}`;
+Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plano: {"score": <entero 0-10>, "feedback": "2 líneas máximo en español explicando aciertos y fallos"}`;
 
             try {
-                const response = await callGeminiAPI(prompt, "Eres un evaluador de código estricto pero justo. Respondes solo JSON válido.");
+                const response = await callAI(prompt, "Eres un evaluador de código estricto pero justo. Respondes solo JSON válido.");
                 const match = response.match(/\{[\s\S]*\}/);
                 if (!match) throw new Error("No se pudo interpretar la evaluación. Inténtalo de nuevo.");
                 const result = JSON.parse(match[0]);
@@ -2069,7 +2163,7 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
 
             if (container) container.classList.remove('hidden');
             if (addCardsBtn) addCardsBtn.classList.add('hidden');
-            if (outputEl) outputEl.innerHTML = `⌛ Procesando modelo de examen con Gemini...`;
+            if (outputEl) outputEl.innerHTML = `⌛ Procesando modelo de examen con la IA seleccionada...`;
 
             let imageBase64 = null;
             let imageMimeType = "image/jpeg";
@@ -2087,10 +2181,10 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
             const prompt = `Examen módulo ${subject} DAW. Modo: ${mode}.\nTexto: "${text || 'Imagen adjunta'}"`;
 
             try {
-                const response = await callGeminiAPI(prompt, "Profesor experto de desarrollo web.", imageBase64, imageMimeType);
+                const response = await callAI(prompt, "Profesor experto de desarrollo web.", imageBase64, imageMimeType);
                 if (outputEl) outputEl.innerHTML = formatMarkdownCode(response);
             } catch (err) {
-                if (outputEl) outputEl.innerHTML = `<span class="text-rose-400">${escapeHTML(err.message || "Error en la llamada de la API. Revisa tu clave API.")}</span>`;
+                if (outputEl) outputEl.innerHTML = `<span class="text-rose-400">${escapeHTML(err.message || "Error en la llamada de la API.")}</span>`;
             }
         }
 
@@ -2119,12 +2213,12 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
             switchTab('planner');
 
             const container = document.getElementById('planner-plans-container');
-            if (container) container.innerHTML = `<p class="text-xs text-astra-cyan">Generando plan con Gemini...</p>`;
+            if (container) container.innerHTML = `<p class="text-xs text-astra-cyan">Generando plan con IA...</p>`;
 
             const prompt = `Crea un plan día a día para ${subject} con examen el ${date}, estudiando ${hours}h/día. Puntos clave: ${topics}`;
 
             try {
-                const response = await callGeminiAPI(prompt, "Asesor pedagógico.");
+                const response = await callAI(prompt, "Asesor pedagógico.");
                 appData.plans.unshift({ id: 'plan_' + Date.now(), subject, examDate: date, dailyHours: hours, content: response });
                 saveData();
                 renderPlanner();
@@ -2293,31 +2387,74 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
             currentSynthType = null;
         }
 
+        function toggleProviderSettingsFields(provider) {
+            document.getElementById('field-gemini-key').classList.toggle('hidden', provider !== 'gemini');
+            document.getElementById('field-ollama').classList.toggle('hidden', provider !== 'ollama');
+            document.getElementById('field-deepseek').classList.toggle('hidden', provider !== 'deepseek');
+            document.getElementById('field-openrouter').classList.toggle('hidden', provider !== 'openrouter');
+        }
+
         function openSettingsModal() {
-            const input = document.getElementById('input-api-key');
-            if (input) input.value = appData.apiKey || '';
+            const select = document.getElementById('settings-provider-select');
+            if (select) {
+                select.value = appData.aiProvider || 'gemini';
+                toggleProviderSettingsFields(select.value);
+            }
+
+            document.getElementById('input-api-key').value = appData.apiKey || '';
+            document.getElementById('input-ollama-url').value = appData.ollamaUrl || 'http://localhost:11434';
+            document.getElementById('input-ollama-model').value = appData.ollamaModel || 'llama3';
+            document.getElementById('input-deepseek-key').value = appData.deepseekKey || '';
+            document.getElementById('input-deepseek-model').value = appData.deepseekModel || 'deepseek-chat';
+            document.getElementById('input-openrouter-key').value = appData.openrouterKey || '';
+            document.getElementById('input-openrouter-model').value = appData.openrouterModel || 'anthropic/claude-3.5-sonnet';
+
             document.getElementById('modal-settings')?.classList.remove('hidden');
         }
 
         function closeSettingsModal() { document.getElementById('modal-settings')?.classList.add('hidden'); }
 
         function saveApiKeySetting() {
-            const input = document.getElementById('input-api-key');
-            if (input) {
-                appData.apiKey = input.value.trim();
-                saveData();
-                closeSettingsModal();
-                updateApiStatusUI();
-            }
+            appData.aiProvider = document.getElementById('settings-provider-select').value;
+            appData.apiKey = document.getElementById('input-api-key').value.trim();
+            appData.ollamaUrl = document.getElementById('input-ollama-url').value.trim();
+            appData.ollamaModel = document.getElementById('input-ollama-model').value.trim();
+            appData.deepseekKey = document.getElementById('input-deepseek-key').value.trim();
+            appData.deepseekModel = document.getElementById('input-deepseek-model').value.trim();
+            appData.openrouterKey = document.getElementById('input-openrouter-key').value.trim();
+            appData.openrouterModel = document.getElementById('input-openrouter-model').value.trim();
+
+            saveData();
+            closeSettingsModal();
+            updateApiStatusUI();
         }
 
         function updateApiStatusUI() {
             const ping = document.getElementById('api-status-ping');
             const text = document.getElementById('api-status-text');
-            const hasKey = !!(appData.apiKey || window.geminiApi);
+            const badge = document.getElementById('active-provider-badge');
 
-            if (ping) ping.className = hasKey ? "w-2 h-2 rounded-full bg-emerald-400 animate-ping" : "w-2 h-2 rounded-full bg-amber-400 animate-ping";
-            if (text) text.innerText = hasKey ? "Gemini Key OK" : "Configurar Key";
+            const provider = appData.aiProvider || 'gemini';
+            let isConfigured = false;
+            let labelName = 'Gemini';
+
+            if (provider === 'gemini') {
+                isConfigured = !!(appData.apiKey || window.geminiApi);
+                labelName = 'Gemini';
+            } else if (provider === 'ollama') {
+                isConfigured = !!appData.ollamaUrl;
+                labelName = `Ollama (${appData.ollamaModel || 'Local'})`;
+            } else if (provider === 'deepseek') {
+                isConfigured = !!appData.deepseekKey;
+                labelName = 'DeepSeek';
+            } else if (provider === 'openrouter') {
+                isConfigured = !!appData.openrouterKey;
+                labelName = 'OpenRouter/Claude';
+            }
+
+            if (ping) ping.className = isConfigured ? "w-2 h-2 rounded-full bg-emerald-400 animate-ping" : "w-2 h-2 rounded-full bg-amber-400 animate-ping";
+            if (text) text.innerText = isConfigured ? `${labelName}` : "Config IA";
+            if (badge) badge.innerText = labelName;
         }
 
         /* HELPERS */

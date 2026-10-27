@@ -531,28 +531,18 @@
 
         <!-- SECTION 3: GEMINI AI TUTOR CHAT -->
         <section id="section-tutor" class="hidden space-y-5">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[600px]">
-                <div class="lg:col-span-8 astra-glass-card rounded-3xl p-4 sm:p-6 flex flex-col justify-between h-full border border-astra-border min-h-[550px]">
-                    <div class="flex flex-col border-b border-astra-border pb-4 mb-4 gap-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 rounded-xl bg-astra-600 flex items-center justify-center text-white font-bold text-lg">
-                                <i class="fa-solid fa-robot"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-bold text-white flex items-center space-x-3">
-                                    <span>Tutor DAW Gemini API</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono whitespace-nowrap">Historial Guardado</span>
-                                </h3>
-                                <p class="text-[11px] text-gray-400">Canal activo de conversación</p>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-wrap items-center gap-3">
-                            <select id="tutor-conv-select" onchange="selectConversation(this.value)" title="Tus conversaciones de este canal" class="bg-gray-950 border border-astra-border text-gray-300 text-xs rounded-xl px-3 py-2 max-w-[200px] focus:outline-none"></select>
-                            <button onclick="newConversation()" title="Empezar una conversación nueva" class="flex items-center gap-2 px-3.5 py-2 text-xs font-medium text-white bg-astra-600 hover:bg-astra-700 rounded-xl transition">
-                                <i class="fa-solid fa-plus"></i><span>Nueva</span>
-                            </button>
-                            <select id="tutor-channel-select" onchange="switchTutorChannel(this.value)" class="bg-gray-950 border border-astra-border text-astra-cyan font-mono text-xs rounded-xl px-3 py-2 focus:outline-none">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[750px]">
+                
+                <!-- Panel Lateral / Historial de Conversaciones -->
+                <div class="lg:col-span-3 astra-glass-card rounded-3xl p-4 flex flex-col justify-between border border-astra-border min-h-[250px] lg:min-h-[750px]">
+                    <div class="space-y-4 flex-grow flex flex-col">
+                        <button onclick="newConversation()" class="w-full flex items-center justify-center gap-2 px-4 py-3 text-xs font-bold text-white bg-astra-600 hover:bg-astra-700 rounded-2xl transition shadow-lg">
+                            <i class="fa-solid fa-plus"></i><span>Nueva conversación</span>
+                        </button>
+                        
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase font-bold text-gray-400 tracking-wider block px-1">Canal DAW</label>
+                            <select id="tutor-channel-select" onchange="switchTutorChannel(this.value)" class="w-full bg-gray-950 border border-astra-border text-astra-cyan font-mono text-xs rounded-xl px-3 py-2.5 focus:outline-none">
                                 <option value="GLOBAL">🌐 Canal General DAW</option>
                                 <option value="DWES">🐘 DWES (Servidor)</option>
                                 <option value="DWEC">⚡ DWEC (Cliente)</option>
@@ -562,13 +552,50 @@
                                 <option value="EIE">💼 EIE / Empleabilidad</option>
                                 <option value="PROYECTO">🚀 Proyecto DAW</option>
                             </select>
-                            <button onclick="clearTutorChat()" title="Borrar esta conversación" class="p-2.5 text-xs text-gray-500 hover:text-rose-400 bg-gray-900 border border-astra-border rounded-xl transition">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
+                        </div>
+
+                        <div class="flex-grow flex flex-col min-h-0 space-y-2 pt-2 border-t border-astra-border">
+                            <span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider block px-1">Historial</span>
+                            <div id="tutor-conv-sidebar-list" class="flex-grow overflow-y-auto space-y-1.5 pr-1 max-h-[350px] lg:max-h-[500px]">
+                                <!-- Lista dinámica de conversaciones -->
+                            </div>
                         </div>
                     </div>
 
-                    <div id="tutor-chat-stream" class="flex-grow overflow-y-auto space-y-5 pr-2 mb-3 text-xs sm:text-sm max-h-[400px]">
+                    <div class="pt-4 border-t border-astra-border space-y-2">
+                        <button onclick="askAIForQuiz()" class="w-full text-left p-2.5 rounded-xl bg-gray-950 hover:bg-gray-900 border border-astra-border text-gray-300 text-xs transition flex items-center justify-between">
+                            <span>🎯 Test Aleatorio</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                        <button onclick="askAIForCodeBug()" class="w-full text-left p-2.5 rounded-xl bg-gray-950 hover:bg-gray-900 border border-astra-border text-gray-300 text-xs transition flex items-center justify-between">
+                            <span>🐛 Depurar Bug</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chat Principal Ampliado -->
+                <div class="lg:col-span-9 astra-glass-card rounded-3xl p-4 sm:p-6 flex flex-col justify-between h-full border border-astra-border min-h-[600px] lg:min-h-[750px]">
+                    <div class="flex items-center justify-between border-b border-astra-border pb-4 mb-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-astra-600 flex items-center justify-center text-white font-bold text-lg">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white flex items-center space-x-3">
+                                    <span>Tutor DAW Gemini API</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono whitespace-nowrap">Historial Guardado</span>
+                                </h3>
+                                <p class="text-[11px] text-gray-400" id="tutor-chat-subtitle">Canal activo: General</p>
+                            </div>
+                        </div>
+
+                        <button onclick="clearTutorChat()" title="Borrar esta conversación" class="p-2.5 text-xs text-gray-500 hover:text-rose-400 bg-gray-900 border border-astra-border rounded-xl transition flex items-center space-x-2">
+                            <i class="fa-solid fa-trash-can"></i><span class="hidden sm:inline">Borrar Chat</span>
+                        </button>
+                    </div>
+
+                    <div id="tutor-chat-stream" class="flex-grow overflow-y-auto space-y-5 pr-2 mb-3 text-xs sm:text-sm max-h-[500px] lg:max-h-[620px]">
                         <!-- Messages -->
                     </div>
 
@@ -590,25 +617,6 @@
                             <i class="fa-solid fa-paper-plane"></i>
                         </button>
                     </form>
-                </div>
-
-                <div class="hidden lg:flex lg:col-span-4 flex-col space-y-5">
-                    <div class="astra-glass-card p-5 rounded-3xl space-y-4 border border-astra-border">
-                        <h4 class="text-xs font-bold text-white tracking-normal flex items-center space-x-3">
-                            <i class="fa-solid fa-terminal text-astra-cyan"></i>
-                            <span>Consola Rápida</span>
-                        </h4>
-                        <div class="space-y-3 text-xs">
-                            <button onclick="askAIForQuiz()" class="w-full text-left p-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-gray-300 transition flex items-center justify-between">
-                                <span>🎯 Generar Pregunta Test Aleatoria</span>
-                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                            </button>
-                            <button onclick="askAIForCodeBug()" class="w-full text-left p-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 border border-gray-800 text-gray-300 transition flex items-center justify-between">
-                                <span>🐛 Ejercicio de Depurar Código Bug</span>
-                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -1013,12 +1021,11 @@
         }
 
         // ================= SUPABASE: LOGIN + SINCRONIZACIÓN =================
-       const SUPABASE_URL = 'https://dnvmjcigxjjiatrhnkrv.supabase.co';          // https://xxxx.supabase.co
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRudm1qY2lneGpqaWF0cmhua3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2ODUzMzgsImV4cCI6MjEwODI2MTMzOH0.hErApqoOTMEk_rjKInwECFjfzS3Jolqo4Qp-r6-Lv9w';        // clave "anon" / "publishable" (pública)
+        const SUPABASE_URL = 'https://dnvmjcigxjjiatrhnkrv.supabase.co';          
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRudm1qY2lneGpqaWF0cmhua3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2ODUzMzgsImV4cCI6MjEwODI2MTMzOH0.hErApqoOTMEk_rjKInwECFjfzS3Jolqo4Qp-r6-Lv9w';        
 
         let sb = null, cloudUser = null, cloudTimer = null, cloudBusy = false, cloudDirty = false;
 
-        // La API key de Gemini NO se sube a la nube: se queda solo en este navegador.
         function cloudPayload() {
             const { apiKey, ...rest } = appData;
             return rest;
@@ -1089,7 +1096,6 @@
             const cloudTs = cloudData ? (cloudData._updatedAt || Date.parse(row.updated_at) || 0) : 0;
 
             if (cloudData && cloudTs >= localTs) {
-                // La nube es más reciente (o es un dispositivo nuevo): gana la nube
                 const keepKey = appData.apiKey;
                 appData = {
                     ...appData,
@@ -1102,7 +1108,6 @@
                 refreshAllViews();
                 setSyncStatus('ok');
             } else {
-                // Primera vez, o lo local es más nuevo: subimos lo local
                 cloudDirty = true;
                 await flushCloudSave();
             }
@@ -1162,7 +1167,7 @@
         function initCloud() {
             let url = (SUPABASE_URL || '').trim();
             const key = (SUPABASE_ANON_KEY || '').trim();
-            try { url = new URL(url).origin; } catch (e) { url = ''; }   // quita barras finales y /rest/v1
+            try { url = new URL(url).origin; } catch (e) { url = ''; }
 
             if (!url) {
                 showCloudNotice('Falta la URL del proyecto en SUPABASE_URL (debe ser tipo https://tuid.supabase.co).');
@@ -1188,7 +1193,7 @@
                     cloudUser = user;
                     showAuth(false);
                     document.getElementById('logout-btn').classList.remove('hidden');
-                    setTimeout(pullCloudData, 0); // fuera del callback para evitar bloqueos de supabase-js
+                    setTimeout(pullCloudData, 0);
                 } else if (!user) {
                     cloudUser = null;
                     document.getElementById('logout-btn').classList.add('hidden');
@@ -1487,7 +1492,6 @@
             if (!Array.isArray(appData.conversations)) appData.conversations = [];
             if (!appData.activeConv || typeof appData.activeConv !== 'object') appData.activeConv = {};
             if (!appData._chatsMigrated) {
-                // Pasa los chats antiguos (uno por canal) a conversaciones
                 Object.entries(appData.chatHistories || {}).forEach(([channel, msgs]) => {
                     if (Array.isArray(msgs) && msgs.some(m => m.sender === 'user')) {
                         const t = Date.now();
@@ -1528,23 +1532,36 @@
                 : `👋 **Canal de ${activeChannel}**. Haz tus preguntas específicas sobre este módulo.`;
         }
 
-        function renderConvSelect() {
-            const sel = document.getElementById('tutor-conv-select');
-            if (!sel) return;
+        function renderConvSidebar() {
+            const sidebar = document.getElementById('tutor-conv-sidebar-list');
+            const selectChan = document.getElementById('tutor-channel-select');
+            const subTitle = document.getElementById('tutor-chat-subtitle');
+            
+            if (selectChan) selectChan.value = activeChannel;
+            if (subTitle) subTitle.innerText = `Canal activo: ${activeChannel}`;
+            if (!sidebar) return;
+
             const list = convsOfChannel();
             const active = getActiveConv();
-            sel.innerHTML = '';
+            sidebar.innerHTML = '';
+
             if (!list.length) {
-                sel.innerHTML = '<option value="">Sin conversaciones guardadas</option>';
-                sel.disabled = true;
+                sidebar.innerHTML = '<p class="text-[11px] text-gray-500 italic p-2">Sin chats guardados en este canal</p>';
                 return;
             }
-            sel.disabled = false;
-            if (!active) sel.add(new Option('Nueva conversación…', ''));
+
             list.forEach(c => {
-                const d = new Date(c.updatedAt || Date.now());
-                const label = `${c.title || 'Conversación'} · ${d.getDate()}/${d.getMonth() + 1}`;
-                sel.add(new Option(label, c.id, false, !!active && active.id === c.id));
+                const isActive = active && active.id === c.id;
+                const btn = document.createElement('button');
+                btn.onclick = () => selectConversation(c.id);
+                btn.className = `w-full text-left p-2.5 rounded-xl text-xs transition flex items-center justify-between group ${
+                    isActive ? 'bg-astra-600/20 text-white border border-astra-500/40 font-medium' : 'text-gray-400 hover:bg-gray-900 hover:text-gray-200 border border-transparent'
+                }`;
+                btn.innerHTML = `
+                    <span class="truncate flex-1 pr-2">${escapeHTML(c.title || 'Conversación')}</span>
+                    <i class="fa-solid fa-chevron-right text-[9px] opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                `;
+                sidebar.appendChild(btn);
             });
         }
 
@@ -1552,13 +1569,13 @@
             const stream = document.getElementById('tutor-chat-stream');
             if (!stream) return;
             stream.innerHTML = '';
-            renderConvSelect();
+            renderConvSidebar();
 
             const conv = getActiveConv();
             if (!conv || !conv.messages.length) {
                 appendTutorBubble('ai', tutorWelcome(), false);
             } else {
-                conv.messages.forEach(msg => appendTutorBubble(msg.sender, msg.text, false));
+                conv.messages.forEach((msg, idx) => appendTutorBubble(msg.sender, msg.text, false, idx));
             }
             stream.scrollTop = stream.scrollHeight;
         }
@@ -1599,6 +1616,25 @@
             }
         }
 
+        async function editTutorMessage(msgIdx) {
+            const conv = getActiveConv();
+            if (!conv || !conv.messages[msgIdx]) return;
+            const oldText = conv.messages[msgIdx].text;
+            const newText = prompt("Edita tu mensaje:", oldText);
+            
+            if (newText !== null && newText.trim() !== "" && newText !== oldText) {
+                // Truncamos la conversación desde el mensaje editado
+                conv.messages = conv.messages.slice(0, msgIdx);
+                saveData();
+                renderTutorChat();
+                
+                // Reenviamos con el nuevo texto
+                const input = document.getElementById('tutor-chat-input');
+                if (input) input.value = newText;
+                sendTutorMessage();
+            }
+        }
+
         async function sendTutorMessage(e) {
             if (e) e.preventDefault();
             const input = document.getElementById('tutor-chat-input');
@@ -1630,24 +1666,28 @@
                 conv.updatedAt = Date.now();
                 saveData();
                 removeTutorLoading(loadingId);
-                if (getActiveConv() === conv && activeChannel === channelAtSend) appendTutorBubble('ai', responseText, true);
-                else renderConvSelect();
+                if (getActiveConv() === conv && activeChannel === channelAtSend) appendTutorBubble('ai', responseText, true, conv.messages.length - 1);
+                else renderConvSidebar();
             } catch (err) {
                 removeTutorLoading(loadingId);
                 if (getActiveConv() === conv) appendTutorBubble('ai', `⚠️ ${err.message || 'Error al conectar con la API de Gemini.'}`, true);
             }
         }
 
-        function appendTutorBubble(sender, text, shouldScroll = true) {
+        function appendTutorBubble(sender, text, shouldScroll = true, msgIdx = null) {
             const stream = document.getElementById('tutor-chat-stream');
             if (!stream) return;
             const wrapper = document.createElement('div');
-            wrapper.className = sender === 'user' ? "flex items-start justify-end space-x-4" : "flex items-start space-x-4";
+            wrapper.className = sender === 'user' ? "flex items-start justify-end space-x-4 group" : "flex items-start space-x-4";
 
             if (sender === 'user') {
+                const canEdit = msgIdx !== null;
                 wrapper.innerHTML = `
-                    <div class="bg-astra-600 text-white rounded-2xl rounded-tr-none p-3.5 max-w-[85%] leading-relaxed font-sans">
-                        ${escapeHTML(text)}
+                    <div class="flex items-center gap-2">
+                        ${canEdit ? `<button onclick="editTutorMessage(${msgIdx})" title="Editar mensaje" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-astra-cyan text-xs transition p-1"><i class="fa-solid fa-pen-to-square"></i></button>` : ''}
+                        <div class="bg-astra-600 text-white rounded-2xl rounded-tr-none p-3.5 max-w-[85%] leading-relaxed font-sans">
+                            ${escapeHTML(text)}
+                        </div>
                     </div>
                     <div class="w-8 h-8 rounded-lg bg-gray-800 flex-shrink-0 flex items-center justify-center text-xs font-bold text-gray-300">Tú</div>
                 `;
@@ -1705,7 +1745,7 @@
 
         const PRACTICE_TOTAL = 6;
         const PASS_GRADE = 5;
-        let practiceSession = null; // { subject, context, cards, index, finished, loading, seenFronts }
+        let practiceSession = null;
 
         function showPracticeView(view) {
             ['empty', 'loading', 'intro', 'card-box', 'results'].forEach(v => {
@@ -1820,7 +1860,7 @@ Responde ÚNICAMENTE con un objeto JSON, sin bloques markdown:
                 if (objMatch) { try { data = JSON.parse(objMatch[0]); } catch (e) { data = null; } }
                 if (!data || !Array.isArray(data.cards)) {
                     if (!arrMatch) throw new Error("Gemini no devolvió retos en formato válido. Prueba otra vez.");
-                    data = { cards: JSON.parse(arrMatch[0]) };   // por si devuelve solo la lista de retos
+                    data = { cards: JSON.parse(arrMatch[0]) };
                 }
                 const parsed = data.cards.filter(c => c && c.front && c.back).slice(0, PRACTICE_TOTAL);
                 if (parsed.length === 0) throw new Error("No se generó ningún reto válido. Prueba otra vez.");
@@ -1845,7 +1885,6 @@ Responde ÚNICAMENTE con un objeto JSON, sin bloques markdown:
                 practiceSession.seenFronts = [...practiceSession.seenFronts, ...practiceSession.cards.map(c => c.front)];
                 practiceSession.loading = false;
 
-                // Banco histórico solo para el contador del dashboard
                 appData.flashcards.push(...practiceSession.cards.map(c => ({ id: c.id, subject: c.subject, front: c.front, back: c.back, mastery: 'medium' })));
                 saveData();
                 renderDashboard();
@@ -2290,7 +2329,6 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
             return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
 
-        // ===== Renderizador de Markdown (seguro: escapa el HTML antes de formatear) =====
         function mdInline(raw) {
             const codes = [];
             let t = String(raw).replace(/`([^`\n]+)`/g, (m, c) => {
@@ -2305,7 +2343,7 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
             t = t.replace(/(^|[\s(])\*([^*\s][^*\n]*?)\*(?=[\s.,;:!?)]|$)/g, '$1<em>$2</em>');
             t = t.replace(/(^|[\s(])_([^_\s][^_\n]*?)_(?=[\s.,;:!?)]|$)/g, '$1<em>$2</em>');
             t = t.replace(/~~([^~\n]+)~~/g, '<del class="text-gray-500">$1</del>');
-            t = t.replace(/\*\*/g, '');   // asteriscos sueltos que no han cerrado
+            t = t.replace(/\*\*/g, '');
             return t.replace(/\u0000I(\d+)\u0000/g, (m, n) => codes[+n]);
         }
 
@@ -2319,7 +2357,7 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
             src = src.replace(/```([\w+#.-]*)[ \t]*\n([\s\S]*?)```/g, (m, lang, code) => stash(lang, code));
             src = src.replace(/```([\s\S]*?)```/g, (m, code) => stash('', code));
 
-            src = src.replace(/([^\n#\s])[ \t]*(#{3,6}[ \t]+\S)/g, '$1\n\n$2');   // títulos pegados al texto
+            src = src.replace(/([^\n#\s])[ \t]*(#{3,6}[ \t]+\S)/g, '$1\n\n$2');
             const lines = src.split('\n');
             const out = [];
             const isTableSep = l => /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?\s*$/.test(l) && l.includes('-');
@@ -2365,7 +2403,6 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
                         const mm = lines[i].match(/^(\s*)(?:[-*+]|\d+[.)])\s+(.*)$/);
                         items.push({ indent: Math.min(Math.floor(mm[1].replace(/\t/g, '    ').length / 2), 3), text: mm[2] });
                         i++;
-                        // línea de continuación sin viñeta
                         while (i < lines.length && lines[i].trim() && /^\s{2,}\S/.test(lines[i]) && !/^\s*([-*+]|\d+[.)])\s+/.test(lines[i]) && !/^\u0000B/.test(lines[i].trim())) {
                             items[items.length - 1].text += ' ' + lines[i].trim(); i++;
                         }
