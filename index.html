@@ -335,13 +335,8 @@
 
     <!-- LOGIN (Supabase) -->
     <div id="auth-overlay" class="hidden fixed inset-0 z-[100] bg-gray-950 flex items-center justify-center p-4">
-<<<<<<< HEAD
-        <form onsubmit="event.preventDefault(); authSubmit('login');" class="w-full max-w-sm bg-astra-card border border-astra-border rounded-3xl p-6 space-y-4 shadow-2xl">
-            <div class="text-center space-y-1">
-=======
         <form onsubmit="event.preventDefault(); authSubmit('login');" class="w-full max-w-sm bg-astra-card border border-astra-border rounded-3xl p-6 space-y-5 shadow-2xl">
             <div class="text-center space-y-2">
->>>>>>> f44f12c (added)
                 <i class="fa-solid fa-cloud text-3xl text-astra-cyan"></i>
                 <h2 class="text-lg font-bold text-white">Inicia sesión</h2>
                 <p class="text-xs text-gray-400">Tus asignaturas, chats y retos se guardan en tu cuenta.</p>
@@ -349,29 +344,17 @@
             <input id="auth-email" type="email" required autocomplete="email" placeholder="Email" class="w-full bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-astra-500">
             <input id="auth-password" type="password" required minlength="6" autocomplete="current-password" placeholder="Contraseña (mín. 6)" class="w-full bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-astra-500">
             <div id="auth-msg" class="text-xs text-rose-400 min-h-[1rem]"></div>
-<<<<<<< HEAD
-            <div class="flex gap-2">
-                <button type="submit" id="auth-login-btn" class="flex-1 bg-gradient-to-r from-astra-600 to-astra-cyan hover:opacity-90 text-white text-xs font-bold py-3 rounded-xl transition">Entrar</button>
-=======
             <div class="flex gap-3">
                 <button type="submit" id="auth-login-btn" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-3 rounded-xl transition">Entrar</button>
->>>>>>> f44f12c (added)
                 <button type="button" id="auth-signup-btn" onclick="authSubmit('signup')" class="flex-1 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold py-3 rounded-xl transition">Crear cuenta</button>
             </div>
         </form>
     </div>
 
-<<<<<<< HEAD
-    <header class="sticky top-0 z-40 astra-glass border-b border-astra-border px-4 lg:px-8 py-3">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('dashboard')">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-astra-700 via-astra-500 to-astra-cyan flex items-center justify-center text-white font-black text-xl shadow-lg astra-glow">
-=======
     <header class="sticky top-0 z-40 astra-glass border-b border-astra-border px-4 lg:px-8 py-4">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-4">
             <div class="flex items-center space-x-4 cursor-pointer" onclick="switchTab('dashboard')">
                 <div class="w-10 h-10 rounded-xl bg-astra-600 flex items-center justify-center text-white text-lg">
->>>>>>> f44f12c (added)
                     <i class="fa-solid fa-code"></i>
                 </div>
                 <div>
@@ -415,21 +398,12 @@
                     <i class="fa-solid fa-key text-astra-cyan"></i>
                     <span id="api-status-text" class="hidden sm:inline font-medium text-gray-300">Gemini Key</span>
                 </button>
-<<<<<<< HEAD
-                <span id="sync-status" class="hidden items-center space-x-1 text-[11px] text-gray-400"><i id="sync-icon" class="fa-solid fa-cloud"></i><span id="sync-text" class="hidden sm:inline"></span></span>
-                <button id="logout-btn" onclick="logout()" title="Cerrar sesión" class="hidden p-2 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
-                    <i class="fa-solid fa-right-from-bracket text-xs"></i>
-                </button>
-                <div class="flex items-center space-x-1">
-                    <button onclick="exportData()" title="Exportar Backup JSON" class="p-2 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
-=======
                 <span id="sync-status" class="hidden items-center space-x-2 text-[11px] text-gray-400"><i id="sync-icon" class="fa-solid fa-cloud"></i><span id="sync-text" class="hidden sm:inline"></span></span>
                 <button id="logout-btn" onclick="logout()" title="Cerrar sesión" class="hidden p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
                     <i class="fa-solid fa-right-from-bracket text-xs"></i>
                 </button>
                 <div class="flex items-center space-x-2">
                     <button onclick="exportData()" title="Exportar Backup JSON" class="p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
->>>>>>> f44f12c (added)
                         <i class="fa-solid fa-download text-xs"></i>
                     </button>
                     <label title="Importar Backup JSON" class="p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition cursor-pointer">
@@ -1010,13 +984,8 @@
         }
 
         // ================= SUPABASE: LOGIN + SINCRONIZACIÓN =================
-<<<<<<< HEAD
-        const SUPABASE_URL = 'https://dnvmjcigxjjiatrhnkrv.supabase.co/';          // https://xxxx.supabase.co
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRudm1qY2lneGpqaWF0cmhua3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2ODUzMzgsImV4cCI6MjEwODI2MTMzOH0.hErApqoOTMEk_rjKInwECFjfzS3Jolqo4Qp-r6-Lv9w';        // clave "anon" / "publishable" (pública)
-=======
         const SUPABASE_URL = 'PEGA_AQUI_TU_PROJECT_URL';          // https://xxxx.supabase.co
         const SUPABASE_ANON_KEY = 'PEGA_AQUI_TU_ANON_KEY';        // clave "anon" / "publishable" (pública)
->>>>>>> f44f12c (added)
 
         let sb = null, cloudUser = null, cloudTimer = null, cloudBusy = false, cloudDirty = false;
 
