@@ -322,6 +322,9 @@
         button:disabled { cursor: not-allowed; }
 
         pre code { font-family: 'Fira Code', monospace; font-size: 0.825rem; }
+        .md-body > :first-child { margin-top: 0 !important; }
+        .md-body > :last-child { margin-bottom: 0 !important; }
+        .md-body { overflow-wrap: anywhere; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -530,7 +533,7 @@
         <section id="section-tutor" class="hidden space-y-5">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[600px]">
                 <div class="lg:col-span-8 astra-glass-card rounded-3xl p-4 sm:p-6 flex flex-col justify-between h-full border border-astra-border min-h-[550px]">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-astra-border pb-3 mb-3 gap-3">
+                    <div class="flex flex-col border-b border-astra-border pb-4 mb-4 gap-4">
                         <div class="flex items-center space-x-4">
                             <div class="w-10 h-10 rounded-xl bg-astra-600 flex items-center justify-center text-white font-bold text-lg">
                                 <i class="fa-solid fa-robot"></i>
@@ -538,14 +541,18 @@
                             <div>
                                 <h3 class="text-sm font-bold text-white flex items-center space-x-3">
                                     <span>Tutor DAW Gemini API</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono">Historial Guardado</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono whitespace-nowrap">Historial Guardado</span>
                                 </h3>
                                 <p class="text-[11px] text-gray-400">Canal activo de conversación</p>
                             </div>
                         </div>
 
-                        <div class="flex items-center space-x-3">
-                            <select id="tutor-channel-select" onchange="switchTutorChannel(this.value)" class="bg-gray-950 border border-astra-border text-astra-cyan font-mono text-xs rounded-xl px-3 py-1.5 focus:outline-none">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <select id="tutor-conv-select" onchange="selectConversation(this.value)" title="Tus conversaciones de este canal" class="bg-gray-950 border border-astra-border text-gray-300 text-xs rounded-xl px-3 py-2 max-w-[200px] focus:outline-none"></select>
+                            <button onclick="newConversation()" title="Empezar una conversación nueva" class="flex items-center gap-2 px-3.5 py-2 text-xs font-medium text-white bg-astra-600 hover:bg-astra-700 rounded-xl transition">
+                                <i class="fa-solid fa-plus"></i><span>Nueva</span>
+                            </button>
+                            <select id="tutor-channel-select" onchange="switchTutorChannel(this.value)" class="bg-gray-950 border border-astra-border text-astra-cyan font-mono text-xs rounded-xl px-3 py-2 focus:outline-none">
                                 <option value="GLOBAL">🌐 Canal General DAW</option>
                                 <option value="DWES">🐘 DWES (Servidor)</option>
                                 <option value="DWEC">⚡ DWEC (Cliente)</option>
@@ -555,7 +562,7 @@
                                 <option value="EIE">💼 EIE / Empleabilidad</option>
                                 <option value="PROYECTO">🚀 Proyecto DAW</option>
                             </select>
-                            <button onclick="clearTutorChat()" title="Limpiar historial del canal" class="p-2 text-xs text-gray-500 hover:text-rose-400 bg-gray-900 border border-astra-border rounded-xl transition">
+                            <button onclick="clearTutorChat()" title="Borrar esta conversación" class="p-2.5 text-xs text-gray-500 hover:text-rose-400 bg-gray-900 border border-astra-border rounded-xl transition">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
                         </div>
@@ -679,7 +686,27 @@
 
                 <div id="practice-loading" class="hidden astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-astra-border">
                     <div class="w-6 h-6 mx-auto rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
-                    <p class="text-xs text-astra-cyan">Gemini está preparando tus 6 retos...</p>
+                    <p class="text-xs text-astra-cyan">Gemini está preparando el repaso y tus 6 retos...</p>
+                </div>
+
+                <div id="practice-intro" class="hidden astra-glass-card p-8 rounded-3xl border border-astra-border space-y-6">
+                    <div class="space-y-2">
+                        <p id="intro-subject-tag" class="text-xs font-medium text-astra-400"></p>
+                        <h3 id="intro-title" class="text-2xl sm:text-3xl text-white"></h3>
+                    </div>
+                    <div id="intro-text" class="text-sm sm:text-base text-gray-300 leading-relaxed"></div>
+                    <div class="space-y-3">
+                        <h4 class="text-lg text-white">Aspectos fundamentales</h4>
+                        <ul id="intro-points" class="space-y-3 text-sm text-gray-300 list-disc pl-5 marker:text-astra-400"></ul>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <button onclick="beginPracticeCards()" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-sm font-semibold py-3.5 rounded-xl transition">
+                            Empezar los 6 retos
+                        </button>
+                        <button onclick="newPracticeTopic()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-sm font-medium px-5 py-3.5 rounded-xl transition">
+                            Cambiar de tema
+                        </button>
+                    </div>
                 </div>
 
                 <div id="practice-card-box" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-6">
@@ -963,6 +990,8 @@
             flashcards: [],
             plans: [],
             pomoTotalSeconds: 0,
+            conversations: [],
+            activeConv: {},
             chatHistories: {
                 GLOBAL: [{ sender: 'ai', text: '👋 **¡Hola, estudiante de 2º DAW!** Hazme cualquier pregunta sobre tus asignaturas.' }],
                 DWES: [], DWEC: [], DIW: [], DAW: [], INGLES: [], EIE: [], PROYECTO: []
@@ -984,7 +1013,7 @@
         }
 
         // ================= SUPABASE: LOGIN + SINCRONIZACIÓN =================
-        const SUPABASE_URL = 'https://dnvmjcigxjjiatrhnkrv.supabase.co';          // https://xxxx.supabase.co
+       const SUPABASE_URL = 'https://dnvmjcigxjjiatrhnkrv.supabase.co';          // https://xxxx.supabase.co
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRudm1qY2lneGpqaWF0cmhua3J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2ODUzMzgsImV4cCI6MjEwODI2MTMzOH0.hErApqoOTMEk_rjKInwECFjfzS3Jolqo4Qp-r6-Lv9w';        // clave "anon" / "publishable" (pública)
 
         let sb = null, cloudUser = null, cloudTimer = null, cloudBusy = false, cloudDirty = false;
@@ -1266,7 +1295,7 @@
             if (tabId === 'pomodoro') updatePomoDisplay();
         }
 
-        async function callGeminiAPI(prompt, systemInstruction = "", imageBase64Data = null, imageMimeType = "image/jpeg") {
+        async function callGeminiAPI(prompt, systemInstruction = "", imageBase64Data = null, imageMimeType = "image/jpeg", history = []) {
             const apiKey = appData.apiKey || window.geminiApi || "";
             if (!apiKey) {
                 openSettingsModal();
@@ -1286,7 +1315,10 @@
             }
 
             const payload = {
-                contents: [{ parts: userPart }],
+                contents: [
+                    ...history.map(m => ({ role: m.sender === 'user' ? 'user' : 'model', parts: [{ text: String(m.text) }] })),
+                    { role: 'user', parts: userPart }
+                ],
                 systemInstruction: systemInstruction ? { parts: [{ text: systemInstruction }] } : undefined
             };
 
@@ -1450,22 +1482,84 @@
             }
         }
 
+        // ===== Conversaciones del tutor (se guardan en appData y se sincronizan con Supabase) =====
+        function ensureConversations() {
+            if (!Array.isArray(appData.conversations)) appData.conversations = [];
+            if (!appData.activeConv || typeof appData.activeConv !== 'object') appData.activeConv = {};
+            if (!appData._chatsMigrated) {
+                // Pasa los chats antiguos (uno por canal) a conversaciones
+                Object.entries(appData.chatHistories || {}).forEach(([channel, msgs]) => {
+                    if (Array.isArray(msgs) && msgs.some(m => m.sender === 'user')) {
+                        const t = Date.now();
+                        appData.conversations.push({
+                            id: 'c_' + t + '_' + channel,
+                            channel,
+                            title: makeConvTitle((msgs.find(m => m.sender === 'user') || {}).text),
+                            messages: msgs.filter(m => m && m.text),
+                            createdAt: t,
+                            updatedAt: t
+                        });
+                    }
+                });
+                appData._chatsMigrated = true;
+            }
+        }
+
+        function makeConvTitle(text) {
+            const t = plainMd(text || '');
+            return t.length > 46 ? t.slice(0, 46) + '…' : (t || 'Conversación');
+        }
+
+        function convsOfChannel() {
+            ensureConversations();
+            return appData.conversations.filter(c => c.channel === activeChannel).sort((x, y) => (y.updatedAt || 0) - (x.updatedAt || 0));
+        }
+
+        function getActiveConv() {
+            const list = convsOfChannel();
+            const sel = appData.activeConv[activeChannel];
+            if (sel === 'NEW') return null;
+            return list.find(c => c.id === sel) || list[0] || null;
+        }
+
+        function tutorWelcome() {
+            return activeChannel === 'GLOBAL'
+                ? '👋 **¡Hola, estudiante de 2º DAW!** Hazme cualquier pregunta sobre tus asignaturas.'
+                : `👋 **Canal de ${activeChannel}**. Haz tus preguntas específicas sobre este módulo.`;
+        }
+
+        function renderConvSelect() {
+            const sel = document.getElementById('tutor-conv-select');
+            if (!sel) return;
+            const list = convsOfChannel();
+            const active = getActiveConv();
+            sel.innerHTML = '';
+            if (!list.length) {
+                sel.innerHTML = '<option value="">Sin conversaciones guardadas</option>';
+                sel.disabled = true;
+                return;
+            }
+            sel.disabled = false;
+            if (!active) sel.add(new Option('Nueva conversación…', ''));
+            list.forEach(c => {
+                const d = new Date(c.updatedAt || Date.now());
+                const label = `${c.title || 'Conversación'} · ${d.getDate()}/${d.getMonth() + 1}`;
+                sel.add(new Option(label, c.id, false, !!active && active.id === c.id));
+            });
+        }
+
         function renderTutorChat() {
             const stream = document.getElementById('tutor-chat-stream');
             if (!stream) return;
             stream.innerHTML = '';
+            renderConvSelect();
 
-            const history = appData.chatHistories[activeChannel] || [];
-            if (history.length === 0) {
-                const welcomeMsg = `👋 **Canal de ${activeChannel}**. Haz tus preguntas específicas sobre este módulo.`;
-                appData.chatHistories[activeChannel] = [{ sender: 'ai', text: welcomeMsg }];
-                saveData();
+            const conv = getActiveConv();
+            if (!conv || !conv.messages.length) {
+                appendTutorBubble('ai', tutorWelcome(), false);
+            } else {
+                conv.messages.forEach(msg => appendTutorBubble(msg.sender, msg.text, false));
             }
-
-            (appData.chatHistories[activeChannel] || []).forEach(msg => {
-                appendTutorBubble(msg.sender, msg.text, false);
-            });
-
             stream.scrollTop = stream.scrollHeight;
         }
 
@@ -1474,8 +1568,25 @@
             renderTutorChat();
         }
 
+        function newConversation() {
+            appData.activeConv[activeChannel] = 'NEW';
+            renderTutorChat();
+            const input = document.getElementById('tutor-chat-input');
+            if (input) input.focus();
+        }
+
+        function selectConversation(id) {
+            if (!id) return;
+            appData.activeConv[activeChannel] = id;
+            renderTutorChat();
+        }
+
         function clearTutorChat() {
-            appData.chatHistories[activeChannel] = [];
+            const conv = getActiveConv();
+            if (!conv) return;
+            if (!confirm(`¿Borrar la conversación "${conv.title}"? No se puede recuperar.`)) return;
+            appData.conversations = appData.conversations.filter(c => c.id !== conv.id);
+            delete appData.activeConv[activeChannel];
             saveData();
             renderTutorChat();
         }
@@ -1495,27 +1606,35 @@
             const message = input.value.trim();
             if (!message) return;
 
-            if (!appData.chatHistories[activeChannel]) appData.chatHistories[activeChannel] = [];
-            appData.chatHistories[activeChannel].push({ sender: 'user', text: message });
+            let conv = getActiveConv();
+            if (!conv) {
+                conv = { id: 'c_' + Date.now(), channel: activeChannel, title: makeConvTitle(message), messages: [], createdAt: Date.now(), updatedAt: Date.now() };
+                appData.conversations.push(conv);
+                appData.activeConv[activeChannel] = conv.id;
+            }
+            const history = conv.messages.filter(m => m && m.text && !String(m.text).startsWith('⚠️')).slice(-12);
+
+            conv.messages.push({ sender: 'user', text: message });
+            conv.updatedAt = Date.now();
             saveData();
 
-            appendTutorBubble('user', message, true);
             input.value = '';
-
+            renderTutorChat();
             const loadingId = appendTutorLoading();
+            const channelAtSend = activeChannel;
 
             try {
-                const systemPrompt = `Eres el Tutor de IA especializado en 2º DAW. Canal actual: ${activeChannel}. Responde con explicaciones claras y ejemplos de código bien formateados.`;
-                const responseText = await callGeminiAPI(message, systemPrompt);
-                removeTutorLoading(loadingId);
-
-                appData.chatHistories[activeChannel].push({ sender: 'ai', text: responseText });
+                const systemPrompt = `Eres el Tutor de IA especializado en 2º DAW. Canal actual: ${channelAtSend}. Responde con explicaciones claras y ejemplos de código. Usa Markdown estándar: títulos con ##, negrita con **texto**, listas con guiones y el código en bloques con su lenguaje.`;
+                const responseText = await callGeminiAPI(message, systemPrompt, null, "image/jpeg", history);
+                conv.messages.push({ sender: 'ai', text: responseText });
+                conv.updatedAt = Date.now();
                 saveData();
-
-                appendTutorBubble('ai', responseText, true);
+                removeTutorLoading(loadingId);
+                if (getActiveConv() === conv && activeChannel === channelAtSend) appendTutorBubble('ai', responseText, true);
+                else renderConvSelect();
             } catch (err) {
                 removeTutorLoading(loadingId);
-                appendTutorBubble('ai', `⚠️ ${err.message || 'Error al conectar con la API de Gemini.'}`, true);
+                if (getActiveConv() === conv) appendTutorBubble('ai', `⚠️ ${err.message || 'Error al conectar con la API de Gemini.'}`, true);
             }
         }
 
@@ -1589,7 +1708,7 @@
         let practiceSession = null; // { subject, context, cards, index, finished, loading, seenFronts }
 
         function showPracticeView(view) {
-            ['empty', 'loading', 'card-box', 'results'].forEach(v => {
+            ['empty', 'loading', 'intro', 'card-box', 'results'].forEach(v => {
                 const el = document.getElementById(`practice-${v}`);
                 if (el) el.classList.toggle('hidden', v !== view);
             });
@@ -1602,7 +1721,23 @@
             if (!s) return showPracticeView('empty');
             if (s.loading) return showPracticeView('loading');
             if (s.finished) return renderPracticeResults();
+            if (s.phase === 'intro') return renderPracticeIntro();
             renderPracticeCard();
+        }
+
+        function renderPracticeIntro() {
+            const s = practiceSession;
+            showPracticeView('intro');
+            document.getElementById('intro-subject-tag').innerText = s.subject;
+            document.getElementById('intro-title').innerText = s.intro.title;
+            document.getElementById('intro-text').innerHTML = formatMarkdownCode(s.intro.text);
+            document.getElementById('intro-points').innerHTML = s.intro.points.map(p => `<li>${mdInline(p)}</li>`).join('');
+        }
+
+        function beginPracticeCards() {
+            if (!practiceSession) return;
+            practiceSession.phase = 'cards';
+            renderPractice();
         }
 
         function renderPracticeCard() {
@@ -1612,7 +1747,7 @@
 
             document.getElementById('card-subject-tag').innerText = s.subject;
             document.getElementById('flashcard-counter-indicator').innerText = `${s.index + 1} / ${s.cards.length}`;
-            document.getElementById('card-front-content').innerText = card.front;
+            document.getElementById('card-front-content').innerHTML = formatMarkdownCode(card.front);
             document.getElementById('card-back-content').innerHTML = formatMarkdownCode(card.back);
 
             const input = document.getElementById('card-user-input');
@@ -1656,26 +1791,46 @@
             await startPracticeSession(subject, contextText, []);
         }
 
-        async function startPracticeSession(subject, contextText, seenFronts) {
-            practiceSession = { subject, context: contextText, cards: [], index: 0, finished: false, loading: true, seenFronts: seenFronts || [] };
+        async function startPracticeSession(subject, contextText, seenFronts, skipIntro = false) {
+            practiceSession = { subject, context: contextText, cards: [], index: 0, finished: false, loading: true, phase: 'cards', intro: null, seenFronts: seenFronts || [] };
             renderPractice();
 
             const avoid = practiceSession.seenFronts.length
                 ? `\nNo repitas ni te parezcas a estos retos ya usados:\n- ${practiceSession.seenFronts.join('\n- ')}`
                 : '';
 
-            const prompt = `Genera exactamente ${PRACTICE_TOTAL} retos prácticos distintos para 2º DAW, módulo ${subject}.
+            const prompt = `Prepara un repaso para un estudiante de 2º DAW, módulo ${subject}.
 Contexto de estudio del estudiante: "${contextText}"
-Cada reto debe tocar un aspecto diferente del contexto, con dificultad creciente (de más básico a más completo). Deben poder resolverse escribiendo un fragmento corto de código o una explicación breve.${avoid}
 
-Responde ÚNICAMENTE con un array JSON plano, sin bloques markdown: [{"front":"enunciado del reto","back":"solución esperada en código o respuesta explicada"}, ...]`;
+Devuelve:
+1. "title": nombre corto del tema (máximo 8 palabras).
+2. "intro": un párrafo de 3 o 4 frases que explique de qué trata el tema, empezando de forma natural (por ejemplo "Este tema trata de..." o "PDO es...").
+3. "key_points": entre 4 y 5 aspectos fundamentales que hay que tener claros antes de practicar, una frase corta cada uno.
+4. "cards": exactamente ${PRACTICE_TOTAL} retos prácticos distintos. Cada reto toca un aspecto diferente, con dificultad creciente (de más básico a más completo), y se puede resolver con un fragmento corto de código o una explicación breve.${avoid}
+
+En los textos puedes usar \`código\` y **negrita**, nada más de Markdown.
+Responde ÚNICAMENTE con un objeto JSON, sin bloques markdown:
+{"title":"...","intro":"...","key_points":["..."],"cards":[{"front":"enunciado del reto","back":"solución esperada en código o respuesta explicada"}]}`;
 
             try {
-                const response = await callGeminiAPI(prompt, "Eres un generador de ejercicios prácticos para estudiantes de desarrollo web. Respondes solo JSON válido.");
-                const match = response.match(/\[[\s\S]*\]/);
-                if (!match) throw new Error("Gemini no devolvió retos en formato válido. Prueba otra vez.");
-                const parsed = JSON.parse(match[0]).filter(c => c && c.front && c.back).slice(0, PRACTICE_TOTAL);
+                const response = await callGeminiAPI(prompt, "Eres un profesor de desarrollo web y generas material de estudio. Respondes solo JSON válido.");
+                const objMatch = response.match(/\{[\s\S]*\}/);
+                const arrMatch = response.match(/\[[\s\S]*\]/);
+                let data;
+                if (objMatch) { try { data = JSON.parse(objMatch[0]); } catch (e) { data = null; } }
+                if (!data || !Array.isArray(data.cards)) {
+                    if (!arrMatch) throw new Error("Gemini no devolvió retos en formato válido. Prueba otra vez.");
+                    data = { cards: JSON.parse(arrMatch[0]) };   // por si devuelve solo la lista de retos
+                }
+                const parsed = data.cards.filter(c => c && c.front && c.back).slice(0, PRACTICE_TOTAL);
                 if (parsed.length === 0) throw new Error("No se generó ningún reto válido. Prueba otra vez.");
+
+                const points = Array.isArray(data.key_points) ? data.key_points.map(String).filter(Boolean).slice(0, 6) : [];
+                const introText = data.intro ? String(data.intro) : '';
+                if (!skipIntro && (introText || points.length)) {
+                    practiceSession.intro = { title: String(data.title || contextText), text: introText, points };
+                    practiceSession.phase = 'intro';
+                }
 
                 practiceSession.cards = parsed.map((c, i) => ({
                     id: 'fc_' + Date.now() + '_' + i,
@@ -1806,7 +1961,7 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
                 <div class="text-left space-y-3 text-xs">
                     ${s.cards.map((c, i) => `
                         <div class="flex items-start justify-between gap-4 p-3 rounded-2xl bg-gray-950/60 border border-gray-900">
-                            <span class="text-gray-300"><span class="font-mono text-astra-cyan">${i + 1}.</span> ${escapeHTML(c.front.length > 110 ? c.front.slice(0, 110) + '…' : c.front)}</span>
+                            <span class="text-gray-300"><span class="font-mono text-astra-cyan">${i + 1}.</span> ${escapeHTML(plainMd(c.front).length > 110 ? plainMd(c.front).slice(0, 110) + '…' : plainMd(c.front))}</span>
                             <span class="font-mono font-bold whitespace-nowrap ${c.score >= PASS_GRADE ? 'text-emerald-400' : 'text-rose-400'}">${c.score}/10</span>
                         </div>`).join('')}
                 </div>
@@ -1823,7 +1978,7 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
         async function restartPractice() {
             const s = practiceSession;
             if (!s) return;
-            await startPracticeSession(s.subject, s.context, s.seenFronts);
+            await startPracticeSession(s.subject, s.context, s.seenFronts, true);
         }
 
         function newPracticeTopic() {
@@ -2127,17 +2282,111 @@ Puntúa de 0 a 10 (10 = correcta y completa; acepta soluciones distintas pero v�
         }
 
         /* HELPERS */
+        function plainMd(str) {
+            return String(str || '').replace(/[*`#]/g, '').replace(/\s+/g, ' ').trim();
+        }
+
         function escapeHTML(str) {
             return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
 
+        // ===== Renderizador de Markdown (seguro: escapa el HTML antes de formatear) =====
+        function mdInline(raw) {
+            const codes = [];
+            let t = String(raw).replace(/`([^`\n]+)`/g, (m, c) => {
+                codes.push(`<code class="bg-gray-950 px-1.5 py-0.5 rounded text-astra-cyan font-mono text-[0.85em] border border-gray-800">${escapeHTML(c)}</code>`);
+                return `\u0000I${codes.length - 1}\u0000`;
+            });
+            t = escapeHTML(t);
+            t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-astra-400 underline underline-offset-2 hover:text-astra-500">$1</a>');
+            t = t.replace(/\*\*\*([^*\n]+)\*\*\*/g, '<strong class="text-white font-semibold"><em>$1</em></strong>');
+            t = t.replace(/\*\*\s*([^\n]+?)\s*\*\*/g, '<strong class="text-white font-semibold">$1</strong>');
+            t = t.replace(/__([^_\n]+)__/g, '<strong class="text-white font-semibold">$1</strong>');
+            t = t.replace(/(^|[\s(])\*([^*\s][^*\n]*?)\*(?=[\s.,;:!?)]|$)/g, '$1<em>$2</em>');
+            t = t.replace(/(^|[\s(])_([^_\s][^_\n]*?)_(?=[\s.,;:!?)]|$)/g, '$1<em>$2</em>');
+            t = t.replace(/~~([^~\n]+)~~/g, '<del class="text-gray-500">$1</del>');
+            t = t.replace(/\*\*/g, '');   // asteriscos sueltos que no han cerrado
+            return t.replace(/\u0000I(\d+)\u0000/g, (m, n) => codes[+n]);
+        }
+
         function formatMarkdownCode(text) {
-            let formatted = escapeHTML(text);
-            formatted = formatted.replace(/```([\s\S]*?)```/g, (m, code) => `<pre class="bg-gray-950 p-3 rounded-xl my-2 overflow-x-auto max-w-full border border-astra-border"><code class="text-xs text-astra-cyan font-mono">${code.trim()}</code></pre>`);
-            formatted = formatted.replace(/`([^`]+)`/g, '<code class="bg-gray-950 px-1.5 py-0.5 rounded text-astra-cyan font-mono text-xs border border-gray-800">$1</code>');
-            formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-white font-bold">$1</strong>');
-            formatted = formatted.replace(/\n/g, '<br>');
-            return formatted;
+            let src = String(text == null ? '' : text).replace(/\r\n?/g, '\n');
+            const blocks = [];
+            const stash = (lang, code) => {
+                blocks.push(`<pre class="bg-gray-950 p-4 rounded-xl my-3 overflow-x-auto max-w-full border border-astra-border"><code class="text-xs text-astra-cyan font-mono leading-relaxed">${escapeHTML(code.replace(/\n$/, ''))}</code></pre>`);
+                return `\n\u0000B${blocks.length - 1}\u0000\n`;
+            };
+            src = src.replace(/```([\w+#.-]*)[ \t]*\n([\s\S]*?)```/g, (m, lang, code) => stash(lang, code));
+            src = src.replace(/```([\s\S]*?)```/g, (m, code) => stash('', code));
+
+            src = src.replace(/([^\n#\s])[ \t]*(#{3,6}[ \t]+\S)/g, '$1\n\n$2');   // títulos pegados al texto
+            const lines = src.split('\n');
+            const out = [];
+            const isTableSep = l => /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?\s*$/.test(l) && l.includes('-');
+            const cells = l => l.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim());
+            let i = 0;
+
+            while (i < lines.length) {
+                const line = lines[i];
+                if (!line.trim()) { i++; continue; }
+
+                let m;
+                if ((m = line.match(/^\u0000B(\d+)\u0000$/))) { out.push(blocks[+m[1]]); i++; continue; }
+
+                if ((m = line.match(/^\s{0,3}(#{1,6})\s+(.+?)\s*#*\s*$/))) {
+                    const lvl = m[1].length;
+                    const cls = ['text-xl mt-5 mb-2 text-white', 'text-lg mt-5 mb-2 text-white', 'text-base mt-4 mb-1.5 text-white', 'text-sm mt-4 mb-1.5 text-white', 'text-sm mt-3 mb-1 text-gray-200', 'text-sm mt-3 mb-1 text-gray-300'][lvl - 1];
+                    out.push(`<h${Math.min(lvl + 1, 6)} class="${cls}">${mdInline(m[2])}</h${Math.min(lvl + 1, 6)}>`);
+                    i++; continue;
+                }
+
+                if (/^\s*([-*_])(\s*\1){2,}\s*$/.test(line)) { out.push('<hr class="my-4 border-astra-border">'); i++; continue; }
+
+                if (/^\s*>/.test(line)) {
+                    const q = [];
+                    while (i < lines.length && /^\s*>/.test(lines[i])) { q.push(lines[i].replace(/^\s*>\s?/, '')); i++; }
+                    out.push(`<blockquote class="my-3 border-l-2 border-astra-500/60 pl-4 text-gray-300">${q.map(mdInline).join('<br>')}</blockquote>`);
+                    continue;
+                }
+
+                if (line.includes('|') && i + 1 < lines.length && isTableSep(lines[i + 1])) {
+                    const head = cells(line);
+                    i += 2;
+                    const rows = [];
+                    while (i < lines.length && lines[i].trim() && lines[i].includes('|')) { rows.push(cells(lines[i])); i++; }
+                    out.push(`<div class="my-3 overflow-x-auto"><table class="w-full text-xs border-collapse"><thead><tr>${head.map(h => `<th class="text-left font-semibold text-white border-b border-astra-border px-3 py-2">${mdInline(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td class="border-b border-gray-800 px-3 py-2 align-top">${mdInline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
+                    continue;
+                }
+
+                if (/^\s*([-*+]|\d+[.)])\s+/.test(line)) {
+                    const items = [];
+                    const ordered = /^\s*\d+[.)]\s+/.test(line);
+                    while (i < lines.length && /^\s*([-*+]|\d+[.)])\s+/.test(lines[i])) {
+                        const mm = lines[i].match(/^(\s*)(?:[-*+]|\d+[.)])\s+(.*)$/);
+                        items.push({ indent: Math.min(Math.floor(mm[1].replace(/\t/g, '    ').length / 2), 3), text: mm[2] });
+                        i++;
+                        // línea de continuación sin viñeta
+                        while (i < lines.length && lines[i].trim() && /^\s{2,}\S/.test(lines[i]) && !/^\s*([-*+]|\d+[.)])\s+/.test(lines[i]) && !/^\u0000B/.test(lines[i].trim())) {
+                            items[items.length - 1].text += ' ' + lines[i].trim(); i++;
+                        }
+                    }
+                    const tag = ordered ? 'ol' : 'ul';
+                    out.push(`<${tag} class="my-3 pl-5 space-y-1.5 ${ordered ? 'list-decimal' : 'list-disc'} marker:text-astra-400">${items.map(it => `<li style="margin-left:${it.indent * 1.1}rem">${mdInline(it.text)}</li>`).join('')}</${tag}>`);
+                    continue;
+                }
+
+                const para = [];
+                while (i < lines.length && lines[i].trim()
+                       && !/^\u0000B\d+\u0000$/.test(lines[i])
+                       && !/^\s{0,3}#{1,6}\s+/.test(lines[i])
+                       && !/^\s*([-*+]|\d+[.)])\s+/.test(lines[i])
+                       && !/^\s*>/.test(lines[i])
+                       && !/^\s*([-*_])(\s*\1){2,}\s*$/.test(lines[i])) {
+                    para.push(lines[i].trim()); i++;
+                }
+                out.push(`<p class="my-2.5">${para.map(mdInline).join('<br>')}</p>`);
+            }
+            return `<div class="md-body">${out.join('')}</div>`;
         }
 
         window.onload = function() {
