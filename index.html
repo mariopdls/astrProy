@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astra WebDev Studio - 2º DAW Hub Inteligente</title>
+    <title>Monguito WebDev Studio - 2º DAW Hub Inteligente</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
@@ -13,315 +13,95 @@
             theme: {
                 extend: {
                     colors: {
+                        "monguito": {
+                            "50": "#f5f3ff",
+                            "100": "#ede9fe",
+                            "200": "#ddd6fe",
+                            "300": "#c4b5fd",
+                            "400": "#a78bfa",
+                            "500": "#8b5cf6",
+                            "600": "#7c3aed",
+                            "700": "#6d28d9",
+                            "800": "#5b21b6",
+                            "900": "#4c1d95",
+                            "950": "#1e1b4b",
+                            "dark": "#0f0e17",
+                            "card": "#181628",
+                            "border": "#2e2a4a",
+                            "cyan": "#38bdf8",
+                            "emerald": "#34d399",
+                            "amber": "#fbbf24",
+                            "rose": "#f43f5e"
+                        },
                         "gray": {
-                                                "50": "#f6f3ec",
-                                                "100": "#ece8df",
-                                                "200": "#d9d4c8",
-                                                "300": "#bcb6a8",
-                                                "400": "#9a9487",
-                                                "500": "#77726a",
-                                                "600": "#57534c",
-                                                "700": "#3d3a35",
-                                                "800": "#2e2c28",
-                                                "900": "#242220",
-                                                "950": "#1b1a18"
-                        },
-                        "astra": {
-                                                "50": "#fbf1ec",
-                                                "100": "#f6ddd2",
-                                                "400": "#e8997c",
-                                                "500": "#d97757",
-                                                "600": "#b9553a",
-                                                "700": "#9a4430",
-                                                "800": "#6e3223",
-                                                "900": "#3a2219",
-                                                "dark": "#1b1a18",
-                                                "card": "#242220",
-                                                "border": "#38352f",
-                                                "cyan": "#d9b48a",
-                                                "emerald": "#8fae86",
-                                                "amber": "#d9a441",
-                                                "rose": "#d0675f"
-                        },
-                        "emerald": {
-                                                "50": "#f3f6f3",
-                                                "100": "#e8eee8",
-                                                "200": "#cedfce",
-                                                "300": "#b0caaf",
-                                                "400": "#8dbb8b",
-                                                "500": "#74ac72",
-                                                "600": "#558d53",
-                                                "700": "#467444",
-                                                "800": "#365a35",
-                                                "900": "#294328",
-                                                "950": "#1b2d1a"
-                        },
-                        "green": {
-                                                "50": "#f3f6f3",
-                                                "100": "#e8eee8",
-                                                "200": "#cedfce",
-                                                "300": "#b0caaf",
-                                                "400": "#8dbb8b",
-                                                "500": "#74ac72",
-                                                "600": "#558d53",
-                                                "700": "#467444",
-                                                "800": "#365a35",
-                                                "900": "#294328",
-                                                "950": "#1b2d1a"
-                        },
-                        "teal": {
-                                                "50": "#f3f6f5",
-                                                "100": "#e8edec",
-                                                "200": "#cededa",
-                                                "300": "#b0c9c3",
-                                                "400": "#8db9ae",
-                                                "500": "#518578",
-                                                "600": "#558b7e",
-                                                "700": "#467267",
-                                                "800": "#365950",
-                                                "900": "#29423c",
-                                                "950": "#1b2c28"
-                        },
-                        "lime": {
-                                                "50": "#f5f6f3",
-                                                "100": "#eceee7",
-                                                "200": "#d9e0cc",
-                                                "300": "#c2cdad",
-                                                "400": "#acbf88",
-                                                "500": "#8ca659",
-                                                "600": "#7b924f",
-                                                "700": "#657740",
-                                                "800": "#4f5d32",
-                                                "900": "#3b4625",
-                                                "950": "#272e19"
-                        },
-                        "amber": {
-                                                "50": "#f8f6f1",
-                                                "100": "#f2ece4",
-                                                "200": "#eadcc2",
-                                                "300": "#dec59c",
-                                                "400": "#dcb26a",
-                                                "500": "#d39f45",
-                                                "600": "#b6832b",
-                                                "700": "#956b23",
-                                                "800": "#74531b",
-                                                "900": "#573e14",
-                                                "950": "#3a2a0e"
-                        },
-                        "yellow": {
-                                                "50": "#f8f6f1",
-                                                "100": "#f1eee4",
-                                                "200": "#eadfc3",
-                                                "300": "#ddcc9d",
-                                                "400": "#dabd6c",
-                                                "500": "#d4b254",
-                                                "600": "#b4902d",
-                                                "700": "#937625",
-                                                "800": "#725b1d",
-                                                "900": "#564515",
-                                                "950": "#392e0e"
-                        },
-                        "orange": {
-                                                "50": "#f8f4f1",
-                                                "100": "#f2e9e4",
-                                                "200": "#ead2c2",
-                                                "300": "#deb69c",
-                                                "400": "#dc986a",
-                                                "500": "#d07539",
-                                                "600": "#b6622b",
-                                                "700": "#955023",
-                                                "800": "#743f1b",
-                                                "900": "#572f14",
-                                                "950": "#3a1f0e"
-                        },
-                        "rose": {
-                                                "50": "#f8f2f2",
-                                                "100": "#f0e6e5",
-                                                "200": "#e7c9c5",
-                                                "300": "#d8a7a1",
-                                                "400": "#d37d73",
-                                                "500": "#cc675c",
-                                                "600": "#ab4236",
-                                                "700": "#8c362c",
-                                                "800": "#6d2a22",
-                                                "900": "#511f1a",
-                                                "950": "#361511"
-                        },
-                        "red": {
-                                                "50": "#f8f2f2",
-                                                "100": "#f0e5e5",
-                                                "200": "#e7c7c6",
-                                                "300": "#d7a4a2",
-                                                "400": "#d17875",
-                                                "500": "#bf4440",
-                                                "600": "#a83c38",
-                                                "700": "#8a312e",
-                                                "800": "#6b2624",
-                                                "900": "#501d1b",
-                                                "950": "#361312"
-                        },
-                        "pink": {
-                                                "50": "#f7f3f4",
-                                                "100": "#efe6e8",
-                                                "200": "#e3cad0",
-                                                "300": "#d1a9b3",
-                                                "400": "#c68092",
-                                                "500": "#b96479",
-                                                "600": "#9b465b",
-                                                "700": "#7f394a",
-                                                "800": "#632c3a",
-                                                "900": "#4a212b",
-                                                "950": "#31161d"
-                        },
-                        "purple": {
-                                                "50": "#f8f3f2",
-                                                "100": "#f1e8e4",
-                                                "200": "#e8cec4",
-                                                "300": "#daaf9f",
-                                                "400": "#d78b70",
-                                                "500": "#cd6e4c",
-                                                "600": "#af5331",
-                                                "700": "#8f4428",
-                                                "800": "#6f351f",
-                                                "900": "#542818",
-                                                "950": "#381a10"
-                        },
-                        "indigo": {
-                                                "50": "#f7f3f2",
-                                                "100": "#f0e7e6",
-                                                "200": "#e5cbc8",
-                                                "300": "#d5aba5",
-                                                "400": "#cd857a",
-                                                "500": "#b15243",
-                                                "600": "#a34b3e",
-                                                "700": "#853e32",
-                                                "800": "#683027",
-                                                "900": "#4e241d",
-                                                "950": "#341814"
-                        },
-                        "violet": {
-                                                "50": "#f6f4f6",
-                                                "100": "#ede8ec",
-                                                "200": "#ddd0dc",
-                                                "300": "#c7b2c6",
-                                                "400": "#b691b3",
-                                                "500": "#996695",
-                                                "600": "#875a83",
-                                                "700": "#6e496b",
-                                                "800": "#563953",
-                                                "900": "#402b3e",
-                                                "950": "#2b1d2a"
-                        },
-                        "fuchsia": {
-                                                "50": "#f6f3f5",
-                                                "100": "#ede8ec",
-                                                "200": "#deced9",
-                                                "300": "#caafc1",
-                                                "400": "#ba8cab",
-                                                "500": "#9f608a",
-                                                "600": "#8c547a",
-                                                "700": "#734563",
-                                                "800": "#59364d",
-                                                "900": "#43283a",
-                                                "950": "#2d1b27"
-                        },
-                        "cyan": {
-                                                "50": "#f4f6f6",
-                                                "100": "#e8edec",
-                                                "200": "#cfdddb",
-                                                "300": "#b1c8c5",
-                                                "400": "#8fb7b2",
-                                                "500": "#639c94",
-                                                "600": "#588982",
-                                                "700": "#48706b",
-                                                "800": "#385753",
-                                                "900": "#2a413e",
-                                                "950": "#1c2c29"
-                        },
-                        "blue": {
-                                                "50": "#f4f5f6",
-                                                "100": "#e8ebed",
-                                                "200": "#d0d8dd",
-                                                "300": "#b2c0c7",
-                                                "400": "#91a9b6",
-                                                "500": "#567281",
-                                                "600": "#5a7887",
-                                                "700": "#49626e",
-                                                "800": "#394c56",
-                                                "900": "#2b3940",
-                                                "950": "#1d262b"
-                        },
-                        "sky": {
-                                                "50": "#f4f5f6",
-                                                "100": "#e8ebed",
-                                                "200": "#d0d8dd",
-                                                "300": "#b2c0c7",
-                                                "400": "#91a9b6",
-                                                "500": "#7594a3",
-                                                "600": "#5a7887",
-                                                "700": "#49626e",
-                                                "800": "#394c56",
-                                                "900": "#2b3940",
-                                                "950": "#1d262b"
+                            "50": "#f8fafc",
+                            "100": "#f1f5f9",
+                            "200": "#e2e8f0",
+                            "300": "#cbd5e1",
+                            "400": "#94a3b8",
+                            "500": "#64748b",
+                            "600": "#475569",
+                            "700": "#334155",
+                            "800": "#1e293b",
+                            "900": "#0f172a",
+                            "950": "#090d16"
                         }
-},
+                    },
                     fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
                         mono: ['Fira Code', 'JetBrains Mono', 'monospace'],
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --bg: #1b1a18; --surface: #242220; --surface-2: #2e2c28; --line: #38352f;
-            --text: #ece8df; --muted: #9a9487; --clay: #d97757; --clay-deep: #b9553a;
+            --bg: #0d0c1d; --surface: #16142a; --surface-2: #211e3b; --line: #2e2a4a;
+            --text: #f1f5f9; --muted: #94a3b8; --accent: #7c3aed; --accent-hover: #6d28d9;
         }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.6;
         }
-        h1, h2, h3, h4, .font-serif { font-family: 'Newsreader', Georgia, serif; font-weight: 500 !important; letter-spacing: -0.012em; }
-        h1 { line-height: 1.12; }
-        .font-black { font-weight: 600; }
-        .font-mono.font-black { font-weight: 500; }
 
-        ::selection { background: rgba(217,119,87,.35); color: #fff; }
-        :focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; border-radius: 10px; }
+        ::selection { background: rgba(124, 58, 237, 0.4); color: #fff; }
+        :focus-visible { outline: 2px solid #a78bfa; outline-offset: 3px; border-radius: 12px; }
 
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #3d3a35; border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #57534c; }
+        ::-webkit-scrollbar-thumb { background: #2e2a4a; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4c1d95; }
 
         .astra-glass {
-            background: rgba(27, 26, 24, 0.92);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(13, 12, 29, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-color: var(--line);
         }
         .astra-glass-card {
             background: var(--surface);
             border: 1px solid var(--line);
-            box-shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px -16px rgba(0,0,0,.6);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+            transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .astra-glow { box-shadow: none; }
+        .astra-glass-card:hover {
+            border-color: rgba(167, 139, 250, 0.3);
+        }
 
         input, textarea, select { transition: border-color .15s, box-shadow .15s; }
-        input:focus, textarea:focus, select:focus { box-shadow: 0 0 0 3px rgba(217,119,87,.18); }
-        button { transition: background-color .15s, color .15s, border-color .15s, transform .1s; }
+        input:focus, textarea:focus, select:focus { box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25); border-color: #8b5cf6 !important; }
+        button { transition: all .15s ease; }
         button:active:not(:disabled) { transform: translateY(1px); }
-        button:disabled { cursor: not-allowed; }
+        button:disabled { cursor: not-allowed; opacity: 0.6; }
 
-        pre code { font-family: 'Fira Code', monospace; font-size: 0.825rem; }
+        pre code { font-family: 'Fira Code', monospace; font-size: 0.85rem; }
         .md-body > :first-child { margin-top: 0 !important; }
         .md-body > :last-child { margin-bottom: 0 !important; }
         .md-body { overflow-wrap: anywhere; }
@@ -334,82 +114,84 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased text-gray-100 selection:bg-astra-600 selection:text-white">
+<body class="min-h-screen flex flex-col antialiased text-gray-100 selection:bg-monguito-600 selection:text-white">
 
     <!-- LOGIN (Supabase) -->
-    <div id="auth-overlay" class="hidden fixed inset-0 z-[100] bg-gray-950 flex items-center justify-center p-4">
-        <form onsubmit="event.preventDefault(); authSubmit('login');" class="w-full max-w-sm bg-astra-card border border-astra-border rounded-3xl p-6 space-y-5 shadow-2xl">
+    <div id="auth-overlay" class="hidden fixed inset-0 z-[100] bg-gray-950/90 backdrop-blur-md flex items-center justify-center p-4">
+        <form onsubmit="event.preventDefault(); authSubmit('login');" class="w-full max-w-sm bg-monguito-card border border-monguito-border rounded-3xl p-6 space-y-5 shadow-2xl">
             <div class="text-center space-y-2">
-                <i class="fa-solid fa-cloud text-3xl text-astra-cyan"></i>
-                <h2 class="text-lg font-bold text-white">Inicia sesión</h2>
+                <div class="w-12 h-12 mx-auto rounded-2xl bg-gradient-to-tr from-monguito-600 to-monguito-400 flex items-center justify-center text-white text-2xl shadow-lg shadow-monguito-600/30">
+                    🐵
+                </div>
+                <h2 class="text-xl font-bold text-white">Inicia sesión en Monguito</h2>
                 <p class="text-xs text-gray-400">Tus asignaturas, chats y retos se guardan en tu cuenta.</p>
             </div>
-            <input id="auth-email" type="email" required autocomplete="email" placeholder="Email" class="w-full bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-astra-500">
-            <input id="auth-password" type="password" required minlength="6" autocomplete="current-password" placeholder="Contraseña (mín. 6)" class="w-full bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-astra-500">
+            <input id="auth-email" type="email" required autocomplete="email" placeholder="Email" class="w-full bg-gray-950 border border-monguito-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none">
+            <input id="auth-password" type="password" required minlength="6" autocomplete="current-password" placeholder="Contraseña (mín. 6)" class="w-full bg-gray-950 border border-monguito-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none">
             <div id="auth-msg" class="text-xs text-rose-400 min-h-[1rem]"></div>
             <div class="flex gap-3">
-                <button type="submit" id="auth-login-btn" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-3 rounded-xl transition">Entrar</button>
-                <button type="button" id="auth-signup-btn" onclick="authSubmit('signup')" class="flex-1 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold py-3 rounded-xl transition">Crear cuenta</button>
+                <button type="submit" id="auth-login-btn" class="flex-1 bg-monguito-600 hover:bg-monguito-700 text-white text-xs font-bold py-3 rounded-xl transition shadow-lg shadow-monguito-600/25">Entrar</button>
+                <button type="button" id="auth-signup-btn" onclick="authSubmit('signup')" class="flex-1 bg-gray-900 hover:bg-gray-800 text-gray-300 border border-monguito-border text-xs font-semibold py-3 rounded-xl transition">Crear cuenta</button>
             </div>
         </form>
     </div>
 
-    <header class="sticky top-0 z-40 astra-glass border-b border-astra-border px-4 lg:px-8 py-4">
+    <header class="sticky top-0 z-40 astra-glass border-b border-monguito-border px-4 lg:px-8 py-3.5">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-4">
-            <div class="flex items-center space-x-4 cursor-pointer" onclick="switchTab('dashboard')">
-                <div class="w-10 h-10 rounded-xl bg-astra-600 flex items-center justify-center text-white text-lg">
-                    <i class="fa-solid fa-code"></i>
+            <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('dashboard')">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-monguito-600 to-monguito-400 flex items-center justify-center text-white text-xl shadow-lg shadow-monguito-600/30 group-hover:scale-105 transition-transform">
+                    🐵
                 </div>
                 <div>
-                    <div class="flex items-center space-x-3">
-                        <span class="font-serif text-2xl tracking-tight text-white">Astra<span class="text-astra-400">WebDev</span></span>
-                        <span class="text-[11px] tracking-normal font-medium px-2.5 py-1 rounded-md bg-astra-500/10 text-astra-400 border border-astra-500/30">2º DAW</span>
+                    <div class="flex items-center space-x-2">
+                        <span class="font-extrabold text-xl tracking-tight text-white">Monguito<span class="text-monguito-400">Dev</span></span>
+                        <span class="text-[10px] tracking-wider uppercase font-bold px-2 py-0.5 rounded-full bg-monguito-500/15 text-monguito-300 border border-monguito-500/30">2º DAW</span>
                     </div>
-                    <span class="text-[11px] text-gray-400 block -mt-0.5">Grado Superior Desarrollo Web</span>
+                    <span class="text-[11px] text-gray-400 block -mt-0.5">Studio Inteligente DAW</span>
                 </div>
             </div>
 
             <!-- Desktop Nav Menu -->
-            <nav class="hidden lg:flex order-last w-full items-center gap-2 pt-4 border-t border-astra-border">
-                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 bg-astra-600 text-white shadow-md flex items-center space-x-3">
+            <nav class="hidden lg:flex order-last w-full items-center gap-1.5 pt-3 border-t border-monguito-border">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 bg-monguito-600 text-white shadow-lg shadow-monguito-600/20 flex items-center space-x-2">
                     <i class="fa-solid fa-gauge-high"></i><span>Dashboard</span>
                 </button>
-                <button onclick="switchTab('subjects')" id="nav-subjects" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                <button onclick="switchTab('subjects')" id="nav-subjects" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-monguito-card flex items-center space-x-2">
                     <i class="fa-solid fa-cubes"></i><span>Asignaturas</span>
                 </button>
-                <button onclick="switchTab('tutor')" id="nav-tutor" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
-                    <i class="fa-solid fa-robot text-astra-cyan"></i><span>Tutor IA</span>
+                <button onclick="switchTab('tutor')" id="nav-tutor" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-monguito-card flex items-center space-x-2">
+                    <i class="fa-solid fa-robot text-monguito-cyan"></i><span>Tutor IA</span>
                 </button>
-                <button onclick="openExamPrepModal()" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-astra-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
-                    <i class="fa-solid fa-file-pen text-astra-400"></i><span>Prep Examen AI</span>
+                <button onclick="openExamPrepModal()" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 text-monguito-300 hover:text-white hover:bg-monguito-card flex items-center space-x-2">
+                    <i class="fa-solid fa-file-pen text-monguito-400"></i><span>Prep Examen AI</span>
                 </button>
-                <button onclick="switchTab('planner')" id="nav-planner" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                <button onclick="switchTab('planner')" id="nav-planner" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-monguito-card flex items-center space-x-2">
                     <i class="fa-solid fa-calendar-check"></i><span>Planificador AI</span>
                 </button>
-                <button onclick="switchTab('flashcards')" id="nav-flashcards" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                <button onclick="switchTab('flashcards')" id="nav-flashcards" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-monguito-card flex items-center space-x-2">
                     <i class="fa-solid fa-layer-group"></i><span>Flashcards & Práctica</span>
                 </button>
-                <button onclick="switchTab('pomodoro')" id="nav-pomodoro" class="nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3">
+                <button onclick="switchTab('pomodoro')" id="nav-pomodoro" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-monguito-card flex items-center space-x-2">
                     <i class="fa-solid fa-stopwatch"></i><span>Pomodoro</span>
                 </button>
             </nav>
 
             <!-- Settings & Export -->
-            <div class="flex items-center space-x-4">
-                <button onclick="openSettingsModal()" class="flex items-center space-x-3 bg-astra-card hover:bg-astra-border px-4 py-2 rounded-xl border border-astra-border transition text-xs">
+            <div class="flex items-center space-x-3">
+                <button onclick="openSettingsModal()" class="flex items-center space-x-2 bg-monguito-card hover:bg-monguito-border px-3.5 py-2 rounded-xl border border-monguito-border transition text-xs font-medium">
                     <span id="api-status-ping" class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    <i class="fa-solid fa-key text-astra-cyan"></i>
-                    <span id="api-status-text" class="hidden sm:inline font-medium text-gray-300">Config IA</span>
+                    <i class="fa-solid fa-key text-monguito-cyan"></i>
+                    <span id="api-status-text" class="hidden sm:inline text-gray-300">Config IA</span>
                 </button>
                 <span id="sync-status" class="hidden items-center space-x-2 text-[11px] text-gray-400"><i id="sync-icon" class="fa-solid fa-cloud"></i><span id="sync-text" class="hidden sm:inline"></span></span>
-                <button id="logout-btn" onclick="logout()" title="Cerrar sesión" class="hidden p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
+                <button id="logout-btn" onclick="logout()" title="Cerrar sesión" class="hidden p-2 text-gray-400 hover:text-white bg-monguito-card rounded-xl border border-monguito-border transition">
                     <i class="fa-solid fa-right-from-bracket text-xs"></i>
                 </button>
-                <div class="flex items-center space-x-2">
-                    <button onclick="exportData()" title="Exportar Backup JSON" class="p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition">
+                <div class="flex items-center space-x-1.5">
+                    <button onclick="exportData()" title="Exportar Backup JSON" class="p-2 text-gray-400 hover:text-white bg-monguito-card rounded-xl border border-monguito-border transition">
                         <i class="fa-solid fa-download text-xs"></i>
                     </button>
-                    <label title="Importar Backup JSON" class="p-2.5 text-gray-400 hover:text-white bg-astra-card rounded-xl border border-astra-border transition cursor-pointer">
+                    <label title="Importar Backup JSON" class="p-2 text-gray-400 hover:text-white bg-monguito-card rounded-xl border border-monguito-border transition cursor-pointer">
                         <i class="fa-solid fa-upload text-xs"></i>
                         <input type="file" id="import-json-file" accept=".json" onchange="importData(event)" class="hidden">
                     </label>
@@ -418,14 +200,14 @@
         </div>
 
         <!-- Mobile Scrollable Navigation Bar -->
-        <div class="flex lg:hidden overflow-x-auto space-x-3 mt-2 pt-2 border-t border-astra-border no-scrollbar">
-            <button onclick="switchTab('dashboard')" id="mobile-nav-dashboard" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-600 text-white">Dashboard</button>
-            <button onclick="switchTab('subjects')" id="mobile-nav-subjects" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Asignaturas</button>
-            <button onclick="switchTab('tutor')" id="mobile-nav-tutor" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Tutor AI</button>
-            <button onclick="openExamPrepModal()" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-500/15 text-astra-400">Prep Examen AI</button>
-            <button onclick="switchTab('planner')" id="mobile-nav-planner" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Planificador</button>
-            <button onclick="switchTab('flashcards')" id="mobile-nav-flashcards" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Flashcards</button>
-            <button onclick="switchTab('pomodoro')" id="mobile-nav-pomodoro" class="mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300">Pomodoro</button>
+        <div class="flex lg:hidden overflow-x-auto space-x-2 mt-2 pt-2 border-t border-monguito-border no-scrollbar">
+            <button onclick="switchTab('dashboard')" id="mobile-nav-dashboard" class="mobile-nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-monguito-600 text-white">Dashboard</button>
+            <button onclick="switchTab('subjects')" id="mobile-nav-subjects" class="mobile-nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-monguito-card text-gray-300">Asignaturas</button>
+            <button onclick="switchTab('tutor')" id="mobile-nav-tutor" class="mobile-nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-monguito-card text-gray-300">Tutor AI</button>
+            <button onclick="openExamPrepModal()" class="mobile-nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-monguito-500/20 text-monguito-300">Prep Examen AI</button>
+            <button onclick="switchTab('planner')" id="mobile-nav-planner" class="mobile-nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-monguito-card text-gray-300">Planificador</button>
+            <button onclick="switchTab('flashcards')" id="mobile-nav-flashcards" class="mobile-nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-monguito-card text-gray-300">Flashcards</button>
+            <button onclick="switchTab('pomodoro')" id="mobile-nav-pomodoro" class="mobile-nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-monguito-card text-gray-300">Pomodoro</button>
         </div>
     </header>
 
@@ -433,25 +215,26 @@
 
         <!-- SECTION 1: DASHBOARD -->
         <section id="section-dashboard" class="space-y-8">
-            <div class="relative overflow-hidden rounded-3xl bg-astra-card p-8 sm:p-12 border border-astra-border">
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-monguito-card via-monguito-950 to-monguito-card p-8 sm:p-12 border border-monguito-border shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-monguito-600/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 max-w-3xl">
-                    <span class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-astra-500/10 text-astra-400 border border-astra-500/25 text-xs font-medium mb-5">
-                        <i class="fa-solid fa-terminal text-astra-cyan"></i>
-                        <span>Entorno Práctico 2º DAW</span>
+                    <span class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-monguito-500/10 text-monguito-300 border border-monguito-500/20 text-xs font-semibold mb-5">
+                        <i class="fa-solid fa-terminal text-monguito-cyan"></i>
+                        <span>Entorno Práctico Monguito 2º DAW</span>
                     </span>
-                    <h1 class="text-3xl sm:text-5xl text-white">
+                    <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
                         Aprende practicando código Full Stack
                     </h1>
                     <p class="text-gray-300 text-sm sm:text-base mt-4 leading-relaxed max-w-2xl">
-                        Crea tu temario personalizado, genera retos con IA según tu contexto de estudio actual y resuelve exámenes reales subiendo imágenes o enunciados.
+                        Crea tu temario personalizado, genera retos interactivos con IA adaptados a tu ritmo y resuelve exámenes reales subiendo capturas o enunciados.
                     </p>
                     <div class="flex flex-wrap gap-4 mt-8">
-                        <button onclick="openExamPrepModal()" class="bg-astra-600 hover:bg-astra-700 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-lg transition flex items-center space-x-3">
+                        <button onclick="openExamPrepModal()" class="bg-monguito-600 hover:bg-monguito-700 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-lg shadow-monguito-600/30 transition flex items-center space-x-3">
                             <i class="fa-solid fa-file-pen"></i>
                             <span>Preparar Modelo de Examen</span>
                         </button>
-                        <button onclick="switchTab('flashcards')" class="bg-astra-card hover:bg-astra-border text-white border border-astra-border font-semibold text-xs sm:text-sm px-5 py-3 rounded-xl transition flex items-center space-x-3">
-                            <i class="fa-solid fa-code text-astra-cyan"></i>
+                        <button onclick="switchTab('flashcards')" class="bg-monguito-card hover:bg-monguito-border text-white border border-monguito-border font-semibold text-xs sm:text-sm px-5 py-3 rounded-xl transition flex items-center space-x-3">
+                            <i class="fa-solid fa-code text-monguito-cyan"></i>
                             <span>Práctica con Contexto y Código</span>
                         </button>
                     </div>
@@ -462,36 +245,36 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
                 <div class="astra-glass-card p-5 rounded-2xl">
                     <div class="flex items-center justify-between text-gray-400 mb-1">
-                        <span class="text-xs font-medium">Módulos Oficiales</span>
-                        <i class="fa-solid fa-book-bookmark text-astra-400"></i>
+                        <span class="text-xs font-semibold">Módulos Oficiales</span>
+                        <i class="fa-solid fa-book-bookmark text-monguito-400"></i>
                     </div>
-                    <div class="text-xl sm:text-2xl font-black text-white">7 Módulos</div>
-                    <p class="text-[11px] text-gray-400 mt-1">Checklists vacías para ti</p>
+                    <div class="text-xl sm:text-2xl font-extrabold text-white">7 Módulos</div>
+                    <p class="text-[11px] text-gray-400 mt-1">Checklists listas para personalizar</p>
                 </div>
                 <div class="astra-glass-card p-5 rounded-2xl">
                     <div class="flex items-center justify-between text-gray-400 mb-1">
-                        <span class="text-xs font-medium">Checks Completados</span>
+                        <span class="text-xs font-semibold">Checks Completados</span>
                         <i class="fa-solid fa-chart-pie text-emerald-400"></i>
                     </div>
-                    <div id="stat-progress-pct" class="text-xl sm:text-2xl font-black text-emerald-400">0%</div>
+                    <div id="stat-progress-pct" class="text-xl sm:text-2xl font-extrabold text-emerald-400">0%</div>
                     <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2 overflow-hidden">
                         <div id="stat-progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-500"></div>
                     </div>
                 </div>
                 <div class="astra-glass-card p-5 rounded-2xl">
                     <div class="flex items-center justify-between text-gray-400 mb-1">
-                        <span class="text-xs font-medium">Retos Generados</span>
-                        <i class="fa-solid fa-layer-group text-astra-cyan"></i>
+                        <span class="text-xs font-semibold">Retos Generados</span>
+                        <i class="fa-solid fa-layer-group text-monguito-cyan"></i>
                     </div>
-                    <div id="stat-flashcards-count" class="text-xl sm:text-2xl font-black text-white">0</div>
+                    <div id="stat-flashcards-count" class="text-xl sm:text-2xl font-extrabold text-white">0</div>
                     <p class="text-[11px] text-gray-400 mt-1">Retos guardados</p>
                 </div>
                 <div class="astra-glass-card p-5 rounded-2xl">
                     <div class="flex items-center justify-between text-gray-400 mb-1">
-                        <span class="text-xs font-medium">Tiempo Enfocado</span>
+                        <span class="text-xs font-semibold">Tiempo Enfocado</span>
                         <i class="fa-solid fa-clock text-amber-400"></i>
                     </div>
-                    <div id="stat-pomo-hours" class="text-xl sm:text-2xl font-black text-amber-400">0h 0m</div>
+                    <div id="stat-pomo-hours" class="text-xl sm:text-2xl font-extrabold text-amber-400">0h 0m</div>
                     <p class="text-[11px] text-gray-400 mt-1">Registrado con Pomodoro</p>
                 </div>
             </div>
@@ -499,11 +282,11 @@
             <!-- Subject Grid Overview -->
             <div>
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-lg font-bold text-white flex items-center space-x-3">
-                        <i class="fa-solid fa-graduation-cap text-astra-500"></i>
+                    <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-graduation-cap text-monguito-400"></i>
                         <span>Módulos de 2º DAW</span>
                     </h2>
-                    <button onclick="switchTab('subjects')" class="text-xs text-astra-400 hover:underline">Añadir temas a tu gusto &rarr;</button>
+                    <button onclick="switchTab('subjects')" class="text-xs font-semibold text-monguito-300 hover:text-monguito-400 hover:underline transition">Añadir temas a tu gusto &rarr;</button>
                 </div>
                 <div id="dash-subjects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     <!-- Dynamic rendering -->
@@ -513,13 +296,13 @@
 
         <!-- SECTION 2: SUBJECTS DETAIL HUB -->
         <section id="section-subjects" class="hidden space-y-8">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-5 bg-astra-card p-6 rounded-3xl border border-astra-border">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-5 bg-monguito-card p-6 rounded-3xl border border-monguito-border">
                 <div>
                     <h2 class="text-xl font-bold text-white flex items-center space-x-3">
-                        <i class="fa-solid fa-cubes text-astra-cyan"></i>
+                        <i class="fa-solid fa-cubes text-monguito-cyan"></i>
                         <span>Módulos y Checklist Personalizado DAW</span>
                     </h2>
-                    <p class="text-xs text-gray-400 mt-1">El espacio está totalmente vacío para que estructures tus propios temas, prácticas o unidades didácticas.</p>
+                    <p class="text-xs text-gray-400 mt-1">El espacio está totalmente listo para que estructures tus propios temas, prácticas o unidades didácticas.</p>
                 </div>
             </div>
 
@@ -533,15 +316,15 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[750px]">
                 
                 <!-- Panel Lateral / Historial de Conversaciones -->
-                <div class="lg:col-span-3 astra-glass-card rounded-3xl p-4 flex flex-col justify-between border border-astra-border min-h-[250px] lg:min-h-[750px]">
+                <div class="lg:col-span-3 astra-glass-card rounded-3xl p-4 flex flex-col justify-between border border-monguito-border min-h-[250px] lg:min-h-[750px]">
                     <div class="space-y-4 flex-grow flex flex-col">
-                        <button onclick="newConversation()" class="w-full flex items-center justify-center gap-2 px-4 py-3 text-xs font-bold text-white bg-astra-600 hover:bg-astra-700 rounded-2xl transition shadow-lg">
+                        <button onclick="newConversation()" class="w-full flex items-center justify-center gap-2 px-4 py-3 text-xs font-bold text-white bg-monguito-600 hover:bg-monguito-700 rounded-2xl transition shadow-lg shadow-monguito-600/25">
                             <i class="fa-solid fa-plus"></i><span>Nueva conversación</span>
                         </button>
                         
                         <div class="space-y-2">
                             <label class="text-[10px] uppercase font-bold text-gray-400 tracking-wider block px-1">Canal DAW</label>
-                            <select id="tutor-channel-select" onchange="switchTutorChannel(this.value)" class="w-full bg-gray-950 border border-astra-border text-astra-cyan font-mono text-xs rounded-xl px-3 py-2.5 focus:outline-none">
+                            <select id="tutor-channel-select" onchange="switchTutorChannel(this.value)" class="w-full bg-gray-950 border border-monguito-border text-monguito-cyan font-mono text-xs rounded-xl px-3 py-2.5 focus:outline-none">
                                 <option value="GLOBAL">🌐 Canal General DAW</option>
                                 <option value="DWES">🐘 DWES (Servidor)</option>
                                 <option value="DWEC">⚡ DWEC (Cliente)</option>
@@ -553,7 +336,7 @@
                             </select>
                         </div>
 
-                        <div class="flex-grow flex flex-col min-h-0 space-y-2 pt-2 border-t border-astra-border">
+                        <div class="flex-grow flex flex-col min-h-0 space-y-2 pt-2 border-t border-monguito-border">
                             <span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider block px-1">Historial</span>
                             <div id="tutor-conv-sidebar-list" class="flex-grow overflow-y-auto space-y-1.5 pr-1 max-h-[350px] lg:max-h-[500px]">
                                 <!-- Lista dinámica de conversaciones -->
@@ -561,12 +344,12 @@
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t border-astra-border space-y-2">
-                        <button onclick="askAIForQuiz()" class="w-full text-left p-2.5 rounded-xl bg-gray-950 hover:bg-gray-900 border border-astra-border text-gray-300 text-xs transition flex items-center justify-between">
+                    <div class="pt-4 border-t border-monguito-border space-y-2">
+                        <button onclick="askAIForQuiz()" class="w-full text-left p-2.5 rounded-xl bg-gray-950 hover:bg-gray-900 border border-monguito-border text-gray-300 text-xs transition flex items-center justify-between">
                             <span>🎯 Test Aleatorio</span>
                             <i class="fa-solid fa-chevron-right text-[10px]"></i>
                         </button>
-                        <button onclick="askAIForCodeBug()" class="w-full text-left p-2.5 rounded-xl bg-gray-950 hover:bg-gray-900 border border-astra-border text-gray-300 text-xs transition flex items-center justify-between">
+                        <button onclick="askAIForCodeBug()" class="w-full text-left p-2.5 rounded-xl bg-gray-950 hover:bg-gray-900 border border-monguito-border text-gray-300 text-xs transition flex items-center justify-between">
                             <span>🐛 Depurar Bug</span>
                             <i class="fa-solid fa-chevron-right text-[10px]"></i>
                         </button>
@@ -574,22 +357,22 @@
                 </div>
 
                 <!-- Chat Principal Ampliado -->
-                <div class="lg:col-span-9 astra-glass-card rounded-3xl p-4 sm:p-6 flex flex-col justify-between h-full border border-astra-border min-h-[600px] lg:min-h-[750px]">
-                    <div class="flex items-center justify-between border-b border-astra-border pb-4 mb-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-10 h-10 rounded-xl bg-astra-600 flex items-center justify-center text-white font-bold text-lg">
-                                <i class="fa-solid fa-robot"></i>
+                <div class="lg:col-span-9 astra-glass-card rounded-3xl p-4 sm:p-6 flex flex-col justify-between h-full border border-monguito-border min-h-[600px] lg:min-h-[750px]">
+                    <div class="flex items-center justify-between border-b border-monguito-border pb-4 mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-monguito-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-monguito-600/30">
+                                🐵
                             </div>
                             <div>
                                 <h3 class="text-sm font-bold text-white flex items-center space-x-3">
-                                    <span>Tutor DAW Multi-IA</span>
+                                    <span>Tutor Monguito Multi-IA</span>
                                     <span id="active-provider-badge" class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono whitespace-nowrap">Gemini</span>
                                 </h3>
                                 <p class="text-[11px] text-gray-400" id="tutor-chat-subtitle">Canal activo: General</p>
                             </div>
                         </div>
 
-                        <button onclick="clearTutorChat()" title="Borrar esta conversación" class="p-2.5 text-xs text-gray-500 hover:text-rose-400 bg-gray-900 border border-astra-border rounded-xl transition flex items-center space-x-2">
+                        <button onclick="clearTutorChat()" title="Borrar esta conversación" class="p-2.5 text-xs text-gray-500 hover:text-rose-400 bg-gray-900 border border-monguito-border rounded-xl transition flex items-center space-x-2">
                             <i class="fa-solid fa-trash-can"></i><span class="hidden sm:inline">Borrar Chat</span>
                         </button>
                     </div>
@@ -598,21 +381,21 @@
                         <!-- Messages -->
                     </div>
 
-                    <div class="flex overflow-x-auto space-x-3 pb-2 no-scrollbar">
-                        <button onclick="setTutorPrompt('Explícame cómo funciona un Middleware en Express.js con un ejemplo en código.')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-4 py-2 rounded-xl whitespace-nowrap transition">
+                    <div class="flex overflow-x-auto space-x-2 pb-2 no-scrollbar">
+                        <button onclick="setTutorPrompt('Explícame cómo funciona un Middleware en Express.js con un ejemplo en código.')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-monguito-300 border border-gray-800 px-3.5 py-2 rounded-xl whitespace-nowrap transition">
                             🛠️ Middleware Express
                         </button>
-                        <button onclick="setTutorPrompt('¿Cuál es la diferencia entre fetch, async/await y Axios en JS?')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-4 py-2 rounded-xl whitespace-nowrap transition">
+                        <button onclick="setTutorPrompt('¿Cuál es la diferencia entre fetch, async/await y Axios en JS?')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-monguito-300 border border-gray-800 px-3.5 py-2 rounded-xl whitespace-nowrap transition">
                             ⚡ Fetch vs Async
                         </button>
-                        <button onclick="setTutorPrompt('Escribe un script de PHP con PDO para conectar a MySQL de forma segura.')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-astra-300 border border-gray-800 px-4 py-2 rounded-xl whitespace-nowrap transition">
+                        <button onclick="setTutorPrompt('Escribe un script de PHP con PDO para conectar a MySQL de forma segura.')" class="text-[11px] bg-gray-900 hover:bg-gray-800 text-monguito-300 border border-gray-800 px-3.5 py-2 rounded-xl whitespace-nowrap transition">
                             🐘 PHP PDO MySQL
                         </button>
                     </div>
 
                     <form onsubmit="sendTutorMessage(event)" class="flex items-center space-x-3 mt-1">
-                        <input id="tutor-chat-input" type="text" placeholder="Haz tu pregunta técnica al tutor..." class="flex-grow bg-gray-950 border border-astra-border rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-astra-500 font-sans">
-                        <button type="submit" id="tutor-btn-send" class="bg-astra-600 hover:bg-astra-700 text-white px-5 py-3 rounded-xl font-bold transition flex items-center justify-center">
+                        <input id="tutor-chat-input" type="text" placeholder="Haz tu pregunta técnica a Monguito..." class="flex-grow bg-gray-950 border border-monguito-border rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none font-sans">
+                        <button type="submit" id="tutor-btn-send" class="bg-monguito-600 hover:bg-monguito-700 text-white px-5 py-3 rounded-xl font-bold transition flex items-center justify-center shadow-lg shadow-monguito-600/25">
                             <i class="fa-solid fa-paper-plane"></i>
                         </button>
                     </form>
@@ -622,15 +405,15 @@
 
         <!-- SECTION 4: PLANNER HUB -->
         <section id="section-planner" class="hidden space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 bg-astra-card p-6 rounded-3xl border border-astra-border">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 bg-monguito-card p-6 rounded-3xl border border-monguito-border">
                 <div>
                     <h2 class="text-xl font-bold text-white flex items-center space-x-3">
-                        <i class="fa-solid fa-calendar-check text-astra-cyan"></i>
+                        <i class="fa-solid fa-calendar-check text-monguito-cyan"></i>
                         <span>Planificador de Estudio Inteligente</span>
                     </h2>
                     <p class="text-xs text-gray-400 mt-1">Genera calendarios adaptados a tus exámenes de DAW con Inteligencia Artificial.</p>
                 </div>
-                <button onclick="openPlannerModal()" class="bg-astra-600 hover:bg-astra-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-lg flex items-center space-x-3">
+                <button onclick="openPlannerModal()" class="bg-monguito-600 hover:bg-monguito-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-lg shadow-monguito-600/25 flex items-center space-x-3">
                     <i class="fa-solid fa-plus"></i>
                     <span>Nuevo Plan AI</span>
                 </button>
@@ -646,13 +429,13 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-5">
                 <div>
                     <h2 class="text-xl font-bold text-white flex items-center space-x-3">
-                        <i class="fa-solid fa-code text-astra-cyan"></i>
+                        <i class="fa-solid fa-code text-monguito-cyan"></i>
                         <span>Práctica Interactiva de Código y Retos</span>
                     </h2>
                     <p class="text-xs text-gray-400">Selecciona el módulo, define el contexto de lo que quieres repasar hoy y responde programando.</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-3">
-                    <select id="flashcard-subject-filter" onchange="renderFlashcards()" class="bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                    <select id="flashcard-subject-filter" onchange="renderFlashcards()" class="bg-gray-900 border border-monguito-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
                         <option value="ALL">Todas las Asignaturas</option>
                         <option value="DWES">DWES - Servidor</option>
                         <option value="DWEC">DWEC - Cliente</option>
@@ -666,17 +449,17 @@
             </div>
 
             <!-- Flashcard AI Context Box Block -->
-            <div class="astra-glass-card p-5 rounded-3xl border border-astra-500/30 space-y-4">
+            <div class="astra-glass-card p-5 rounded-3xl border border-monguito-500/30 space-y-4">
                 <div class="flex items-center justify-between">
                     <span class="text-xs font-bold text-white flex items-center space-x-3">
-                        <i class="fa-solid fa-sliders text-astra-cyan"></i>
+                        <i class="fa-solid fa-sliders text-monguito-cyan"></i>
                         <span>Contexto de Estudio para hoy (AI Prompt)</span>
                     </span>
-                    <span class="text-[10px] text-gray-400">La IA genera una tanda de 6 retos con lo que pongas aquí</span>
+                    <span class="text-[10px] text-gray-400">Monguito genera una tanda de 6 retos con lo que pongas aquí</span>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3">
-                    <input id="flashcard-context-input" type="text" onkeydown="if(event.key==='Enter'){generateDynamicAIReto();}" placeholder="Ej: Hoy estoy estudiando PDO, sesiones y cookies en PHP..." class="flex-grow bg-gray-950 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-sans">
-                    <button onclick="generateDynamicAIReto()" class="bg-astra-600 hover:bg-astra-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-lg flex items-center justify-center space-x-3 whitespace-nowrap">
+                    <input id="flashcard-context-input" type="text" onkeydown="if(event.key==='Enter'){generateDynamicAIReto();}" placeholder="Ej: Hoy estoy estudiando PDO, sesiones y cookies en PHP..." class="flex-grow bg-gray-950 border border-monguito-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none font-sans">
+                    <button onclick="generateDynamicAIReto()" class="bg-monguito-600 hover:bg-monguito-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition shadow-lg shadow-monguito-600/25 flex items-center justify-center space-x-2 whitespace-nowrap">
                         <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
                         <span>Generar 6 Retos</span>
                     </button>
@@ -685,40 +468,40 @@
 
             <!-- Practice container -->
             <div class="max-w-2xl mx-auto">
-                <div id="practice-empty" class="astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-astra-border">
+                <div id="practice-empty" class="astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-monguito-border">
                     <i class="fa-solid fa-wand-magic-sparkles text-4xl text-gray-600"></i>
                     <h3 class="text-sm font-bold text-white">Aún no hay retos</h3>
                     <p class="text-xs text-gray-400">Escribe arriba el tema que quieres repasar y pulsa "Generar 6 Retos".</p>
                 </div>
 
-                <div id="practice-loading" class="hidden astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-astra-border">
-                    <div class="w-6 h-6 mx-auto rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
-                    <p class="text-xs text-astra-cyan">La IA está preparando el repaso y tus 6 retos...</p>
+                <div id="practice-loading" class="hidden astra-glass-card p-10 rounded-3xl text-center space-y-4 border border-monguito-border">
+                    <div class="w-6 h-6 mx-auto rounded-full border-2 border-monguito-cyan border-t-transparent animate-spin"></div>
+                    <p class="text-xs text-monguito-cyan">Monguito está preparando el repaso y tus 6 retos...</p>
                 </div>
 
-                <div id="practice-intro" class="hidden astra-glass-card p-8 rounded-3xl border border-astra-border space-y-6">
+                <div id="practice-intro" class="hidden astra-glass-card p-8 rounded-3xl border border-monguito-border space-y-6">
                     <div class="space-y-2">
-                        <p id="intro-subject-tag" class="text-xs font-medium text-astra-400"></p>
-                        <h3 id="intro-title" class="text-2xl sm:text-3xl text-white"></h3>
+                        <p id="intro-subject-tag" class="text-xs font-medium text-monguito-400"></p>
+                        <h3 id="intro-title" class="text-2xl sm:text-3xl text-white font-bold"></h3>
                     </div>
                     <div id="intro-text" class="text-sm sm:text-base text-gray-300 leading-relaxed"></div>
                     <div class="space-y-3">
-                        <h4 class="text-lg text-white">Aspectos fundamentales</h4>
-                        <ul id="intro-points" class="space-y-3 text-sm text-gray-300 list-disc pl-5 marker:text-astra-400"></ul>
+                        <h4 class="text-lg font-bold text-white">Aspectos fundamentales</h4>
+                        <ul id="intro-points" class="space-y-3 text-sm text-gray-300 list-disc pl-5 marker:text-monguito-400"></ul>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                        <button onclick="beginPracticeCards()" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-sm font-semibold py-3.5 rounded-xl transition">
+                        <button onclick="beginPracticeCards()" class="flex-1 bg-monguito-600 hover:bg-monguito-700 text-white text-sm font-semibold py-3.5 rounded-xl transition shadow-lg shadow-monguito-600/25">
                             Empezar los 6 retos
                         </button>
-                        <button onclick="newPracticeTopic()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-sm font-medium px-5 py-3.5 rounded-xl transition">
+                        <button onclick="newPracticeTopic()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-monguito-border text-sm font-medium px-5 py-3.5 rounded-xl transition">
                             Cambiar de tema
                         </button>
                     </div>
                 </div>
 
-                <div id="practice-card-box" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-6">
-                    <div class="flex items-center justify-between border-b border-astra-border pb-3">
-                        <span id="card-subject-tag" class="text-[10px] uppercase font-bold text-astra-cyan tracking-widest px-2.5 py-1 rounded-full bg-astra-cyan/10 border border-astra-cyan/20">ASIGNATURA</span>
+                <div id="practice-card-box" class="hidden astra-glass-card p-6 rounded-3xl border border-monguito-500/30 shadow-2xl space-y-6">
+                    <div class="flex items-center justify-between border-b border-monguito-border pb-3">
+                        <span id="card-subject-tag" class="text-[10px] uppercase font-bold text-monguito-cyan tracking-widest px-2.5 py-1 rounded-full bg-monguito-cyan/10 border border-monguito-cyan/20">ASIGNATURA</span>
                         <span id="flashcard-counter-indicator" class="text-xs text-gray-400 font-mono">0 / 0</span>
                     </div>
 
@@ -726,20 +509,20 @@
 
                     <div class="space-y-3">
                         <label class="block text-[11px] font-bold text-gray-300 tracking-normal">Escribe tu respuesta o solución en código:</label>
-                        <textarea id="card-user-input" rows="5" placeholder="Escribe aquí tu código PHP, JS, comandos Docker, CSS o explicación..." class="w-full bg-gray-950 border border-astra-border rounded-2xl p-3 text-xs text-astra-cyan focus:outline-none font-mono resize-none"></textarea>
+                        <textarea id="card-user-input" rows="5" placeholder="Escribe aquí tu código PHP, JS, comandos Docker, CSS o explicación..." class="w-full bg-gray-950 border border-monguito-border rounded-2xl p-3 text-xs text-monguito-cyan focus:outline-none font-mono resize-none"></textarea>
                     </div>
 
                     <div id="card-actions" class="flex flex-wrap gap-3 pt-1">
-                        <button id="card-eval-btn" onclick="checkAnswerWithAI()" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-3 shadow-lg">
+                        <button id="card-eval-btn" onclick="checkAnswerWithAI()" class="flex-1 bg-monguito-600 hover:bg-monguito-700 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg shadow-monguito-600/25">
                             <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
-                            <span>Evaluar mi código con IA</span>
+                            <span>Evaluar mi código con Monguito AI</span>
                         </button>
-                        <button id="card-reveal-btn" onclick="revealOfficialAnswer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-5 py-3 rounded-xl transition">
+                        <button id="card-reveal-btn" onclick="revealOfficialAnswer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-monguito-border text-xs font-semibold px-5 py-3 rounded-xl transition">
                             👁️ Ver solución (cuenta 0)
                         </button>
                     </div>
 
-                    <div id="card-feedback-box" class="hidden p-4 rounded-2xl bg-gray-950 border border-astra-border space-y-4 text-xs">
+                    <div id="card-feedback-box" class="hidden p-4 rounded-2xl bg-gray-950 border border-monguito-border space-y-4 text-xs">
                         <div id="ai-eval-result" class="text-gray-300 space-y-2"></div>
                         <div class="border-t border-gray-900 pt-3">
                             <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider block mb-1">Solución / Código Esperado:</span>
@@ -747,53 +530,53 @@
                         </div>
                     </div>
 
-                    <button id="card-next-btn" onclick="nextPracticeStep()" class="hidden w-full bg-astra-600 hover:bg-astra-500 text-white text-xs font-bold py-2.5 rounded-xl transition">
+                    <button id="card-next-btn" onclick="nextPracticeStep()" class="hidden w-full bg-monguito-600 hover:bg-monguito-500 text-white text-xs font-bold py-2.5 rounded-xl transition">
                         Siguiente <i class="fa-solid fa-chevron-right ml-1"></i>
                     </button>
                 </div>
 
-                <div id="practice-results" class="hidden astra-glass-card p-6 rounded-3xl border border-astra-500/30 shadow-2xl space-y-6 text-center"></div>
+                <div id="practice-results" class="hidden astra-glass-card p-6 rounded-3xl border border-monguito-500/30 shadow-2xl space-y-6 text-center"></div>
             </div>
         </section>
 
         <!-- SECTION 6: POMODORO & LO-FI AUDIO GENERATOR -->
         <section id="section-pomodoro" class="hidden max-w-3xl mx-auto space-y-8">
-            <div class="astra-glass-card p-8 rounded-3xl text-center space-y-8 border border-astra-border astra-glow">
-                <div class="flex justify-center space-x-3 bg-gray-950 p-1.5 rounded-2xl max-w-md mx-auto border border-astra-border overflow-x-auto">
-                    <button onclick="setPomoMode('work25')" id="pomo-mode-work25" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-astra-600 text-white whitespace-nowrap">Estudio (25m)</button>
+            <div class="astra-glass-card p-8 rounded-3xl text-center space-y-8 border border-monguito-border">
+                <div class="flex justify-center space-x-2 bg-gray-950 p-1.5 rounded-2xl max-w-md mx-auto border border-monguito-border overflow-x-auto">
+                    <button onclick="setPomoMode('work25')" id="pomo-mode-work25" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-monguito-600 text-white whitespace-nowrap">Estudio (25m)</button>
                     <button onclick="setPomoMode('work50')" id="pomo-mode-work50" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-400 whitespace-nowrap">Intenso (50m)</button>
                     <button onclick="setPomoMode('shortBreak')" id="pomo-mode-short" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-400 whitespace-nowrap">Descanso (5m / 10m)</button>
                     <button onclick="setPomoMode('longBreak')" id="pomo-mode-long" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-400 whitespace-nowrap">Largo (15m)</button>
                 </div>
 
                 <div>
-                    <div id="pomo-clock-display" class="text-6xl sm:text-8xl font-black font-mono tracking-tight text-white">
+                    <div id="pomo-clock-display" class="text-6xl sm:text-8xl font-extrabold font-mono tracking-tight text-white">
                         25:00
                     </div>
-                    <p id="pomo-mode-label" class="text-xs uppercase font-bold text-astra-cyan tracking-widest mt-2">
+                    <p id="pomo-mode-label" class="text-xs uppercase font-bold text-monguito-cyan tracking-widest mt-2">
                         Bloque de Enfoque Estándar (25 minutos)
                     </p>
                 </div>
 
                 <div class="flex items-center justify-center space-x-4">
-                    <button id="pomo-toggle-btn" onclick="togglePomoTimer()" class="w-36 bg-astra-600 hover:bg-astra-700 text-white font-extrabold py-3.5 rounded-2xl shadow-xl transition flex items-center justify-center space-x-3 text-base">
+                    <button id="pomo-toggle-btn" onclick="togglePomoTimer()" class="w-36 bg-monguito-600 hover:bg-monguito-700 text-white font-extrabold py-3.5 rounded-2xl shadow-xl shadow-monguito-600/30 transition flex items-center justify-center space-x-3 text-base">
                         <i id="pomo-play-icon" class="fa-solid fa-play"></i>
                         <span id="pomo-btn-text">Iniciar</span>
                     </button>
-                    <button onclick="resetPomoTimer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 p-3.5 rounded-2xl border border-astra-border transition">
+                    <button onclick="resetPomoTimer()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 p-3.5 rounded-2xl border border-monguito-border transition">
                         <i class="fa-solid fa-rotate-right"></i>
                     </button>
                 </div>
 
-                <div class="pt-6 border-t border-astra-border flex flex-wrap items-center justify-between gap-5 text-xs">
-                    <span class="text-gray-400 font-medium flex items-center space-x-3">
-                        <i class="fa-solid fa-headphones text-astra-cyan"></i>
+                <div class="pt-6 border-t border-monguito-border flex flex-wrap items-center justify-between gap-5 text-xs">
+                    <span class="text-gray-400 font-semibold flex items-center space-x-2">
+                        <i class="fa-solid fa-headphones text-monguito-cyan"></i>
                         <span>Generador de Ruido Enfoque (Web Audio Synth):</span>
                     </span>
-                    <div class="flex items-center space-x-3">
-                        <button onclick="toggleSynthAudio('white')" id="synth-white" class="px-4 py-2 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🌫️ Ruido Blanco</button>
-                        <button onclick="toggleSynthAudio('pink')" id="synth-pink" class="px-4 py-2 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🌧️ Lluvia Synth</button>
-                        <button onclick="toggleSynthAudio('binaural')" id="synth-binaural" class="px-4 py-2 rounded-xl bg-gray-950 border border-astra-border text-gray-400 transition">🧠 Pulso Alpha</button>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="toggleSynthAudio('white')" id="synth-white" class="px-3.5 py-2 rounded-xl bg-gray-950 border border-monguito-border text-gray-400 transition">🌫️ Ruido Blanco</button>
+                        <button onclick="toggleSynthAudio('pink')" id="synth-pink" class="px-3.5 py-2 rounded-xl bg-gray-950 border border-monguito-border text-gray-400 transition">🌧️ Lluvia Synth</button>
+                        <button onclick="toggleSynthAudio('binaural')" id="synth-binaural" class="px-3.5 py-2 rounded-xl bg-gray-950 border border-monguito-border text-gray-400 transition">🧠 Pulso Alpha</button>
                     </div>
                 </div>
             </div>
@@ -803,10 +586,10 @@
 
     <!-- MODAL: PREPARACIÓN DE EXAMEN AI -->
     <div id="modal-exam-prep" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-2xl space-y-5 shadow-2xl my-8">
-            <div class="flex justify-between items-center border-b border-astra-border pb-3">
+        <div class="bg-gray-950 border border-monguito-border rounded-3xl p-6 w-full max-w-2xl space-y-5 shadow-2xl my-8">
+            <div class="flex justify-between items-center border-b border-monguito-border pb-3">
                 <h3 class="text-base font-bold text-white flex items-center space-x-3">
-                    <i class="fa-solid fa-file-pen text-astra-400"></i>
+                    <i class="fa-solid fa-file-pen text-monguito-400"></i>
                     <span>Preparador de Examen & Modelos AI</span>
                 </h3>
                 <button onclick="closeExamPrepModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
@@ -820,7 +603,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Módulo Formativo</label>
-                        <select id="exam-prep-subject" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                        <select id="exam-prep-subject" class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
                             <option value="DWES">DWES - Entorno Servidor</option>
                             <option value="DWEC">DWEC - Entorno Cliente</option>
                             <option value="DIW">DIW - Interfaces Web</option>
@@ -832,7 +615,7 @@
                     </div>
                     <div>
                         <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Tipo de Salida AI</label>
-                        <select id="exam-prep-mode" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                        <select id="exam-prep-mode" class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
                             <option value="SIMULATION">Simular Examen Completo con Soluciones</option>
                             <option value="STEP_BY_STEP">Resolver y Explicar Enunciado Adjunto</option>
                             <option value="FLASHCARDS">Generar Mazo de Flashcards del Examen</option>
@@ -842,27 +625,27 @@
 
                 <div>
                     <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Adjuntar Foto o Imagen de Enunciado/Apuntes (Opcional)</label>
-                    <input type="file" id="exam-prep-file" accept="image/*" class="w-full bg-gray-900 border border-astra-border rounded-xl p-2 text-xs text-gray-400 file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-astra-600 file:text-white hover:file:bg-astra-500 cursor-pointer">
+                    <input type="file" id="exam-prep-file" accept="image/*" class="w-full bg-gray-900 border border-monguito-border rounded-xl p-2 text-xs text-gray-400 file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-monguito-600 file:text-white hover:file:bg-monguito-500 cursor-pointer">
                 </div>
 
                 <div>
                     <label class="block text-[11px] font-bold text-gray-300 uppercase mb-1">Enunciado o Instrucciones</label>
-                    <textarea id="exam-prep-text" rows="4" placeholder="Ej: El examen tratará de crear un script de PHP con PDO que gestione un CRUD con sesiones de usuario..." class="w-full bg-gray-900 border border-astra-border rounded-xl p-3 text-xs text-white focus:outline-none resize-none font-mono"></textarea>
+                    <textarea id="exam-prep-text" rows="4" placeholder="Ej: El examen tratará de crear un script de PHP con PDO que gestione un CRUD con sesiones de usuario..." class="w-full bg-gray-900 border border-monguito-border rounded-xl p-3 text-xs text-white focus:outline-none resize-none font-mono"></textarea>
                 </div>
 
-                <button onclick="processExamPrepWithAI()" class="w-full bg-astra-600 hover:bg-astra-700 text-white font-bold py-3 rounded-xl transition shadow-lg flex items-center justify-center space-x-3">
+                <button onclick="processExamPrepWithAI()" class="w-full bg-monguito-600 hover:bg-monguito-700 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-monguito-600/25 flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                     <span>Procesar y Generar Modelo con IA</span>
                 </button>
 
-                <div id="exam-prep-result-container" class="hidden space-y-4 pt-3 border-t border-astra-border">
+                <div id="exam-prep-result-container" class="hidden space-y-4 pt-3 border-t border-monguito-border">
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-white text-xs">Resultado / Simulación de Examen:</span>
-                        <button onclick="addExamPrepCardsToDeck()" id="exam-add-cards-btn" class="hidden bg-astra-600 hover:bg-astra-500 text-white font-bold text-[11px] px-3 py-1 rounded-lg transition">
+                        <button onclick="addExamPrepCardsToDeck()" id="exam-add-cards-btn" class="hidden bg-monguito-600 hover:bg-monguito-500 text-white font-bold text-[11px] px-3 py-1 rounded-lg transition">
                             + Añadir Tarjetas Generadas
                         </button>
                     </div>
-                    <div id="exam-prep-output" class="bg-gray-900 border border-astra-border rounded-2xl p-4 max-h-80 overflow-y-auto font-mono text-xs text-gray-200 leading-relaxed"></div>
+                    <div id="exam-prep-output" class="bg-gray-900 border border-monguito-border rounded-2xl p-4 max-h-80 overflow-y-auto font-mono text-xs text-gray-200 leading-relaxed"></div>
                 </div>
             </div>
         </div>
@@ -870,10 +653,10 @@
 
     <!-- MODAL: SETTINGS MULTI-AI -->
     <div id="modal-settings" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-md space-y-6 shadow-2xl max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-astra-border pb-3">
+        <div class="bg-gray-950 border border-monguito-border rounded-3xl p-6 w-full max-w-md space-y-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-monguito-border pb-3">
                 <h3 class="text-sm font-bold text-white flex items-center space-x-3">
-                    <i class="fa-solid fa-sliders text-astra-cyan"></i>
+                    <i class="fa-solid fa-sliders text-monguito-cyan"></i>
                     <span>Configuración de Proveedor de IA</span>
                 </h3>
                 <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
@@ -882,7 +665,7 @@
             <div class="space-y-4 text-xs">
                 <div>
                     <label class="block font-bold text-gray-300 uppercase mb-1">Proveedor Activo</label>
-                    <select id="settings-provider-select" onchange="toggleProviderSettingsFields(this.value)" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                    <select id="settings-provider-select" onchange="toggleProviderSettingsFields(this.value)" class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
                         <option value="gemini">Google Gemini (Gratuito/Amplio)</option>
                         <option value="groq">Groq Cloud (Gratuito & Ultra Rápido)</option>
                         <option value="ollama">Ollama Local (100% Gratuito/Sin Límites)</option>
@@ -894,7 +677,7 @@
                 <!-- CAMPO: Gemini -->
                 <div id="field-gemini-key" class="space-y-1">
                     <label class="block font-bold text-gray-300 uppercase mb-1">Gemini API Key</label>
-                    <input id="input-api-key" type="password" placeholder="AIzaSy..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                    <input id="input-api-key" type="password" placeholder="AIzaSy..." class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none font-mono">
                     <p class="text-[10px] text-gray-500">Gratis con límites amplios en Google AI Studio.</p>
                 </div>
 
@@ -902,37 +685,37 @@
                 <div id="field-groq" class="hidden space-y-3">
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">Groq API Key</label>
-                        <input id="input-groq-key" type="password" placeholder="gsk_..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                        <input id="input-groq-key" type="password" placeholder="gsk_..." class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none font-mono">
                     </div>
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">Modelo Groq</label>
-                        <input id="input-groq-model" type="text" placeholder="llama-3.3-70b-versatile, llama-3.1-8b-instant, mixtral-8x7b-32768..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                        <input id="input-groq-model" type="text" placeholder="openai/gpt-oss-20b, llama-3.1-8b-instant, llama-3.3-70b-versatile..." class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none font-mono">
                     </div>
-                    <p class="text-[10px] text-gray-500">Regístrate gratis en <code class="text-astra-cyan">console.groq.com</code> para obtener tu clave.</p>
+                    <p class="text-[10px] text-gray-500">Regístrate gratis en <code class="text-monguito-cyan">console.groq.com</code> para obtener tu clave.</p>
                 </div>
 
                 <!-- CAMPO: Ollama -->
                 <div id="field-ollama" class="hidden space-y-3">
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">Endpoint Local Ollama</label>
-                        <input id="input-ollama-url" type="text" placeholder="http://localhost:11434" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                        <input id="input-ollama-url" type="text" placeholder="http://localhost:11434" class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none font-mono">
                     </div>
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">Modelo Ollama</label>
-                        <input id="input-ollama-model" type="text" placeholder="llama3, mistral, codellama, qwen..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                        <input id="input-ollama-model" type="text" placeholder="llama3, mistral, codellama, qwen..." class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none font-mono">
                     </div>
-                    <p class="text-[10px] text-gray-500">Recuerda habilitar CORS en Ollama ejecutando <code class="text-astra-cyan">OLLAMA_ORIGINS="*" ollama serve</code> si lo ejecutas en local.</p>
+                    <p class="text-[10px] text-gray-500">Recuerda habilitar CORS en Ollama ejecutando <code class="text-monguito-cyan">OLLAMA_ORIGINS="*" ollama serve</code> si lo ejecutas en local.</p>
                 </div>
 
                 <!-- CAMPO: DeepSeek -->
                 <div id="field-deepseek" class="hidden space-y-3">
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">DeepSeek API Key</label>
-                        <input id="input-deepseek-key" type="password" placeholder="sk-..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                        <input id="input-deepseek-key" type="password" placeholder="sk-..." class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none font-mono">
                     </div>
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">Modelo DeepSeek</label>
-                        <input id="input-deepseek-model" type="text" placeholder="deepseek-chat" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                        <input id="input-deepseek-model" type="text" placeholder="deepseek-chat" class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none font-mono">
                     </div>
                 </div>
 
@@ -940,26 +723,26 @@
                 <div id="field-openrouter" class="hidden space-y-3">
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">OpenRouter API Key</label>
-                        <input id="input-openrouter-key" type="password" placeholder="sk-or-..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                        <input id="input-openrouter-key" type="password" placeholder="sk-or-..." class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none font-mono">
                     </div>
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">Modelo OpenRouter</label>
-                        <input id="input-openrouter-model" type="text" placeholder="anthropic/claude-3.5-sonnet, meta-llama/llama-3-70b..." class="w-full bg-gray-900 border border-astra-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-astra-500 font-mono">
+                        <input id="input-openrouter-model" type="text" placeholder="anthropic/claude-3.5-sonnet, meta-llama/llama-3-70b..." class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none font-mono">
                     </div>
                 </div>
             </div>
 
-            <div class="flex justify-end space-x-4 pt-2 border-t border-astra-border">
+            <div class="flex justify-end space-x-3 pt-2 border-t border-monguito-border">
                 <button onclick="closeSettingsModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 bg-gray-900">Cancelar</button>
-                <button onclick="saveApiKeySetting()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-500 shadow-lg">Guardar Configuración</button>
+                <button onclick="saveApiKeySetting()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-monguito-600 hover:bg-monguito-500 shadow-lg shadow-monguito-600/25">Guardar Configuración</button>
             </div>
         </div>
     </div>
 
     <!-- MODAL: ADD FLASHCARD -->
     <div id="modal-add-card" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-md space-y-5 shadow-2xl">
-            <div class="flex justify-between items-center border-b border-astra-border pb-3">
+        <div class="bg-gray-950 border border-monguito-border rounded-3xl p-6 w-full max-w-md space-y-5 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-monguito-border pb-3">
                 <h3 class="text-sm font-bold text-white">Añadir Flashcard Manual</h3>
                 <button onclick="closeAddCardModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
@@ -967,7 +750,7 @@
             <div class="space-y-4 text-xs">
                 <div>
                     <label class="block font-bold text-gray-300 uppercase mb-1">Módulo</label>
-                    <select id="modal-card-subject" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                    <select id="modal-card-subject" class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
                         <option value="DWES">DWES</option>
                         <option value="DWEC">DWEC</option>
                         <option value="DIW">DIW</option>
@@ -979,25 +762,25 @@
                 </div>
                 <div>
                     <label class="block font-bold text-gray-300 uppercase mb-1">Reto / Pregunta</label>
-                    <textarea id="modal-card-front" rows="2" placeholder="Ej: ¿Cómo se gestionan las variables de sesión en PHP?" class="w-full bg-gray-900 border border-astra-border rounded-xl p-3 text-xs text-white focus:outline-none resize-none"></textarea>
+                    <textarea id="modal-card-front" rows="2" placeholder="Ej: ¿Cómo se gestionan las variables de sesión en PHP?" class="w-full bg-gray-900 border border-monguito-border rounded-xl p-3 text-xs text-white focus:outline-none resize-none"></textarea>
                 </div>
                 <div>
                     <label class="block font-bold text-gray-300 uppercase mb-1">Solución / Código Esperado</label>
-                    <textarea id="modal-card-back" rows="3" placeholder="session_start(); $_SESSION['user'] = 'Alex';" class="w-full bg-gray-900 border border-astra-border rounded-xl p-3 text-xs text-white focus:outline-none font-mono resize-none"></textarea>
+                    <textarea id="modal-card-back" rows="3" placeholder="session_start(); $_SESSION['user'] = 'Alex';" class="w-full bg-gray-900 border border-monguito-border rounded-xl p-3 text-xs text-white focus:outline-none font-mono resize-none"></textarea>
                 </div>
             </div>
 
-            <div class="flex justify-end space-x-4 pt-2">
+            <div class="flex justify-end space-x-3 pt-2">
                 <button onclick="closeAddCardModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 bg-gray-900">Cancelar</button>
-                <button onclick="saveCustomFlashcard()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-500 shadow-lg">Guardar Card</button>
+                <button onclick="saveCustomFlashcard()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-monguito-600 hover:bg-monguito-500 shadow-lg shadow-monguito-600/25">Guardar Card</button>
             </div>
         </div>
     </div>
 
     <!-- MODAL: CREATE PLANNER -->
     <div id="modal-planner" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-gray-950 border border-astra-border rounded-3xl p-6 w-full max-w-lg space-y-5 shadow-2xl">
-            <div class="flex justify-between items-center border-b border-astra-border pb-3">
+        <div class="bg-gray-950 border border-monguito-border rounded-3xl p-6 w-full max-w-lg space-y-5 shadow-2xl">
+            <div class="flex justify-between items-center border-b border-monguito-border pb-3">
                 <h3 class="text-sm font-bold text-white">Generar Plan de Estudio AI</h3>
                 <button onclick="closePlannerModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
@@ -1005,7 +788,7 @@
             <div class="space-y-4 text-xs">
                 <div>
                     <label class="block font-bold text-gray-300 uppercase mb-1">Asignatura</label>
-                    <select id="modal-plan-subject" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                    <select id="modal-plan-subject" class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
                         <option value="DWES">DWES - Entorno Servidor</option>
                         <option value="DWEC">DWEC - Entorno Cliente</option>
                         <option value="DIW">DIW - Interfaces Web</option>
@@ -1018,22 +801,22 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">Fecha de Examen</label>
-                        <input id="modal-plan-date" type="date" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                        <input id="modal-plan-date" type="date" class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
                     </div>
                     <div>
                         <label class="block font-bold text-gray-300 uppercase mb-1">Horas Diarias</label>
-                        <input id="modal-plan-hours" type="number" min="1" max="10" value="2" class="w-full bg-gray-900 border border-astra-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
+                        <input id="modal-plan-hours" type="number" min="1" max="10" value="2" class="w-full bg-gray-900 border border-monguito-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none">
                     </div>
                 </div>
                 <div>
                     <label class="block font-bold text-gray-300 uppercase mb-1">Temas / Puntos Débiles</label>
-                    <textarea id="modal-plan-topics" rows="3" placeholder="Ej: PDO, Promesas en JS, Nginx VirtualHosts" class="w-full bg-gray-900 border border-astra-border rounded-xl p-3 text-xs text-white focus:outline-none resize-none"></textarea>
+                    <textarea id="modal-plan-topics" rows="3" placeholder="Ej: PDO, Promesas en JS, Nginx VirtualHosts" class="w-full bg-gray-900 border border-monguito-border rounded-xl p-3 text-xs text-white focus:outline-none resize-none"></textarea>
                 </div>
             </div>
 
-            <div class="flex justify-end space-x-4 pt-2">
+            <div class="flex justify-end space-x-3 pt-2">
                 <button onclick="closePlannerModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-gray-400 bg-gray-900">Cancelar</button>
-                <button onclick="generatePlanWithGemini()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-astra-600 hover:bg-astra-700 shadow-lg">Generar Itinerario</button>
+                <button onclick="generatePlanWithGemini()" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-monguito-600 hover:bg-monguito-700 shadow-lg shadow-monguito-600/25">Generar Itinerario</button>
             </div>
         </div>
     </div>
@@ -1071,7 +854,7 @@
             conversations: [],
             activeConv: {},
             chatHistories: {
-                GLOBAL: [{ sender: 'ai', text: '👋 **¡Hola, estudiante de 2º DAW!** Hazme cualquier pregunta sobre tus asignaturas.' }],
+                GLOBAL: [{ sender: 'ai', text: '👋 **¡Hola, estudiante de 2º DAW!** Soy Monguito. Hazme cualquier pregunta sobre tus asignaturas.' }],
                 DWES: [], DWEC: [], DIW: [], DAW: [], INGLES: [], EIE: [], PROYECTO: []
             }
         };
@@ -1228,7 +1011,7 @@
         function showCloudNotice(msg) {
             console.warn("Supabase: " + msg);
             const box = document.createElement('div');
-            box.className = 'fixed bottom-4 left-4 right-4 sm:left-auto sm:max-w-sm z-[90] bg-astra-card border border-astra-border rounded-2xl p-4 text-xs text-gray-300 shadow-2xl flex items-start gap-3';
+            box.className = 'fixed bottom-4 left-4 right-4 sm:left-auto sm:max-w-sm z-[90] bg-monguito-card border border-monguito-border rounded-2xl p-4 text-xs text-gray-300 shadow-2xl flex items-start gap-3';
             const text = document.createElement('div');
             text.className = 'flex-1 leading-relaxed';
             text.textContent = 'Modo solo local (sin login). ' + msg;
@@ -1299,7 +1082,7 @@
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
             const downloadAnchor = document.createElement('a');
             downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", `astra_daw_backup_${new Date().toISOString().split('T')[0]}.json`);
+            downloadAnchor.setAttribute("download", `monguito_daw_backup_${new Date().toISOString().split('T')[0]}.json`);
             document.body.appendChild(downloadAnchor);
             downloadAnchor.click();
             downloadAnchor.remove();
@@ -1353,16 +1136,16 @@
             if (activeSec) activeSec.classList.remove('hidden');
 
             document.querySelectorAll('.nav-btn').forEach(b => {
-                b.className = "nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 text-gray-400 hover:text-white hover:bg-astra-card flex items-center space-x-3";
+                b.className = "nav-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 text-gray-400 hover:text-white hover:bg-monguito-card flex items-center space-x-2";
             });
             const activeBtn = document.getElementById(`nav-${tabId}`);
-            if (activeBtn) activeBtn.className = "nav-btn px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 bg-astra-600 text-white shadow-md flex items-center space-x-3";
+            if (activeBtn) activeBtn.className = "nav-btn px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 bg-monguito-600 text-white shadow-lg shadow-monguito-600/20 flex items-center space-x-2";
 
             document.querySelectorAll('.mobile-nav-btn').forEach(b => {
-                b.className = "mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-card text-gray-300";
+                b.className = "mobile-nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-monguito-card text-gray-300";
             });
             const mobileBtn = document.getElementById(`mobile-nav-${tabId}`);
-            if (mobileBtn) mobileBtn.className = "mobile-nav-btn px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap bg-astra-600 text-white";
+            if (mobileBtn) mobileBtn.className = "mobile-nav-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap bg-monguito-600 text-white";
 
             if (tabId === 'dashboard') renderDashboard();
             if (tabId === 'subjects') renderFullSubjects();
@@ -1416,54 +1199,52 @@
             throw new Error("Respuesta de Gemini vacía.");
         }
 
-async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemInstruction = "", history = []) {
-    const cleanApiKey = (apiKey || '').trim();
-    const cleanModel = (model || '').trim();
-    
-    const messages = [];
+        async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemInstruction = "", history = []) {
+            const cleanApiKey = (apiKey || '').trim();
+            const cleanModel = (model || '').trim();
+            
+            const messages = [];
 
-    // Inyectamos las instrucciones del sistema
-    if (systemInstruction) {
-        messages.push({ role: 'system', content: systemInstruction });
-    }
+            if (systemInstruction) {
+                messages.push({ role: 'system', content: systemInstruction });
+            }
 
-    // Filtramos el historial activo
-    history.forEach(m => {
-        if (m && m.text && !String(m.text).startsWith('⚠️')) {
-            messages.push({ 
-                role: m.sender === 'user' ? 'user' : 'assistant', 
-                content: String(m.text) 
+            history.forEach(m => {
+                if (m && m.text && !String(m.text).startsWith('⚠️')) {
+                    messages.push({ 
+                        role: m.sender === 'user' ? 'user' : 'assistant', 
+                        content: String(m.text) 
+                    });
+                }
             });
+
+            messages.push({ role: 'user', content: prompt });
+
+            const headers = { 'Content-Type': 'application/json' };
+            if (cleanApiKey) {
+                headers['Authorization'] = `Bearer ${cleanApiKey}`;
+            }
+
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({
+                    model: cleanModel || 'openai/gpt-oss-20b',
+                    messages: messages,
+                    temperature: 0.6
+                })
+            });
+
+            if (!response.ok) {
+                const errData = await response.json().catch(() => ({}));
+                throw new Error(errData.error?.message || `Error HTTP API Groq (${response.status})`);
+            }
+            
+            const data = await response.json();
+            const text = data.choices?.[0]?.message?.content;
+            if (text) return text;
+            throw new Error("Respuesta de API vacía.");
         }
-    });
-
-    messages.push({ role: 'user', content: prompt });
-
-    const headers = { 'Content-Type': 'application/json' };
-    if (cleanApiKey) {
-        headers['Authorization'] = `Bearer ${cleanApiKey}`;
-    }
-
-    const response = await fetch(endpoint, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-            model: cleanModel || 'openai/gpt-oss-20b',
-            messages: messages,
-            temperature: 0.6
-        })
-    });
-
-    if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.error?.message || `Error HTTP API Groq (${response.status})`);
-    }
-    
-    const data = await response.json();
-    const text = data.choices?.[0]?.message?.content;
-    if (text) return text;
-    throw new Error("Respuesta de API vacía.");
-}
 
         // FUNCIÓN UNIFICADA LLAMADA POR TODA LA APP
         async function callAI(prompt, systemInstruction = "", imageBase64Data = null, imageMimeType = "image/jpeg", history = []) {
@@ -1527,21 +1308,21 @@ async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemIn
                 const subPct = subTotal > 0 ? Math.round((subDone / subTotal) * 100) : 0;
 
                 const card = document.createElement('div');
-                card.className = "astra-glass-card p-5 rounded-3xl space-y-4 border border-astra-border hover:border-astra-500/40 transition cursor-pointer";
+                card.className = "astra-glass-card p-5 rounded-3xl space-y-4 border border-monguito-border hover:border-monguito-500/40 transition cursor-pointer";
                 card.onclick = () => switchTab('subjects');
                 card.innerHTML = `
                     <div class="flex items-center justify-between">
                         <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${sub.color} flex items-center justify-center text-white text-base shadow-md">
                             <i class="fa-solid ${sub.icon}"></i>
                         </div>
-                        <span class="text-xs font-bold font-mono text-astra-cyan">${sub.shortName}</span>
+                        <span class="text-xs font-bold font-mono text-monguito-cyan">${sub.shortName}</span>
                     </div>
                     <div>
                         <h3 class="text-sm font-bold text-white leading-snug">${escapeHTML(sub.name)}</h3>
                         <p class="text-[11px] text-gray-400 mt-0.5">${subDone} de ${subTotal} temas completados</p>
                     </div>
                     <div class="w-full bg-gray-900 h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-astra-500 h-full" style="width: ${subPct}%"></div>
+                        <div class="bg-monguito-500 h-full" style="width: ${subPct}%"></div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -1555,28 +1336,28 @@ async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemIn
 
             appData.subjects.forEach(sub => {
                 const card = document.createElement('div');
-                card.className = "astra-glass-card p-6 rounded-3xl space-y-5 border border-astra-border";
+                card.className = "astra-glass-card p-6 rounded-3xl space-y-5 border border-monguito-border";
                 card.innerHTML = `
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-astra-border pb-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-monguito-border pb-4">
                         <div class="flex items-center space-x-4">
                             <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${sub.color} flex items-center justify-center text-white text-lg">
                                 <i class="fa-solid ${sub.icon}"></i>
                             </div>
                             <div>
                                 <h3 class="text-base font-bold text-white">${escapeHTML(sub.name)}</h3>
-                                <span class="text-[11px] text-astra-cyan font-mono font-bold">${sub.id}</span>
+                                <span class="text-[11px] text-monguito-cyan font-mono font-bold">${sub.id}</span>
                             </div>
                         </div>
-                        <button onclick="promptAddNewTopic('${sub.id}')" class="bg-astra-600 hover:bg-astra-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                        <button onclick="promptAddNewTopic('${sub.id}')" class="bg-monguito-600 hover:bg-monguito-500 text-white text-xs font-bold px-4 py-2 rounded-xl transition shadow-md shadow-monguito-600/20">
                             + Añadir Tema/Check
                         </button>
                     </div>
 
                     <div class="space-y-3">
                         ${(sub.topics && sub.topics.length > 0) ? sub.topics.map(t => `
-                            <div class="flex items-center justify-between p-3 rounded-2xl bg-gray-950/60 border border-gray-900 hover:border-astra-border transition">
+                            <div class="flex items-center justify-between p-3 rounded-2xl bg-gray-950/60 border border-gray-900 hover:border-monguito-border transition">
                                 <label class="flex items-center space-x-4 cursor-pointer text-xs text-gray-200">
-                                    <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleSubjectTopic('${sub.id}', '${t.id}')" class="w-4 h-4 rounded text-astra-600 bg-gray-900 border-gray-800 focus:ring-astra-500">
+                                    <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleSubjectTopic('${sub.id}', '${t.id}')" class="w-4 h-4 rounded text-monguito-600 bg-gray-900 border-gray-800 focus:ring-monguito-500">
                                     <span class="${t.done ? 'line-through text-gray-500' : 'font-medium'}">${escapeHTML(t.title)}</span>
                                 </label>
                                 <button onclick="deleteTopic('${sub.id}', '${t.id}')" class="text-gray-600 hover:text-rose-400 text-xs px-2"><i class="fa-solid fa-trash-can"></i></button>
@@ -1666,7 +1447,7 @@ async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemIn
 
         function tutorWelcome() {
             return activeChannel === 'GLOBAL'
-                ? '👋 **¡Hola, estudiante de 2º DAW!** Hazme cualquier pregunta sobre tus asignaturas.'
+                ? '👋 **¡Hola, estudiante de 2º DAW!** Soy Monguito. Hazme cualquier pregunta sobre tus asignaturas.'
                 : `👋 **Canal de ${activeChannel}**. Haz tus preguntas específicas sobre este módulo.`;
         }
 
@@ -1693,7 +1474,7 @@ async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemIn
                 const btn = document.createElement('button');
                 btn.onclick = () => selectConversation(c.id);
                 btn.className = `w-full text-left p-2.5 rounded-xl text-xs transition flex items-center justify-between group ${
-                    isActive ? 'bg-astra-600/20 text-white border border-astra-500/40 font-medium' : 'text-gray-400 hover:bg-gray-900 hover:text-gray-200 border border-transparent'
+                    isActive ? 'bg-monguito-600/20 text-white border border-monguito-500/40 font-medium' : 'text-gray-400 hover:bg-gray-900 hover:text-gray-200 border border-transparent'
                 }`;
                 btn.innerHTML = `
                     <span class="truncate flex-1 pr-2">${escapeHTML(c.title || 'Conversación')}</span>
@@ -1796,7 +1577,7 @@ async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemIn
             const channelAtSend = activeChannel;
 
             try {
-                const systemPrompt = `Eres el Tutor de IA especializado en 2º DAW. Canal actual: ${channelAtSend}. Responde con explicaciones claras y ejemplos de código. Usa Markdown estándar: títulos con ##, negrita con **texto**, listas con guiones y el código en bloques con su lenguaje.`;
+                const systemPrompt = `Eres Monguito, el Tutor de IA especializado en 2º DAW. Canal actual: ${channelAtSend}. Responde con explicaciones claras y ejemplos de código. Usa Markdown estándar: títulos con ##, negrita con **texto**, listas con guiones y el código en bloques con su lenguaje.`;
                 const responseText = await callAI(message, systemPrompt, null, "image/jpeg", history);
                 conv.messages.push({ sender: 'ai', text: responseText });
                 conv.updatedAt = Date.now();
@@ -1820,8 +1601,8 @@ async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemIn
                 const canEdit = msgIdx !== null;
                 wrapper.innerHTML = `
                     <div class="flex items-center gap-2">
-                        ${canEdit ? `<button onclick="editTutorMessage(${msgIdx})" title="Editar mensaje" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-astra-cyan text-xs transition p-1"><i class="fa-solid fa-pen-to-square"></i></button>` : ''}
-                        <div class="bg-astra-600 text-white rounded-2xl rounded-tr-none p-3.5 max-w-[85%] leading-relaxed font-sans">
+                        ${canEdit ? `<button onclick="editTutorMessage(${msgIdx})" title="Editar mensaje" class="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-monguito-cyan text-xs transition p-1"><i class="fa-solid fa-pen-to-square"></i></button>` : ''}
+                        <div class="bg-monguito-600 text-white rounded-2xl rounded-tr-none p-3.5 max-w-[85%] leading-relaxed font-sans shadow-md shadow-monguito-600/20">
                             ${escapeHTML(text)}
                         </div>
                     </div>
@@ -1829,8 +1610,8 @@ async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemIn
                 `;
             } else {
                 wrapper.innerHTML = `
-                    <div class="w-8 h-8 rounded-lg bg-astra-600 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">AI</div>
-                    <div class="bg-gray-900 border border-astra-border rounded-2xl rounded-tl-none p-4 text-gray-200 max-w-[90%] leading-relaxed space-y-3 overflow-x-auto">
+                    <div class="w-8 h-8 rounded-lg bg-monguito-600 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold shadow-md shadow-monguito-600/20">🐵</div>
+                    <div class="bg-gray-900 border border-monguito-border rounded-2xl rounded-tl-none p-4 text-gray-200 max-w-[90%] leading-relaxed space-y-3 overflow-x-auto">
                         ${formatMarkdownCode(text)}
                     </div>
                 `;
@@ -1851,10 +1632,10 @@ async function callOpenAICompatibleAPI(endpoint, apiKey, model, prompt, systemIn
             wrapper.id = id;
             wrapper.className = "flex items-start space-x-4";
             wrapper.innerHTML = `
-                <div class="w-8 h-8 rounded-lg bg-astra-600 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">AI</div>
-                <div class="bg-gray-900 border border-astra-border rounded-2xl rounded-tl-none p-4 text-gray-400 text-xs flex items-center space-x-3">
-                    <div class="w-2 h-2 rounded-full bg-astra-cyan animate-ping"></div>
-                    <span>Escribiendo respuesta...</span>
+                <div class="w-8 h-8 rounded-lg bg-monguito-600 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">🐵</div>
+                <div class="bg-gray-900 border border-monguito-border rounded-2xl rounded-tl-none p-4 text-gray-400 text-xs flex items-center space-x-3">
+                    <div class="w-2 h-2 rounded-full bg-monguito-cyan animate-ping"></div>
+                    <span>Monguito está escribiendo...</span>
                 </div>
             `;
 
@@ -2065,9 +1846,9 @@ Responde ÚNICAMENTE con un objeto JSON, sin bloques markdown extra:
             feedbackBox.classList.remove('hidden');
             document.getElementById('card-back-content').innerHTML = '<span class="text-gray-500">La solución se mostrará al evaluar.</span>';
             evalResult.innerHTML = `
-                <div class="flex items-center space-x-3 text-astra-cyan">
-                    <div class="w-3 h-3 rounded-full border-2 border-astra-cyan border-t-transparent animate-spin"></div>
-                    <span>Evaluando tu código con la IA...</span>
+                <div class="flex items-center space-x-3 text-monguito-cyan">
+                    <div class="w-3 h-3 rounded-full border-2 border-monguito-cyan border-t-transparent animate-spin"></div>
+                    <span>Evaluando tu código con Monguito AI...</span>
                 </div>`;
 
             const prompt = `Evalúa la solución de un estudiante de 2º DAW.
@@ -2136,15 +1917,15 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
                 <div class="text-left space-y-3 text-xs">
                     ${s.cards.map((c, i) => `
                         <div class="flex items-start justify-between gap-4 p-3 rounded-2xl bg-gray-950/60 border border-gray-900">
-                            <span class="text-gray-300"><span class="font-mono text-astra-cyan">${i + 1}.</span> ${escapeHTML(plainMd(c.front).length > 110 ? plainMd(c.front).slice(0, 110) + '…' : plainMd(c.front))}</span>
+                            <span class="text-gray-300"><span class="font-mono text-monguito-cyan">${i + 1}.</span> ${escapeHTML(plainMd(c.front).length > 110 ? plainMd(c.front).slice(0, 110) + '…' : plainMd(c.front))}</span>
                             <span class="font-mono font-bold whitespace-nowrap ${c.score >= PASS_GRADE ? 'text-emerald-400' : 'text-rose-400'}">${c.score}/10</span>
                         </div>`).join('')}
                 </div>
                 <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                    <button onclick="restartPractice()" class="flex-1 bg-astra-600 hover:bg-astra-700 text-white text-xs font-bold py-3 rounded-xl transition shadow-lg">
+                    <button onclick="restartPractice()" class="flex-1 bg-monguito-600 hover:bg-monguito-700 text-white text-xs font-bold py-3 rounded-xl transition shadow-lg shadow-monguito-600/25">
                         <i class="fa-solid fa-rotate-right mr-1"></i> Reiniciar con el mismo tema
                     </button>
-                    <button onclick="newPracticeTopic()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-astra-border text-xs font-semibold px-4 py-3 rounded-xl transition">
+                    <button onclick="newPracticeTopic()" class="bg-gray-900 hover:bg-gray-800 text-gray-300 border border-monguito-border text-xs font-semibold px-4 py-3 rounded-xl transition">
                         Cambiar de tema
                     </button>
                 </div>`;
@@ -2205,7 +1986,7 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
 
             if (container) container.classList.remove('hidden');
             if (addCardsBtn) addCardsBtn.classList.add('hidden');
-            if (outputEl) outputEl.innerHTML = `⌛ Procesando modelo de examen con la IA seleccionada...`;
+            if (outputEl) outputEl.innerHTML = `⌛ Procesando modelo de examen con Monguito AI...`;
 
             let imageBase64 = null;
             let imageMimeType = "image/jpeg";
@@ -2255,7 +2036,7 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
             switchTab('planner');
 
             const container = document.getElementById('planner-plans-container');
-            if (container) container.innerHTML = `<p class="text-xs text-astra-cyan">Generando plan con IA...</p>`;
+            if (container) container.innerHTML = `<p class="text-xs text-monguito-cyan">Generando plan con Monguito AI...</p>`;
 
             const prompt = `Crea un plan día a día para ${subject} con examen el ${date}, estudiando ${hours}h/día. Puntos clave: ${topics}`;
 
@@ -2276,7 +2057,7 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
 
             if (appData.plans.length === 0) {
                 container.innerHTML = `
-                    <div class="astra-glass-card p-12 rounded-3xl text-center space-y-4 border border-astra-border">
+                    <div class="astra-glass-card p-12 rounded-3xl text-center space-y-4 border border-monguito-border">
                         <i class="fa-solid fa-calendar-plus text-4xl text-gray-600"></i>
                         <h3 class="text-sm font-bold text-white">No tienes planes de estudio generados</h3>
                         <p class="text-xs text-gray-400">Haz clic en "Nuevo Plan AI" para crear un calendario.</p>
@@ -2288,12 +2069,12 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
             container.innerHTML = '';
             appData.plans.forEach(p => {
                 const card = document.createElement('div');
-                card.className = "astra-glass-card p-6 rounded-3xl space-y-5 border border-astra-border";
+                card.className = "astra-glass-card p-6 rounded-3xl space-y-5 border border-monguito-border";
                 card.innerHTML = `
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-astra-border pb-3 gap-3">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-monguito-border pb-3 gap-3">
                         <div>
                             <h3 class="text-base font-bold text-white flex items-center space-x-3">
-                                <i class="fa-solid fa-graduation-cap text-astra-cyan"></i>
+                                <i class="fa-solid fa-graduation-cap text-monguito-cyan"></i>
                                 <span>${escapeHTML(p.subject)}</span>
                             </h3>
                             <span class="text-[11px] text-gray-400">Examen: <strong class="text-amber-400">${escapeHTML(p.examDate)}</strong> | ${escapeHTML(p.dailyHours)}h/día</span>
@@ -2332,7 +2113,7 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
                 btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold text-gray-400 whitespace-nowrap";
             });
             const activeBtn = document.getElementById(`pomo-mode-${mode === 'work25' ? 'work25' : mode === 'work50' ? 'work50' : mode === 'shortBreak' ? 'short' : 'long'}`);
-            if (activeBtn) activeBtn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-astra-600 text-white whitespace-nowrap";
+            if (activeBtn) activeBtn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-monguito-600 text-white whitespace-nowrap";
         }
 
         function togglePomoTimer() {
@@ -2519,11 +2300,11 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
         function mdInline(raw) {
             const codes = [];
             let t = String(raw).replace(/`([^`\n]+)`/g, (m, c) => {
-                codes.push(`<code class="bg-gray-950 px-1.5 py-0.5 rounded text-astra-cyan font-mono text-[0.85em] border border-gray-800">${escapeHTML(c)}</code>`);
+                codes.push(`<code class="bg-gray-950 px-1.5 py-0.5 rounded text-monguito-cyan font-mono text-[0.85em] border border-gray-800">${escapeHTML(c)}</code>`);
                 return `\u0000I${codes.length - 1}\u0000`;
             });
             t = escapeHTML(t);
-            t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-astra-400 underline underline-offset-2 hover:text-astra-500">$1</a>');
+            t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-monguito-400 underline underline-offset-2 hover:text-monguito-500">$1</a>');
             t = t.replace(/\*\*\*([^*\n]+)\*\*\*/g, '<strong class="text-white font-semibold"><em>$1</em></strong>');
             t = t.replace(/\*\*\s*([^\n]+?)\s*\*\*/g, '<strong class="text-white font-semibold">$1</strong>');
             t = t.replace(/__([^_\n]+)__/g, '<strong class="text-white font-semibold">$1</strong>');
@@ -2538,7 +2319,7 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
             let src = String(text == null ? '' : text).replace(/\r\n?/g, '\n');
             const blocks = [];
             const stash = (lang, code) => {
-                blocks.push(`<pre class="bg-gray-950 p-4 rounded-xl my-3 overflow-x-auto max-w-full border border-astra-border"><code class="text-xs text-astra-cyan font-mono leading-relaxed">${escapeHTML(code.replace(/\n$/, ''))}</code></pre>`);
+                blocks.push(`<pre class="bg-gray-950 p-4 rounded-xl my-3 overflow-x-auto max-w-full border border-monguito-border"><code class="text-xs text-monguito-cyan font-mono leading-relaxed">${escapeHTML(code.replace(/\n$/, ''))}</code></pre>`);
                 return `\n\u0000B${blocks.length - 1}\u0000\n`;
             };
             src = src.replace(/```([\w+#.-]*)[ \t]*\n([\s\S]*?)```/g, (m, lang, code) => stash(lang, code));
@@ -2560,17 +2341,17 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
 
                 if ((m = line.match(/^\s{0,3}(#{1,6})\s+(.+?)\s*#*\s*$/))) {
                     const lvl = m[1].length;
-                    const cls = ['text-xl mt-5 mb-2 text-white', 'text-lg mt-5 mb-2 text-white', 'text-base mt-4 mb-1.5 text-white', 'text-sm mt-4 mb-1.5 text-white', 'text-sm mt-3 mb-1 text-gray-200', 'text-sm mt-3 mb-1 text-gray-300'][lvl - 1];
+                    const cls = ['text-xl mt-5 mb-2 text-white font-bold', 'text-lg mt-5 mb-2 text-white font-bold', 'text-base mt-4 mb-1.5 text-white font-bold', 'text-sm mt-4 mb-1.5 text-white font-bold', 'text-sm mt-3 mb-1 text-gray-200 font-bold', 'text-sm mt-3 mb-1 text-gray-300 font-bold'][lvl - 1];
                     out.push(`<h${Math.min(lvl + 1, 6)} class="${cls}">${mdInline(m[2])}</h${Math.min(lvl + 1, 6)}>`);
                     i++; continue;
                 }
 
-                if (/^\s*([-*_])(\s*\1){2,}\s*$/.test(line)) { out.push('<hr class="my-4 border-astra-border">'); i++; continue; }
+                if (/^\s*([-*_])(\s*\1){2,}\s*$/.test(line)) { out.push('<hr class="my-4 border-monguito-border">'); i++; continue; }
 
                 if (/^\s*>/.test(line)) {
                     const q = [];
                     while (i < lines.length && /^\s*>/.test(lines[i])) { q.push(lines[i].replace(/^\s*>\s?/, '')); i++; }
-                    out.push(`<blockquote class="my-3 border-l-2 border-astra-500/60 pl-4 text-gray-300">${q.map(mdInline).join('<br>')}</blockquote>`);
+                    out.push(`<blockquote class="my-3 border-l-2 border-monguito-500/60 pl-4 text-gray-300">${q.map(mdInline).join('<br>')}</blockquote>`);
                     continue;
                 }
 
@@ -2579,7 +2360,7 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
                     i += 2;
                     const rows = [];
                     while (i < lines.length && lines[i].trim() && lines[i].includes('|')) { rows.push(cells(lines[i])); i++; }
-                    out.push(`<div class="my-3 overflow-x-auto"><table class="w-full text-xs border-collapse"><thead><tr>${head.map(h => `<th class="text-left font-semibold text-white border-b border-astra-border px-3 py-2">${mdInline(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td class="border-b border-gray-800 px-3 py-2 align-top">${mdInline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
+                    out.push(`<div class="my-3 overflow-x-auto"><table class="w-full text-xs border-collapse"><thead><tr>${head.map(h => `<th class="text-left font-semibold text-white border-b border-monguito-border px-3 py-2">${mdInline(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td class="border-b border-gray-800 px-3 py-2 align-top">${mdInline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
                     continue;
                 }
 
@@ -2595,7 +2376,7 @@ Puntúa de 0 a 10 (10 = correcta y completa). Responde ÚNICAMENTE con JSON plan
                         }
                     }
                     const tag = ordered ? 'ol' : 'ul';
-                    out.push(`<${tag} class="my-3 pl-5 space-y-1.5 ${ordered ? 'list-decimal' : 'list-disc'} marker:text-astra-400">${items.map(it => `<li style="margin-left:${it.indent * 1.1}rem">${mdInline(it.text)}</li>`).join('')}</${tag}>`);
+                    out.push(`<${tag} class="my-3 pl-5 space-y-1.5 ${ordered ? 'list-decimal' : 'list-disc'} marker:text-monguito-400">${items.map(it => `<li style="margin-left:${it.indent * 1.1}rem">${mdInline(it.text)}</li>`).join('')}</${tag}>`);
                     continue;
                 }
 
